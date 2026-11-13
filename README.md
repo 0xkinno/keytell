@@ -88,7 +88,7 @@ We lead with it as hard as with the case for.
 - The real out-of-sample gain (-5.1 percent) beats 5 percent of 1000 timing placebos; the bar is 95 percent.
 - The ten contracts that function-call keys were most often scoped to carry 90.9 percent of all sampled function-call transactions.
 - Function-call keys flagged 28 weeks: 13 hits and 15 false alarms, with 24 misses. DAA: 2 hits, 7 false alarms, 35 misses.
-- Control reruns (concentration, relayers, unknown keys, episodes): see [/against](https://keytell.vercel.app/against) and `data/out/controls.json`. 1 of 8 control reruns would pass the registered rule: every relayed meta transaction counted as function-call activity. Each was registered as a control, not as the claim, so none changes the verdict; docs/FINDINGS.md treats them as hypotheses for a new pre-registration.
+- Control reruns (concentration, relayers, unknown keys, episodes): see [/against](https://keytell.vercel.app/against) and `data/out/controls.json`. 1 of 8 control reruns would pass the registered rule: every relayed meta transaction counted as function-call activity. It was registered as a control, not as the claim, so it does not change the verdict; docs/FINDINGS.md treats it as a hypothesis for a new pre-registration.
 - Largest weekly share of keys nobody could read: 1.5%. Weeks above 5 percent in the scored window: none.
 
 ## What would change this conclusion

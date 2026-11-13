@@ -319,7 +319,7 @@
     "vs_baselines": "Versus DAA the mean squared-error difference is 0.006578 (95 percent interval -0.055139 to 0.069399); versus price -0.001606 (-0.060525 to 0.05815). Negative favours function-call keys; the pass rule needs both intervals below zero.",
     "directions": "Function-call keys flagged 28 weeks: 13 hits and 15 false alarms, with 24 misses. DAA: 2 hits, 7 false alarms, 35 misses.",
     "latest": "In 2026-W45, 29.5 percent of sampled mainnet transactions were signed by a function-call key (95 percent interval 23.6 percent to 36.2 percent); 35.5 percent were meta transactions relayed for a user.",
-    "controls": "1 of 8 control reruns would pass the registered rule: every relayed meta transaction counted as function-call activity. Each was registered as a control, not as the claim, so none changes the verdict; docs/FINDINGS.md treats them as hypotheses for a new pre-registration.",
+    "controls": "1 of 8 control reruns would pass the registered rule: every relayed meta transaction counted as function-call activity. It was registered as a control, not as the claim, so it does not change the verdict; docs/FINDINGS.md treats it as a hypothesis for a new pre-registration.",
     "placebo": "The real out-of-sample gain (-5.1 percent) beats 5 percent of 1000 timing placebos; the bar is 95 percent.",
     "concentration": "The ten contracts that function-call keys were most often scoped to carry 90.9 percent of all sampled function-call transactions.",
     "sample_check": "The sample's weekly transaction estimate lands within 7.8 percent of the BigQuery census in the median week."
