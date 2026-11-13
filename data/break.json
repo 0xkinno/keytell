@@ -1,0 +1,168 @@
+{
+  "twin": "break.keytell.testnet",
+  "twin_code_hash": "Hh455Fyw4X3orYw7RXYXNgDx9otwuTTqwNjzqogE2Ymp",
+  "real_code_hash": "Hh455Fyw4X3orYw7RXYXNgDx9otwuTTqwNjzqogE2Ymp",
+  "ran_at": "2026-11-13T18:44:35.627Z",
+  "results": [
+    {
+      "name": "A stranger registers a claim",
+      "expected": "E_NOT_PUBLISHER",
+      "got": "E_NOT_PUBLISHER",
+      "ok_as_designed": true,
+      "hash": "HR39qKmSYThq8hh9FyX2bLmqkw844oLxcPbVcAoqyWTd",
+      "explorer": "https://testnet.nearblocks.io/txns/HR39qKmSYThq8hh9FyX2bLmqkw844oLxcPbVcAoqyWTd",
+      "signer": "stranger.keytell.testnet",
+      "method": "register"
+    },
+    {
+      "name": "The publisher registers after the window opened",
+      "expected": "E_WINDOW_STARTED",
+      "got": "E_WINDOW_STARTED",
+      "ok_as_designed": true,
+      "hash": "A2saGV3CjMaztgidosCpcLr5ZJmbT7JnGCcx6YrKemoD",
+      "explorer": "https://testnet.nearblocks.io/txns/A2saGV3CjMaztgidosCpcLr5ZJmbT7JnGCcx6YrKemoD",
+      "signer": "keytell.testnet",
+      "method": "register"
+    },
+    {
+      "name": "The publisher registers a valid claim (control)",
+      "expected": "OK",
+      "got": "OK",
+      "ok_as_designed": true,
+      "hash": "EE1txMBD8dmW9ZeFGrCKkA9HdVkAE3dPWsSjx8wjU5R4",
+      "explorer": "https://testnet.nearblocks.io/txns/EE1txMBD8dmW9ZeFGrCKkA9HdVkAE3dPWsSjx8wjU5R4",
+      "signer": "keytell.testnet",
+      "method": "register"
+    },
+    {
+      "name": "The publisher registers the same id again",
+      "expected": "E_CLAIM_EXISTS",
+      "got": "E_CLAIM_EXISTS",
+      "ok_as_designed": true,
+      "hash": "Exw6RVDAaBqZVFRjF1WZaS8N1WNtkRAJoDv9CTC6RQvo",
+      "explorer": "https://testnet.nearblocks.io/txns/Exw6RVDAaBqZVFRjF1WZaS8N1WNtkRAJoDv9CTC6RQvo",
+      "signer": "keytell.testnet",
+      "method": "register"
+    },
+    {
+      "name": "The publisher tries to edit the threshold",
+      "expected": "MethodNotFound",
+      "got": "MethodNotFound",
+      "ok_as_designed": true,
+      "hash": "4BLPGJT7BFcyzw2xVHPoHb3xWpzRRNkVh4ri57TcZnvX",
+      "explorer": "https://testnet.nearblocks.io/txns/4BLPGJT7BFcyzw2xVHPoHb3xWpzRRNkVh4ri57TcZnvX",
+      "signer": "keytell.testnet",
+      "method": "edit_threshold"
+    },
+    {
+      "name": "Anyone resolves before the window ends",
+      "expected": "E_WINDOW_OPEN",
+      "got": "E_WINDOW_OPEN",
+      "ok_as_designed": true,
+      "hash": "AN12BPNiaM67jPxnDzgbcXnNKDyYLhdy4xVxxh6cECj",
+      "explorer": "https://testnet.nearblocks.io/txns/AN12BPNiaM67jPxnDzgbcXnNKDyYLhdy4xVxxh6cECj",
+      "signer": "stranger.keytell.testnet",
+      "method": "resolve"
+    },
+    {
+      "name": "A stranger posts an observation",
+      "expected": "E_NOT_CRANK",
+      "got": "E_NOT_CRANK",
+      "ok_as_designed": true,
+      "hash": "N2Axv82SaRmUG5ZWKHrqJEeheRUo8DkMwVdEYLBW5n2",
+      "explorer": "https://testnet.nearblocks.io/txns/N2Axv82SaRmUG5ZWKHrqJEeheRUo8DkMwVdEYLBW5n2",
+      "signer": "stranger.keytell.testnet",
+      "method": "post"
+    },
+    {
+      "name": "The crank posts before the period has ended",
+      "expected": "E_PERIOD_NOT_ENDED",
+      "got": "E_PERIOD_NOT_ENDED",
+      "ok_as_designed": true,
+      "hash": "HmsUfkZBEve7VR9AoebccwaGBJyp4DjDZhppkUDoiwx2",
+      "explorer": "https://testnet.nearblocks.io/txns/HmsUfkZBEve7VR9AoebccwaGBJyp4DjDZhppkUDoiwx2",
+      "signer": "crank.keytell.testnet",
+      "method": "post"
+    },
+    {
+      "name": "The crank posts period 1 (control)",
+      "expected": "OK",
+      "got": "OK",
+      "ok_as_designed": true,
+      "hash": "6ZYP8Y1k94ACM9XyEGXMKpuGpwSaD2ua5S2J7DiALVo",
+      "explorer": "https://testnet.nearblocks.io/txns/6ZYP8Y1k94ACM9XyEGXMKpuGpwSaD2ua5S2J7DiALVo",
+      "signer": "crank.keytell.testnet",
+      "method": "post"
+    },
+    {
+      "name": "The crank backdates a post to period 0",
+      "expected": "E_BACKDATE",
+      "got": "E_BACKDATE",
+      "ok_as_designed": true,
+      "hash": "3XgJxHAorKCQR1r5zY5ju5FVXJoeDQ6DxRkz25uZj4CK",
+      "explorer": "https://testnet.nearblocks.io/txns/3XgJxHAorKCQR1r5zY5ju5FVXJoeDQ6DxRkz25uZj4CK",
+      "signer": "crank.keytell.testnet",
+      "method": "post"
+    },
+    {
+      "name": "The crank posts period 1 twice",
+      "expected": "E_ALREADY_POSTED",
+      "got": "E_ALREADY_POSTED",
+      "ok_as_designed": true,
+      "hash": "DY5PFunsspB1NhaHcmZcERBsWqTE4fWWq23RKXJZofNR",
+      "explorer": "https://testnet.nearblocks.io/txns/DY5PFunsspB1NhaHcmZcERBsWqTE4fWWq23RKXJZofNR",
+      "signer": "crank.keytell.testnet",
+      "method": "post"
+    },
+    {
+      "name": "The crank posts past the window",
+      "expected": "E_OUT_OF_WINDOW",
+      "got": "E_OUT_OF_WINDOW",
+      "ok_as_designed": true,
+      "hash": "HM8tttT6fJx2vDBjeb4HHmMzEP4KWdtgaCrz6hYXRw9e",
+      "explorer": "https://testnet.nearblocks.io/txns/HM8tttT6fJx2vDBjeb4HHmMzEP4KWdtgaCrz6hYXRw9e",
+      "signer": "crank.keytell.testnet",
+      "method": "post"
+    },
+    {
+      "name": "Anyone resolves after the window (control)",
+      "expected": "OK",
+      "got": "OK",
+      "ok_as_designed": true,
+      "hash": "AtUerHVSLAQL7JeaLFaBStW3iNFrnkrznvji9oi2nR9C",
+      "explorer": "https://testnet.nearblocks.io/txns/AtUerHVSLAQL7JeaLFaBStW3iNFrnkrznvji9oi2nR9C",
+      "signer": "stranger.keytell.testnet",
+      "method": "resolve"
+    },
+    {
+      "name": "The crank posts after resolution",
+      "expected": "E_RESOLVED",
+      "got": "E_RESOLVED",
+      "ok_as_designed": true,
+      "hash": "6EEAnyEBLceXmiHWjBeXZEGgLiDyXT5pVCD43ePpLNw8",
+      "explorer": "https://testnet.nearblocks.io/txns/6EEAnyEBLceXmiHWjBeXZEGgLiDyXT5pVCD43ePpLNw8",
+      "signer": "crank.keytell.testnet",
+      "method": "post"
+    },
+    {
+      "name": "Anyone resolves a second time",
+      "expected": "E_RESOLVED",
+      "got": "E_RESOLVED",
+      "ok_as_designed": true,
+      "hash": "3QcSTd4k652BqNQACZaurxjqytpdH5UVX9Fc4Lg8zaAF",
+      "explorer": "https://testnet.nearblocks.io/txns/3QcSTd4k652BqNQACZaurxjqytpdH5UVX9Fc4Lg8zaAF",
+      "signer": "stranger.keytell.testnet",
+      "method": "resolve"
+    },
+    {
+      "name": "The crank's post-only key calls resolve on the real ledger",
+      "expected": "MethodNameMismatch",
+      "got": "MethodNameMismatch (rejected by the protocol)",
+      "ok_as_designed": true,
+      "hash": null,
+      "explorer": null,
+      "signer": "crank.keytell.testnet",
+      "method": "resolve"
+    }
+  ]
+}
