@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+/* Keytell "Assay": ledger paper for the research, a vault for the hero, copper for the one signal
+   the thesis counts. Shared house fonts and plates with Berthright; its own ground, palette, motif. */
+:root {
+  --ledger: #f1ede4;          /* page ground: ledger paper */
+  --ledger-hi: #fbf9f4;       /* a fresh plate */
+  --ledger-lo: #e7e1d4;
+  --vault: #0b1013;           /* hero panel, nav, footer */
+  --vault-2: #151c20;
+  --ink: #14181b;             /* text on ledger */
+  --ink-2: #4a5156;           /* secondary text on ledger, AA */
+  --copper: #d27a2c;          /* the accent; the FC series; primary buttons (fill) */
+  --copper-ink: #9a5212;      /* copper for text on ledger, AA (5.0:1 on #f1ede4) */
+  --copper-glow: rgba(210, 122, 44, 0.32);
+  --verdigris: #4aa391;       /* evidence for, passed */
+  --verdigris-ink: #2b6e60;
+  --oxide: #b8442f;           /* evidence against, failed, refusals */
+  --oxide-ink: #9c3522;
+  --brass: #a98b54;           /* registration ticks, eyebrows on vault */
+  --brass-ink: #6f5a2f;       /* eyebrows on ledger, AA */
+  --fog: #a7b0b5;             /* secondary text on vault, AA */
+  --slate-blue: #5f7d95;      /* DAA series */
+  --rule: rgba(20, 24, 27, 0.075);
+  --margin: rgba(184, 68, 47, 0.22);
+  --hair: rgba(20, 24, 27, 0.14);
+}
+
+@theme inline {
+  --color-ledger: var(--ledger);
+  --color-ledger-hi: var(--ledger-hi);
+  --color-vault: var(--vault);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-copper: var(--copper);
+  --color-copper-ink: var(--copper-ink);
+  --color-verdigris: var(--verdigris);
+  --color-oxide: var(--oxide);
+  --color-fog: var(--fog);
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-instrument), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-plex), ui-monospace, monospace;
+}
+
+html { background: var(--ledger); color: var(--ink); }
+body {
+  font-family: var(--font-sans); color: var(--ink); -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  background-color: var(--ledger);
+  /* Ledger paper: a 28 px rule. */
+  background-image: repeating-linear-gradient(to bottom, transparent 0 27px, var(--rule) 27px 28px);
+}
+@media (min-width: 1024px) {
+  /* The red margin rule of a ledger, 64 px from the left edge. */
+  body { background-image: linear-gradient(to right, transparent 63px, var(--margin) 63px 64px, transparent 64px), repeating-linear-gradient(to bottom, transparent 0 27px, var(--rule) 27px 28px); }
+}
+::selection { background: var(--copper); color: #fff; }
+
+@layer components {
+  .display { font-family: var(--font-display); font-weight: 460; font-variation-settings: "SOFT" 0, "WONK" 0, "opsz" 144; letter-spacing: -0.022em; line-height: 1.02; }
+  .serif { font-family: var(--font-display); font-variation-settings: "opsz" 36; }
+  .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  .eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass-ink); }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 999px; background: var(--copper); box-shadow: 0 0 0 3px var(--copper-glow); }
+
+  /* The plate: a fresh sheet with brass registration ticks inside each corner. */
+  .plate {
+    position: relative; background: var(--ledger-hi); border-radius: 10px; border: 1px solid var(--hair);
+    box-shadow: 0 1px 0 rgba(20, 24, 27, 0.04), 0 18px 40px -26px rgba(20, 24, 27, 0.32);
+  }
+  .plate::before {
+    content: ""; position: absolute; inset: 7px; pointer-events: none; --t: var(--brass);
+    background:
+      linear-gradient(var(--t), var(--t)) left top / 13px 1.5px no-repeat, linear-gradient(var(--t), var(--t)) left top / 1.5px 13px no-repeat,
+      linear-gradient(var(--t), var(--t)) right top / 13px 1.5px no-repeat, linear-gradient(var(--t), var(--t)) right top / 1.5px 13px no-repeat,
+      linear-gradient(var(--t), var(--t)) left bottom / 13px 1.5px no-repeat, linear-gradient(var(--t), var(--t)) left bottom / 1.5px 13px no-repeat,
+      linear-gradient(var(--t), var(--t)) right bottom / 13px 1.5px no-repeat, linear-gradient(var(--t), var(--t)) right bottom / 1.5px 13px no-repeat;
+  }
+  /* An issue card (the editorial library): copper-edged, numbered. */
+  .issue { position: relative; background: var(--ledger-hi); border: 1px solid var(--hair); border-radius: 14px; overflow: hidden; transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease; }
+  .issue:hover { transform: translateY(-3px); box-shadow: 0 26px 50px -30px rgba(20, 24, 27, 0.45); }
+  .issue-band { background: var(--copper); color: #1d1206; }
+
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 16px; border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.18); color: #eef0f1; font-size: 14px; transition: background-color 160ms ease, border-color 160ms ease;
+  }
+  .chip:hover { background: rgba(255, 255, 255, 0.07); border-color: rgba(255, 255, 255, 0.36); }
+  .tag { display: inline-flex; align-items: center; gap: 8px; min-height: 28px; padding: 4px 10px; border: 1px solid currentColor; border-radius: 4px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .tag-for { color: var(--verdigris-ink); }
+  .tag-against { color: var(--oxide-ink); }
+
+  .btn {
+    position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 52px; padding: 0 8px 0 24px;
+    border-radius: 999px; font-weight: 600; font-size: 15px; transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+  }
+  .btn:focus-visible, a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--copper); outline-offset: 3px; }
+  .btn-copper { background: var(--copper); color: #1d1206; padding-right: 24px; }
+  .btn-copper:hover:not(:disabled) { background: #e08a3c; }
+  .btn-ghost { border: 1.5px solid rgba(255, 255, 255, 0.4); color: #f3f4f5; }
+  .btn-ghost:hover:not(:disabled) { border-color: #fff; background: rgba(255, 255, 255, 0.06); }
+  .btn-ink { background: var(--ink); color: var(--ledger-hi); padding-right: 24px; }
+  .btn-ink:hover:not(:disabled) { background: #2a3136; }
+  .btn-line { border: 1.5px solid var(--ink); color: var(--ink); padding-right: 24px; }
+  .btn-line:hover:not(:disabled) { background: var(--ink); color: var(--ledger-hi); }
+  .btn .arrow { display: inline-flex; height: 38px; width: 38px; align-items: center; justify-content: center; border-radius: 999px; background: var(--copper); color: #1d1206; }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  @media (prefers-reduced-motion: no-preference) { .btn:hover:not(:disabled) { transform: translateY(-1px); } }
+
+  .course-link { position: relative; }
+  .course-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: 2px; height: 1.5px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1); }
+  .course-link:hover::after, .course-link:focus-visible::after { transform: scaleX(1); }
+  .ulink { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+  /* The vault: hero panel, nav and footer. A faint keyway pattern. */
+  .vault {
+    background-color: var(--vault); color: #eef0f1;
+    background-image:
+      radial-gradient(900px 520px at 78% 30%, rgba(210, 122, 44, 0.10), transparent 70%),
+      radial-gradient(600px 420px at 10% 100%, rgba(74, 163, 145, 0.06), transparent 70%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Cpath d='M96 0H0V96' fill='none' stroke='%23ffffff' stroke-opacity='.035'/%3E%3Ccircle cx='48' cy='48' r='1' fill='%23ffffff' fill-opacity='.10'/%3E%3C/svg%3E");
+  }
+  .vault .eyebrow { color: var(--brass); }
+  .strip { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fog); }
+
+  .prose-k p { margin-top: 0.9em; line-height: 1.7; }
+  .prose-k h2 { font-family: var(--font-display); font-size: 30px; margin-top: 1.6em; line-height: 1.1; }
+  .prose-k h3 { font-weight: 600; margin-top: 1.4em; }
+  .prose-k code, .code { font-family: var(--font-mono); font-size: 0.86em; background: rgba(20, 24, 27, 0.06); border-radius: 4px; padding: 1px 5px; }
+  .sql { font-family: var(--font-mono); font-size: 12.5px; line-height: 1.6; background: var(--vault); color: #e9ece6; border-radius: 10px; padding: 16px; overflow-x: auto; white-space: pre; }
+  .table-k { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .table-k th { text-align: left; font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-2); font-weight: 500; padding: 8px 10px; border-bottom: 1px solid var(--hair); }
+  .table-k td { padding: 9px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+}
+
+@keyframes swing-in { from { transform: rotate(-24deg) translateY(-6px); opacity: 0; } 60% { transform: rotate(7deg); opacity: 1; } to { transform: rotate(0deg); opacity: 1; } }
+.key-peg { transform-box: fill-box; transform-origin: 50% 0%; }
+.key-peg.swing { animation: swing-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.key-peg:hover, .key-peg:focus-visible { transform: translateY(-3px); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  .issue:hover { transform: none; }
+}
+@media print {
+  body { background: #fff; }
+  .no-print, header, footer { display: none !important; }
+  .plate { box-shadow: none; }
+  .plate::before { display: none; }
+}

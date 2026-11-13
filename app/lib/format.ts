@@ -1,0 +1,10 @@
+const bad = (x: number | null | undefined) => x === null || x === undefined || Number.isNaN(x);
+export const pct = (x: number | null | undefined, d = 1) => (bad(x) ? "n/a" : `${((x as number) * 100).toFixed(d)}%`);
+export const num = (x: number | null | undefined, d = 0) => (bad(x) ? "n/a" : (x as number).toLocaleString("en-US", { maximumFractionDigits: d, minimumFractionDigits: d }));
+export const compact = (x: number | null | undefined) => (bad(x) ? "n/a" : Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 1 }).format(x as number));
+export const usd = (x: number | null | undefined) => (bad(x) ? "n/a" : `$${compact(x)}`);
+export const short = (s: string, n = 14) => (s.length <= n ? s : `${s.slice(0, Math.ceil(n / 2) - 1)}...${s.slice(-Math.floor(n / 2) + 2)}`);
+export const signed = (x: number | null | undefined, d = 3) => (bad(x) ? "n/a" : `${(x as number) >= 0 ? "+" : ""}${(x as number).toFixed(d)}`);
+export const nsToIso = (ns: string | number) => new Date(Number(BigInt(ns) / 1_000_000n)).toISOString();
+export const nsToDate = (ns: string | number) => nsToIso(ns).slice(0, 10);
+export const gb = (bytes: number) => `${(bytes / 1e9).toFixed(1)} GB`;

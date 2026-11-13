@@ -1,0 +1,23 @@
+{
+  "top10_fc_scopes_in_sample": [
+    "app.nearcrowd.near",
+    "asset-manager.orderly-network.near",
+    "token.sweat",
+    "v2_0_2.perp.spin-fi.near",
+    "priceoracle.near",
+    "rn_rmn.near",
+    "aurora"
+  ],
+  "top10_fc_signers_in_sample": [
+    "oracle.sweat",
+    "operator.orderly-network.near",
+    "laki.near",
+    "f02f5e475457c0de22c657f9522c384ab05c88a85e869b02198dbd083da8f5ec",
+    "nezikwork13.near",
+    "6b6386408da10a7d9963e8db53c2505cd6c0ce5f08df4066d13ba439df086801",
+    "timetoevolut1on.near",
+    "michaelsena.near",
+    "ilyich.near",
+    "perp.spin-fi.near"
+  ]
+}
