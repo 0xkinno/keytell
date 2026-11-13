@@ -1,0 +1,25 @@
+{
+  "name": "keytell-tools",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check:copy": "tsx scripts/check-copy.ts",
+    "check:names": "tsx scripts/check-names.ts",
+    "sample": "tsx scripts/sample-chain.ts",
+    "facts": "tsx scripts/facts.ts",
+    "verify": "tsx scripts/verify.ts",
+    "crank": "tsx scripts/crank.ts",
+    "test:classify": "tsx --test scripts/classify.test.ts",
+    "reachability": "tsx scripts/reachability.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "axe-core": "^4.14.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "bs58": "^6.0.0",
+    "near-api-js": "^7.5.3"
+  }
+}

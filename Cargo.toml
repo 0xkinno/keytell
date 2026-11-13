@@ -1,0 +1,25 @@
+[workspace]
+resolver = "2"
+members = ["contracts/thesis_ledger"]
+
+[workspace.package]
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/0xkinno/keytell"
+
+[workspace.dependencies]
+near-sdk = { version = "=5.29.0" }
+
+[profile.release]
+codegen-units = 1
+opt-level = "z"
+lto = true
+debug = false
+panic = "abort"
+overflow-checks = true
+
+# Optimized but unwinding, for the 10,000-case property tests.
+[profile.proptest]
+inherits = "dev"
+opt-level = 3
+debug = false

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Blocks commits that carry any word listed in the private, untracked word list.
+LIST=reference/forbidden-words.txt
+if [ -f "$LIST" ]; then
+  files=$(git diff --cached --name-only --diff-filter=ACM)
+  if [ -n "$files" ]; then
+    hits=$(echo "$files" | tr '\n' '\0' | xargs -0 grep -Iiwl -f "$LIST" 2>/dev/null)
+    if [ -n "$hits" ]; then echo "Blocked: private word list matched in:"; echo "$hits"; exit 1; fi
+  fi
+fi
+exit 0

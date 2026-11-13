@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+if grep -Eiq '(co-authored-by:.*(claude|anthropic))|(claude-session:)|(generated with.*claude)' "$1"; then
+  echo "Blocked: remove AI attribution lines from the commit message." >&2; exit 1; fi
