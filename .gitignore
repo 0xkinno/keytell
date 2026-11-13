@@ -22,3 +22,5 @@ __pycache__/
 secrets/
 e2e/video/
 e2e/report.json
+!docs/logs/*.log
+!e2e/verify.log

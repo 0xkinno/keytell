@@ -1,0 +1,137 @@
+cargo test --profile proptest -p thesis_ledger --lib
+    Finished `proptest` profile [optimized] target(s) in 0.25s
+warning: the following packages contain code that will be rejected by a future version of Rust: wasmparser v0.78.2
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
+     Running unittests src/lib.rs (target/proptest/deps/thesis_ledger-284a6a46512bab15)
+
+running 22 tests
+test tests::higher_comparator_counts_strictly_greater ... ok
+test tests::observations_view_returns_posted_periods_in_order ... ok
+test tests::refuses_backdated_post - should panic ... ok
+test tests::refuses_duplicate_claim_id - should panic ... ok
+test tests::refuses_duplicate_post - should panic ... ok
+test tests::refuses_post_before_period_ends - should panic ... ok
+test tests::refuses_early_resolve - should panic ... ok
+test tests::refuses_post_after_resolve - should panic ... ok
+test tests::refuses_post_by_non_crank - should panic ... ok
+test tests::refuses_post_outside_window - should panic ... ok
+test tests::refuses_register_after_window_start - should panic ... ok
+test tests::refuses_register_by_non_publisher - should panic ... ok
+test tests::refuses_register_with_malformed_hash - should panic ... ok
+test tests::refuses_register_without_storage_deposit - should panic ... ok
+test tests::refuses_resolve_with_too_few_periods_inside_grace - should panic ... ok
+test tests::refuses_window_not_whole_periods - should panic ... ok
+test tests::register_stores_every_field_and_emits_event ... ok
+test tests::refuses_second_resolve - should panic ... ok
+test tests::resolve_fails_below_threshold_and_a_tie_with_a_baseline_is_not_a_win ... ok
+test tests::resolve_passes_when_share_of_wins_reaches_threshold ... ok
+test tests::silent_crank_lapses_to_failed_after_grace ... ok
+test tests::no_call_sequence_changes_terms_or_reorders_periods has been running for over 60 seconds
+test tests::no_call_sequence_changes_terms_or_reorders_periods ... ok
+
+test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 305.62s
+
+LD_PRELOAD=$PWD/fleet/shim/libfdlimit.so cargo test -p thesis_ledger --test sandbox
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.28s
+warning: the following packages contain code that will be rejected by a future version of Rust: wasmparser v0.78.2
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
+     Running tests/sandbox.rs (target/debug/deps/sandbox-f976646d8e32f2d1)
+
+running 2 tests
+test early_resolve_is_refused ... ok
+test register_post_resolve_and_every_refusal_on_a_real_node ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 29.15s
+
+npx tsx --test scripts/classify.test.ts
+TAP version 13
+# Subtest: fixture t1: add -> FUNCTION_CALL
+ok 1 - fixture t1: add -> FUNCTION_CALL
+  ---
+  duration_ms: 0.821538
+  type: 'test'
+  ...
+# Subtest: fixture t2: delete -> UNKNOWN
+ok 2 - fixture t2: delete -> UNKNOWN
+  ---
+  duration_ms: 0.16032
+  type: 'test'
+  ...
+# Subtest: fixture t3: before delete -> FULL_ACCESS
+ok 3 - fixture t3: before delete -> FULL_ACCESS
+  ---
+  duration_ms: 0.202198
+  type: 'test'
+  ...
+# Subtest: fixture t4: re-add with new permission -> FUNCTION_CALL
+ok 4 - fixture t4: re-add with new permission -> FUNCTION_CALL
+  ---
+  duration_ms: 0.082891
+  type: 'test'
+  ...
+# Subtest: fixture t5: signed before re-add -> FULL_ACCESS
+ok 5 - fixture t5: signed before re-add -> FULL_ACCESS
+  ---
+  duration_ms: 0.069793
+  type: 'test'
+  ...
+# Subtest: fixture t6: rotate: old key after rotation -> UNKNOWN
+ok 6 - fixture t6: rotate: old key after rotation -> UNKNOWN
+  ---
+  duration_ms: 0.06264
+  type: 'test'
+  ...
+# Subtest: fixture t7: rotate: new key -> FUNCTION_CALL
+ok 7 - fixture t7: rotate: new key -> FUNCTION_CALL
+  ---
+  duration_ms: 0.090717
+  type: 'test'
+  ...
+# Subtest: fixture t8: implicit account, derived key -> IMPLICIT_FULL
+ok 8 - fixture t8: implicit account, derived key -> IMPLICIT_FULL
+  ---
+  duration_ms: 0.450094
+  type: 'test'
+  ...
+# Subtest: fixture t9: delegate: relayer outer, user FC inner -> DELEGATED_INNER_FC
+ok 9 - fixture t9: delegate: relayer outer, user FC inner -> DELEGATED_INNER_FC
+  ---
+  duration_ms: 0.230954
+  type: 'test'
+  ...
+# Subtest: fixture t10: genesis key, no event -> UNKNOWN
+ok 10 - fixture t10: genesis key, no event -> UNKNOWN
+  ---
+  duration_ms: 0.24577
+  type: 'test'
+  ...
+# Subtest: implicit account signing with a key that does not derive its name is not IMPLICIT_FULL
+ok 11 - implicit account signing with a key that does not derive its name is not IMPLICIT_FULL
+  ---
+  duration_ms: 0.262522
+  type: 'test'
+  ...
+# Subtest: RPC answers map to permissions the way the protocol stores them
+ok 12 - RPC answers map to permissions the way the protocol stores them
+  ---
+  duration_ms: 0.632339
+  type: 'test'
+  ...
+# Subtest: a delegate action is classified by its inner signer, never by the relayer
+ok 13 - a delegate action is classified by its inner signer, never by the relayer
+  ---
+  duration_ms: 0.101022
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 105.783879
+BQ_TEST=${BQ_TEST:-0} .venv/bin/python -I scripts/sql_fixture_test.py
+skip sql fixture test: set BQ_TEST=1 with BigQuery credentials to run it
+EXIT 0

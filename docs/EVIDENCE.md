@@ -152,3 +152,25 @@ PASS t10 genesis key, no event: sql UNKNOWN, expected UNKNOWN
 
 185 weeks sampled, 11,100 blocks, 37,000 transactions classified, 6,465 archival key lookups. The sample's weekly transaction estimate lands within 7.8 percent of the BigQuery census in the median week.
 
+## `make verify`
+
+Captured in `e2e/verify.log`.
+
+```
+PASS rebuild: data/out CSVs, the memo, FINDINGS, README and docs/FACTS.json reproduce exactly from committed inputs
+PASS facts: docs/FACTS.json matches its sources
+PASS ledger has zero access keys: 0 keys on ledger.keytell.testnet
+PASS ledger code hash matches the recorded reproducible build: chain Hh455Fyw4X3orYw7RXYXNgDx9otwuTTqwNjzqogE2Ymp, recorded Hh455Fyw4X3orYw7RXYXNgDx9otwuTTqwNjzqogE2Ymp
+PASS claim on chain equals data/registration.json: 12 fields equal; registered 2026-11-13T18:17:43.113Z
+PASS claim was registered before its forward window: registered 1794593863113844307, window 1794787200000000000
+PASS docs/METHOD.md hashes to method_sha256 on chain: 90f687b9d36d7ef630b8197e50adaa8529b3de0a4d4306b7a540998341ab389b vs 90f687b9d36d7ef630b8197e50adaa8529b3de0a4d4306b7a540998341ab389b
+PASS docs/CODE_MANIFEST.sha256 hashes to sql_sha256 on chain: 47e2d8be113495fc0fe63bf1fbd922812b50c41b4a455973b56b61c8fa151332 vs 47e2d8be113495fc0fe63bf1fbd922812b50c41b4a455973b56b61c8fa151332
+PASS every registered SQL, sampler and analysis file is unchanged since registration: 17 files match
+PASS every out-of-sample BigQuery query ran after the registration: sql/05_usdc_volume.sql 2026-11-13T18:18:03+00:00; sql/04_daa.sql 2026-11-13T18:18:07+00:00
+PASS every committed BigQuery output matches the hash its run recorded: 4 outputs
+PASS every posted observation hashes to a committed data/forward file: no observation posted yet (forward window opens 2026-11-16)
+PASS claim counters rebuild from the observations: chain posted 0 wins 0; rebuilt 0 and 0
+PASS crank post key is a function-call key limited to post on the ledger: {"allowance":"250000000000000000000000","method_names":["post"],"receiver_id":"ledger.keytell.testnet"}
+12 of 12 checks pass
+```
+

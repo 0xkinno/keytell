@@ -1,0 +1,89 @@
+.venv/bin/python analysis/weekly.py
+weekly.csv: 185 weeks, 2022-01-03 to 2026-11-02
+.venv/bin/python analysis/method.py
+{
+  "best_in_sample_lag": {
+    "fc_signed_tx": 4,
+    "fc_share": 4,
+    "daa": 4,
+    "tx_count": 3,
+    "price": 3
+  },
+  "oos_gain_vs_ar2": {
+    "fc_signed_tx": -0.0508025447059397,
+    "fc_share": -0.07722511342744887,
+    "daa": -0.035620010986556094,
+    "tx_count": 0.01767010865036278,
+    "price": -0.054508485426351116
+  },
+  "comparisons": {
+    "daa": {
+      "mean_sq_error_difference": 0.006577770539941676,
+      "ci95": [
+        -0.055138696823290215,
+        0.06939879690928562
+      ],
+      "headline_better": false
+    },
+    "price": {
+      "mean_sq_error_difference": -0.0016055836360415981,
+      "ci95": [
+        -0.060525170200226824,
+        0.058149912586327734
+      ],
+      "headline_better": false
+    }
+  },
+  "verdict": "The data did not support the claim",
+  "oos_weeks_scored": 94
+}
+.venv/bin/python analysis/controls.py
+{
+  "placebo": {
+    "reps": 1000,
+    "real_oos_gain": -0.0508025447059397,
+    "placebo_p95": 0.01587021836853575,
+    "share_of_placebos_beaten": 0.051,
+    "real_beats_95pct": false
+  },
+  "would_pass": {
+    "concentration_ex_top10_scopes": false,
+    "concentration_ex_top10_signers": false,
+    "relayers_fc_only": false,
+    "relayers_all_delegated_as_fc": true,
+    "relayers_delegated_excluded": false,
+    "unknown_all_fc": false,
+    "unknown_all_full": false,
+    "episodes_excluded": false
+  }
+}
+npx tsx scripts/facts.ts
+wrote docs/FACTS.json and app/lib/generated/*
+.venv/bin/python analysis/memo.py
+wrote data/out/memo.md
+npx tsx scripts/facts.ts
+wrote docs/FACTS.json and app/lib/generated/*
+.venv/bin/python analysis/findings.py
+wrote docs/FINDINGS.md
+npx tsx scripts/readme.ts
+wrote README.md
+npx tsx scripts/readme.ts --tpl docs/SUBMISSION.template.md --out SUBMISSION_NEARHACKATHON.md
+wrote SUBMISSION_NEARHACKATHON.md
+PASS rebuild: data/out CSVs, the memo, FINDINGS, README and docs/FACTS.json reproduce exactly from committed inputs
+npx tsx scripts/facts.ts --check
+PASS facts: docs/FACTS.json matches its sources
+npx tsx scripts/verify.ts
+PASS ledger has zero access keys: 0 keys on ledger.keytell.testnet
+PASS ledger code hash matches the recorded reproducible build: chain Hh455Fyw4X3orYw7RXYXNgDx9otwuTTqwNjzqogE2Ymp, recorded Hh455Fyw4X3orYw7RXYXNgDx9otwuTTqwNjzqogE2Ymp
+PASS claim on chain equals data/registration.json: 12 fields equal; registered 2026-11-13T18:17:43.113Z
+PASS claim was registered before its forward window: registered 1794593863113844307, window 1794787200000000000
+PASS docs/METHOD.md hashes to method_sha256 on chain: 90f687b9d36d7ef630b8197e50adaa8529b3de0a4d4306b7a540998341ab389b vs 90f687b9d36d7ef630b8197e50adaa8529b3de0a4d4306b7a540998341ab389b
+PASS docs/CODE_MANIFEST.sha256 hashes to sql_sha256 on chain: 47e2d8be113495fc0fe63bf1fbd922812b50c41b4a455973b56b61c8fa151332 vs 47e2d8be113495fc0fe63bf1fbd922812b50c41b4a455973b56b61c8fa151332
+PASS every registered SQL, sampler and analysis file is unchanged since registration: 17 files match
+PASS every out-of-sample BigQuery query ran after the registration: sql/05_usdc_volume.sql 2026-11-13T18:18:03+00:00; sql/04_daa.sql 2026-11-13T18:18:07+00:00
+PASS every committed BigQuery output matches the hash its run recorded: 4 outputs
+PASS every posted observation hashes to a committed data/forward file: no observation posted yet (forward window opens 2026-11-16)
+PASS claim counters rebuild from the observations: chain posted 0 wins 0; rebuilt 0 and 0
+PASS crank post key is a function-call key limited to post on the ledger: {"allowance":"250000000000000000000000","method_names":["post"],"receiver_id":"ledger.keytell.testnet"}
+
+12 of 12 checks pass
