@@ -10,9 +10,20 @@ export interface Band { from: string; to: string; label: string }
 
 const W = 760, PAD = { l: 52, r: 128, t: 18, b: 34 };
 
-export function LineChart({ dates, series, height = 300, logY = false, yFormat = (v: number) => String(v), rules = [], bands = [], title, valueFormat }: {
-  dates: string[]; series: Series[]; height?: number; logY?: boolean; yFormat?: (v: number) => string; rules?: Rule[]; bands?: Band[]; title: string; valueFormat?: (v: number) => string;
+export type Fmt = "compact" | "pct" | "fixed0" | "fixed2" | "fixed3";
+const FMT: Record<Fmt, (v: number) => string> = {
+  compact: (v) => Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 1 }).format(v),
+  pct: (v) => `${(v * 100).toFixed(v < 0.1 && v > -0.1 ? 1 : 0)}%`,
+  fixed0: (v) => v.toFixed(0),
+  fixed2: (v) => v.toFixed(2),
+  fixed3: (v) => v.toFixed(3),
+};
+
+export function LineChart({ dates, series, height = 300, logY = false, yFormat: yf = "fixed2", rules = [], bands = [], title, valueFormat: vf }: {
+  dates: string[]; series: Series[]; height?: number; logY?: boolean; yFormat?: Fmt; rules?: Rule[]; bands?: Band[]; title: string; valueFormat?: Fmt;
 }) {
+  const yFormat = FMT[yf];
+  const valueFormat = vf ? FMT[vf] : undefined;
   const [hi, setHi] = useState<number | null>(null);
   const xs = useMemo(() => dates.map((d) => new Date(`${d}T00:00:00Z`)), [dates]);
   const all = series.flatMap((s) => s.values.filter((v): v is number => v !== null && Number.isFinite(v) && (!logY || v > 0)));

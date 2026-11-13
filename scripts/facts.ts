@@ -165,6 +165,9 @@ export function buildFacts() {
       sampler_keys_needed: 0, file: "data/out/bq_runs.jsonl",
     },
     crank: crank ? { last_run: crank.at, posted: crank.posted ?? [], file: "data/crank-last.json" } : null,
+    files: Object.fromEntries(["data/out/results.json", "data/out/weekly.csv", "data/out/controls.json", "data/out/oos_errors.csv", "data/out/bq_runs.jsonl"].map((p) => [p, sha(p)])),
+    oos_queries_after_registration: reg ? runs.filter((r) => r.start >= OOS_START).every((r) => Date.parse(r.ran_at) > Number(BigInt(reg.registered_at_ns) / 1_000_000n)) && runs.some((r) => r.start >= OOS_START) : null,
+    first_oos_query_at: runs.filter((r) => r.start >= OOS_START).map((r) => r.ran_at).sort()[0] ?? null,
     break_campaign: brk ? { refusals: brk.results?.length ?? 0, all_refused_as_designed: brk.results?.every((r: any) => r.ok_as_designed) ?? false, file: "data/break.json" } : null,
   };
 
@@ -212,6 +215,13 @@ function main() {
     directions: csv("data/out/directions.csv"), oos_errors: csv("data/out/oos_errors.csv"),
     placebo: csv("data/out/placebo.csv").map((r) => Number(r.placebo_oos_gain)),
   });
+  // Files the browser hashes itself on /proof, served with the app.
+  mkdirSync("app/public/proof", { recursive: true });
+  for (const [from, to] of [["docs/METHOD.md", "METHOD.md"], ["docs/CODE_MANIFEST.sha256", "CODE_MANIFEST.sha256"], ["data/out/results.json", "results.json"], ["data/out/bq_runs.jsonl", "bq_runs.jsonl"], ["docs/FACTS.json", "FACTS.json"]]) {
+    if (existsSync(from)) writeFileSync(`app/public/proof/${to}`, readFileSync(from));
+  }
+  const memo = existsSync("data/out/memo.md") ? readFileSync("data/out/memo.md", "utf8") : null;
+  w("memo", memo ? { markdown: memo, sha256: createHash("sha256").update(memo).digest("hex") } : null);
   console.log("wrote docs/FACTS.json and app/lib/generated/*");
 }
 
