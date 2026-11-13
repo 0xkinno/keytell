@@ -150,7 +150,7 @@ PASS t10 genesis key, no event: sql UNKNOWN, expected UNKNOWN
 
 ## Sample against census
 
-185 weeks sampled, 11,100 blocks, 37,000 transactions classified, 6,465 archival key lookups. The sample's weekly transaction estimate lands within 7.8 percent of the BigQuery census in the median week.
+253 weeks sampled, 15,180 blocks, 50,600 transactions classified, 12,752 archival key lookups. The sample's weekly transaction estimate lands within 7.8 percent of the BigQuery census in the median week.
 
 ## `make verify`
 

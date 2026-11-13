@@ -18,10 +18,10 @@ Registered on NEAR testnet at 2026-11-13T18:17:43.113Z in `ledger.keytell.testne
 
 ## The controls
 - 1 of 8 control reruns would pass the registered rule: relayers all delegated as fc ([controls.json](https://github.com/0xkinno/keytell/blob/main/data/out/controls.json)). These are registered controls, not the headline, so they do not change the verdict.
-- Timing placebo: the real gain beats 5% of 1000 shifted placebos; the bar is 95% ([placebo.csv](https://github.com/0xkinno/keytell/blob/main/data/out/placebo.csv)).
-- Concentration: the ten most common function-call scopes carry 90.9% of sampled function-call transactions ([fc_receivers.csv](https://github.com/0xkinno/keytell/blob/main/data/out/fc_receivers.csv)).
+- Timing placebo: the real gain beats 9% of 1000 shifted placebos; the bar is 95% ([placebo.csv](https://github.com/0xkinno/keytell/blob/main/data/out/placebo.csv)).
+- Concentration: the ten most common function-call scopes carry 91.4% of sampled function-call transactions ([fc_receivers.csv](https://github.com/0xkinno/keytell/blob/main/data/out/fc_receivers.csv)).
 - Errors in both directions, out of sample: 15 false alarms and 24 misses against 13 hits ([directions.csv](https://github.com/0xkinno/keytell/blob/main/data/out/directions.csv)).
-- The key mix is a sample (37000 transactions classified), not a census; USDC volume before 2023-10-16 is not in the census.
+- The key mix is a sample (50600 transactions classified), not a census; USDC volume before 2023-10-16 is not in the census.
 
 ## What would change this conclusion
 - The forward claim on chain succeeding: at least half of the 12 forward weeks won, resolved by anyone after the window. That is new evidence, not a rerun of these weeks.

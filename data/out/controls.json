@@ -218,12 +218,12 @@
       "would_pass": false
     }
   },
-  "episodes_flagged": 125,
+  "episodes_flagged": 167,
   "placebo": {
     "reps": 1000,
     "real_oos_gain": -0.0508025447059397,
-    "placebo_p95": 0.01587021836853575,
-    "share_of_placebos_beaten": 0.051,
+    "placebo_p95": 0.009963091553317871,
+    "share_of_placebos_beaten": 0.091,
     "real_beats_95pct": false
   }
 }

@@ -85,8 +85,8 @@ Registered at 2026-11-13T18:17:43.113Z in `ledger.keytell.testnet`. Method hash 
 
 We lead with it as hard as with the case for.
 
-- The real out-of-sample gain (-5.1 percent) beats 5 percent of 1000 timing placebos; the bar is 95 percent.
-- The ten contracts that function-call keys were most often scoped to carry 90.9 percent of all sampled function-call transactions.
+- The real out-of-sample gain (-5.1 percent) beats 9 percent of 1000 timing placebos; the bar is 95 percent.
+- The ten contracts that function-call keys were most often scoped to carry 91.4 percent of all sampled function-call transactions.
 - Function-call keys flagged 28 weeks: 13 hits and 15 false alarms, with 24 misses. DAA: 2 hits, 7 false alarms, 35 misses.
 - Control reruns (concentration, relayers, unknown keys, episodes): see [/against](https://keytell.vercel.app/against) and `data/out/controls.json`. 1 of 8 control reruns would pass the registered rule: every relayed meta transaction counted as function-call activity. It was registered as a control, not as the claim, so it does not change the verdict; docs/FINDINGS.md treats it as a hypothesis for a new pre-registration.
 - Largest weekly share of keys nobody could read: 1.5%. Weeks above 5 percent in the scored window: none.
@@ -139,10 +139,10 @@ Out-of-sample gain is 1 minus the model's squared forecast error over the AR(2) 
 | Out-of-sample gain, transaction count | 1.8% | same |
 | Hits, false alarms, misses (function-call) | 13, 15, 24 | data/out/directions.csv |
 | Hits, false alarms, misses (DAA only) | 2, 7, 35 | same |
-| Placebo share beaten | 5% of 1000 | data/out/placebo.csv |
-| Weeks sampled | 185 (2022-W01 to 2026-W45) | data/raw/sample |
-| Blocks sampled, transactions classified | 11,100, 37,000 | same |
-| Archival key lookups | 6,465 | same |
+| Placebo share beaten | 9% of 1000 | data/out/placebo.csv |
+| Weeks sampled | 253 (2022-W01 to 2026-W45) | data/raw/sample |
+| Blocks sampled, transactions classified | 15,180, 50,600 | same |
+| Archival key lookups | 12,752 | same |
 | Census through | 2026-11-08 | data/out/bq_runs.jsonl |
 | Cost per census rebuild | 179.7 GB, about $1.02 at the on-demand price | same |
 
@@ -170,7 +170,7 @@ Out-of-sample gain is 1 minus the model's squared forecast error over the AR(2) 
 
 ## Limits
 
-- The key mix is a sample: 37,000 transactions classified over 185 weeks, with intervals. The full ADD_KEY ledger would scan about 20 TB.
+- The key mix is a sample: 50,600 transactions classified over 253 weeks, with intervals. The full ADD_KEY ledger would scan about 20 TB.
 - USDC volume before 2023-10-16 is not in the census (USDC.e logged no NEP-141 events until 2023-10-11), so earlier weeks are shown, not scored.
 - The contract resolves on the observations the crank posts. Trust in those numbers comes from `make verify` (anyone recomputes them from public data and compares hashes), not from the contract.
 - Retention and NEAR Intents volume are not computable within this build (scan budget; no partner key).

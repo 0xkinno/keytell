@@ -61,16 +61,16 @@
     "early_note": "Weeks before 2023-10-16 are shown but not scored: BigQuery ft_events holds USDC.e only from 2023-10-11."
   },
   "data": {
-    "weeks_sampled": 185,
+    "weeks_sampled": 253,
     "first_week": "2022-W01",
     "last_week": "2026-W45",
-    "blocks_sampled": 11100,
-    "transactions_seen_in_sampled_blocks": 523768,
-    "transactions_classified": 37000,
-    "archival_lookups": 6465,
+    "blocks_sampled": 15180,
+    "transactions_seen_in_sampled_blocks": 549268,
+    "transactions_classified": 50600,
+    "archival_lookups": 12752,
     "max_unknown_share": 0.015,
     "weeks_unknown_over_5pct": [],
-    "sample_vs_census_tx_median_abs_pct_error": 0.078,
+    "sample_vs_census_tx_median_abs_pct_error": 0.0785,
     "census_last_day": "2026-11-08",
     "bigquery_dataset": "bigquery-public-data.crypto_near_mainnet_us",
     "price_source": "Coin Metrics Community API, asset near, metric PriceUSD, frequency 1d",
@@ -148,8 +148,8 @@
     "placebo": {
       "reps": 1000,
       "real_oos_gain": -0.050803,
-      "placebo_p95": 0.01587,
-      "share_beaten": 0.051,
+      "placebo_p95": 0.009963,
+      "share_beaten": 0.091,
       "real_beats_95pct": false
     },
     "variants": {
@@ -210,7 +210,7 @@
         "weeks": 43
       }
     },
-    "episodes_flagged": 125,
+    "episodes_flagged": 167,
     "file": "data/out/controls.json"
   },
   "concentration": {
@@ -226,67 +226,67 @@
       "harvest-moon.near",
       "meteor-points.near"
     ],
-    "top10_share_of_sampled_fc_all_weeks": 0.9088,
+    "top10_share_of_sampled_fc_all_weeks": 0.9141,
     "top_scopes": [
       {
         "scope": "app.nearcrowd.near",
-        "sampled_fc_txs": 825,
-        "share_of_fc": 0.2873,
-        "weeks_seen": 59
+        "sampled_fc_txs": 2495,
+        "share_of_fc": 0.4075,
+        "weeks_seen": 127
+      },
+      {
+        "scope": "token.sweat",
+        "sampled_fc_txs": 1419,
+        "share_of_fc": 0.2317,
+        "weeks_seen": 170
       },
       {
         "scope": "aa-harvest-moon.near",
         "sampled_fc_txs": 486,
-        "share_of_fc": 0.1692,
+        "share_of_fc": 0.0794,
         "weeks_seen": 119
-      },
-      {
-        "scope": "token.sweat",
-        "sampled_fc_txs": 445,
-        "share_of_fc": 0.1549,
-        "weeks_seen": 124
       },
       {
         "scope": "intents.near",
         "sampled_fc_txs": 437,
-        "share_of_fc": 0.1522,
+        "share_of_fc": 0.0714,
         "weeks_seen": 63
+      },
+      {
+        "scope": "v2_0_2.perp.spin-fi.near",
+        "sampled_fc_txs": 215,
+        "share_of_fc": 0.0351,
+        "weeks_seen": 58
+      },
+      {
+        "scope": "asset-manager.orderly-network.near",
+        "sampled_fc_txs": 206,
+        "share_of_fc": 0.0336,
+        "weeks_seen": 60
       },
       {
         "scope": "inscription.near",
         "sampled_fc_txs": 169,
-        "share_of_fc": 0.0588,
+        "share_of_fc": 0.0276,
         "weeks_seen": 10
-      },
-      {
-        "scope": "asset-manager.orderly-network.near",
-        "sampled_fc_txs": 71,
-        "share_of_fc": 0.0247,
-        "weeks_seen": 29
       },
       {
         "scope": "v1.signer",
         "sampled_fc_txs": 64,
-        "share_of_fc": 0.0223,
+        "share_of_fc": 0.0105,
         "weeks_seen": 19
+      },
+      {
+        "scope": "aurora",
+        "sampled_fc_txs": 62,
+        "share_of_fc": 0.0101,
+        "weeks_seen": 15
       },
       {
         "scope": "tg",
         "sampled_fc_txs": 44,
-        "share_of_fc": 0.0153,
+        "share_of_fc": 0.0072,
         "weeks_seen": 30
-      },
-      {
-        "scope": "v2.ref-finance.near",
-        "sampled_fc_txs": 40,
-        "share_of_fc": 0.0139,
-        "weeks_seen": 8
-      },
-      {
-        "scope": "coin.abound.near",
-        "sampled_fc_txs": 29,
-        "share_of_fc": 0.0101,
-        "weeks_seen": 16
       }
     ],
     "file": "data/out/fc_receivers.csv"
@@ -302,8 +302,8 @@
   "crank": null,
   "files": {
     "data/out/results.json": "5b771333b38f3e98f4e804e03384388280d9524c9b297d6efe1ef097a999f213",
-    "data/out/weekly.csv": "12dfcd4c07707e59adae778dbc862dbb2a7417f530108abd82e821d5fb2dc83e",
-    "data/out/controls.json": "7351c1e508b6728ad57ff8ed518ce4d76a4c8d57dae4b720b7e617866afaaaf6",
+    "data/out/weekly.csv": "ab3e52e851537a1fb999f5961288785a9a7596bafa19557874594042ce5010f3",
+    "data/out/controls.json": "84b2be2fc9be09b68c8c70de8f139dd450804446a293b23b69956e0a558fac33",
     "data/out/oos_errors.csv": "8ea824c42ba906970c1177fdbd40643f5d1294fd83f930bb741f2ac9b35d0f23",
     "data/out/bq_runs.jsonl": "8d8d30397ba4908a25c49134ec66f417549b3d75674f9e47f82693e3ae1b82f1"
   },
@@ -320,8 +320,8 @@
     "directions": "Function-call keys flagged 28 weeks: 13 hits and 15 false alarms, with 24 misses. DAA: 2 hits, 7 false alarms, 35 misses.",
     "latest": "In 2026-W45, 29.5 percent of sampled mainnet transactions were signed by a function-call key (95 percent interval 23.6 percent to 36.2 percent); 35.5 percent were meta transactions relayed for a user.",
     "controls": "1 of 8 control reruns would pass the registered rule: every relayed meta transaction counted as function-call activity. It was registered as a control, not as the claim, so it does not change the verdict; docs/FINDINGS.md treats it as a hypothesis for a new pre-registration.",
-    "placebo": "The real out-of-sample gain (-5.1 percent) beats 5 percent of 1000 timing placebos; the bar is 95 percent.",
-    "concentration": "The ten contracts that function-call keys were most often scoped to carry 90.9 percent of all sampled function-call transactions.",
+    "placebo": "The real out-of-sample gain (-5.1 percent) beats 9 percent of 1000 timing placebos; the bar is 95 percent.",
+    "concentration": "The ten contracts that function-call keys were most often scoped to carry 91.4 percent of all sampled function-call transactions.",
     "sample_check": "The sample's weekly transaction estimate lands within 7.8 percent of the BigQuery census in the median week."
   }
 }

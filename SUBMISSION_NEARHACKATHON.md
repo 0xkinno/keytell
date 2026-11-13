@@ -31,7 +31,7 @@ Verdict: The data did not support the claim. Over 94 out-of-sample weeks, the fo
 
 What we found instead: signing moved from app-held function-call keys to relayed meta transactions (NEP-366). 1 of 8 control reruns would pass the registered rule: every relayed meta transaction counted as function-call activity. It was registered as a control, not as the claim, so it does not change the verdict; docs/FINDINGS.md treats it as a hypothesis for a new pre-registration.
 
-How: a keyless sampler classifies the key that signed 37,000 mainnet transactions at signing time over public RPC; BigQuery counts DAA and USDC; the app shows every chart's SQL, the case against (controls, 1,000 timing placebos, concentration), a /keys lookup for any account, and a memo the analyst signs with NEP-413. A twelve-week forward claim is open on chain; a crank posts each week with a function-call key limited to post, and anyone can resolve it. make verify rebuilds every number from a clean clone without keys. Ledger on testnet; data from mainnet.
+How: a keyless sampler classifies the key that signed 50,600 mainnet transactions at signing time over public RPC; BigQuery counts DAA and USDC; the app shows every chart's SQL, the case against (controls, 1,000 timing placebos, concentration), a /keys lookup for any account, and a memo the analyst signs with NEP-413. A twelve-week forward claim is open on chain; a crank posts each week with a function-call key limited to post, and anyone can resolve it. make verify rebuilds every number from a clean clone without keys. Ledger on testnet; data from mainnet.
 ```
 
 ## X post (Kinnoski approves and posts)
