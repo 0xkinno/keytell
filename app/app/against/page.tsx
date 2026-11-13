@@ -40,7 +40,7 @@ export default function Against() {
       <div className="mt-10 space-y-8">
         <Plate n="2.1" side="against" question="Does the result survive every control?" sentence={c ? `${Object.values(c.variants).filter((v: any) => v.would_pass).length} of ${Object.keys(c.variants).length} reruns would still pass the registered rule.` : "Controls have not been computed yet."}
           source="data/out/controls.json; each rerun keeps the headline's in-sample lag and the baselines' lags." code={[{ label: "Controls", path: "analysis/controls.py" }]}>
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Scrollable table">
             <table className="table-k">
               <thead><tr><th>Rerun</th><th>FC gain</th><th>DAA gain</th><th>Price gain</th><th>Weeks</th><th>Pass rule</th></tr></thead>
               <tbody>
@@ -59,7 +59,7 @@ export default function Against() {
 
         <Plate n="2.3" side="against" question="Is function-call activity just a few apps?" sentence={f.sentences?.concentration ?? null}
           source="data/out/fc_receivers.csv: the receiver contract each function-call key was scoped to, across every sampled function-call transaction." code={[{ label: "Scopes", path: "data/out/fc_receivers.csv" }]}>
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Scrollable table">
             <table className="table-k">
               <thead><tr><th>#</th><th>Key scoped to</th><th>Sampled FC tx</th><th>Share of FC</th><th>Weeks seen</th></tr></thead>
               <tbody>
@@ -87,7 +87,7 @@ export default function Against() {
 
         <Plate n="2.5" side="against" question="Which weeks look like bots or farming?" sentence={`${(episodes as any[]).length} weeks are flagged: one function-call scope carried at least half the week's sampled FC transactions, or DAA reached three times its trailing 8-week median. No curated airdrop list is used, because none could be sourced for every week.`}
           source="data/out/episodes.csv" code={[{ label: "Episodes", path: "data/out/episodes.csv" }]}>
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Scrollable table">
             <table className="table-k">
               <thead><tr><th>Week</th><th>Top scope share of FC</th><th>DAA</th><th>Flag</th></tr></thead>
               <tbody>

@@ -20,7 +20,7 @@ export function SqlBlock({ file, start, end }: { file: string; start?: string; e
         <span className="mono text-[12px] font-normal text-[color:var(--ink-2)]">{s.ran ? `${(billed / 1e9).toFixed(1)} GB scanned` : "not run (see header)"}</span>
       </summary>
       <div className="px-4 pb-4">
-        <pre className="sql">{s.header}{"\n\n"}{s.body}</pre>
+        <pre tabIndex={0} className="sql">{s.header}{"\n\n"}{s.body}</pre>
         <div className="mt-3 flex flex-wrap gap-2">
           <button type="button" className="btn btn-line !min-h-11 !text-[14px]" onClick={async () => { await navigator.clipboard?.writeText(literal); setCopied(true); setTimeout(() => setCopied(false), 1500); }}>
             {copied ? <Check size={15} aria-hidden /> : <Copy size={15} aria-hidden />} {copied ? "Copied" : "Copy runnable SQL"}

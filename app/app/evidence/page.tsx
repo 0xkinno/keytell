@@ -81,7 +81,7 @@ export default function Evidence() {
 
         <Plate n="1.4" question="Which lag did the in-sample window choose, and how sure was it?" sentence="The lag for each signal was chosen on in-sample weeks only, as the one with the largest reduction in squared error over AR(2). Out-of-sample weeks never touched this choice."
           source={`data/out/lags.csv, in-sample ${f.windows.in_sample.join(" to ")}.`} code={[{ label: "Lags", path: "data/out/lags.csv" }]}>
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Scrollable table">
             <table className="table-k">
               <thead><tr><th>Signal</th>{[1, 2, 3, 4, 5, 6, 7, 8].map((k) => <th key={k}>lag {k}</th>)}</tr></thead>
               <tbody>
@@ -99,7 +99,7 @@ export default function Evidence() {
 
         <Plate n="1.5" question="Do the signals and USDC volume move together, lag by lag?" sentence="Lagged Spearman rank correlations between each signal's log change k weeks earlier and the log change in USDC volume, with moving-block bootstrap 95 percent intervals. Descriptive only; the pass rule uses forecast error."
           source="data/out/correlations.csv" code={[{ label: "Correlations", path: "data/out/correlations.csv" }]}>
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Scrollable table">
             <table className="table-k">
               <thead><tr><th>Signal</th><th>Window</th>{[1, 2, 3, 4, 5, 6, 7, 8].map((k) => <th key={k}>k={k}</th>)}</tr></thead>
               <tbody>

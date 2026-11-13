@@ -83,7 +83,7 @@ export function LedgerLive() {
           <p className="eyebrow">The crank signs like an app</p>
           <p className="mt-3 text-[15px] text-[color:var(--ink-2)]">Observations are posted by <span className="mono">{f.deployment?.crank}</span> with a function-call key: the same kind of scoped key whose signatures the thesis counts. Read live with view_access_key_list:</p>
           {fcKey ? (
-            <pre className="sql mt-3 text-[12px]">{JSON.stringify({ public_key: fcKey.public_key, permission: fcKey.access_key.permission }, null, 2)}</pre>
+            <pre tabIndex={0} className="sql mt-3 text-[12px]">{JSON.stringify({ public_key: fcKey.public_key, permission: fcKey.access_key.permission }, null, 2)}</pre>
           ) : <p className="mono mt-3 text-[13px]">{crankKeys ? "post key not found" : "reading"}</p>}
         </div>
       </section>
@@ -92,7 +92,7 @@ export function LedgerLive() {
         <p className="eyebrow">Observations</p>
         <h2 className="display mt-2 text-[30px]">Every posted week</h2>
         {startsIn !== null && startsIn > 0 && <p className="mt-3 text-[15px] text-[color:var(--ink-2)]">The forward window opens in <span className="mono">{dhms(startsIn)}</span>. The first week can be posted once it has ended.</p>}
-        <div className="mt-4 overflow-x-auto">
+        <div className="mt-4 overflow-x-auto" tabIndex={0} role="region" aria-label="Scrollable table">
           <table className="table-k">
             <thead><tr><th>Week</th><th>Period</th><th>FC error</th><th>DAA error</th><th>Price error</th><th>Win</th><th>Output sha256</th><th>Transaction</th></tr></thead>
             <tbody>

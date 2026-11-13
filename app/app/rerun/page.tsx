@@ -21,7 +21,7 @@ export default function Rerun() {
         {STEPS.map((s, i) => (
           <li key={s.cmd} className="plate p-6">
             <p className="mono text-[12px] tracking-[0.14em] text-[color:var(--copper-ink)]">STEP {i + 1}</p>
-            <pre className="sql mt-3">{s.cmd}</pre>
+            <pre tabIndex={0} className="sql mt-3">{s.cmd}</pre>
             <p className="mt-3 text-[15px]"><span className="font-semibold">Needs:</span> {s.needs}</p>
             <p className="mt-1 text-[15px] text-[color:var(--ink-2)]"><span className="font-semibold text-[color:var(--ink)]">Expect:</span> {s.expect}</p>
           </li>

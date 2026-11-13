@@ -9,7 +9,7 @@ export function BreakList() {
       <p className="eyebrow">Break campaign</p>
       <h2 className="display mt-2 text-[30px]">Every way to cheat, refused on testnet</h2>
       <p className="mt-3 max-w-3xl text-[15px] text-[color:var(--ink-2)]">Each row is a real transaction sent to a twin ledger on testnet (same code hash) that tried something the contract must refuse, with the refusal code decoded from the failure. Script: scripts/break.ts; record: data/break.json.</p>
-      <div className="mt-4 overflow-x-auto">
+      <div className="mt-4 overflow-x-auto" tabIndex={0} role="region" aria-label="Scrollable table">
         <table className="table-k">
           <thead><tr><th>Attempt</th><th>Expected</th><th>Got</th><th>Transaction</th></tr></thead>
           <tbody>
