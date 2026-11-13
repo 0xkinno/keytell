@@ -1,0 +1,24 @@
+{
+  "query": "SELECT block_timestamp, receipt_receiver_account_id, action_kind, args FROM `bigquery-public-data.crypto_near_mainnet_us.receipt_actions` WHERE block_date = '2025-01-15' AND action_kind = 'DELETE_KEY' LIMIT 3",
+  "bytes_scanned_dry_run": 8807263723,
+  "rows": [
+    {
+      "block_timestamp": 1736940010786850274,
+      "receipt_receiver_account_id": "21518b29e9a9ffbf1f4712f196fa5b2178047b23806914e52b74c06cdd07e8ca",
+      "action_kind": "DELETE_KEY",
+      "args": "{\"public_key\":\"ed25519:3F4a9tKZAeBS6AiUXtW9nR6MkSD4gfDpCFMzGSTAnjQM\"}"
+    },
+    {
+      "block_timestamp": 1736952211758075712,
+      "receipt_receiver_account_id": "f3c6e105655a52969aaaaa028c2c579286baa026a88d640f6c08610bcba97c1e",
+      "action_kind": "DELETE_KEY",
+      "args": "{\"public_key\":\"ed25519:HQbxgvAVcaVn84FAb1bTDXBys3eUJmyJXvBEJymgDneR\"}"
+    },
+    {
+      "block_timestamp": 1736949894971192072,
+      "receipt_receiver_account_id": "5ee6e9dbf16b08637f9df84dd635efd9cd0ac96a5dc65bc9d33394033c5051e2",
+      "action_kind": "DELETE_KEY",
+      "args": "{\"public_key\":\"ed25519:APEdeyihec2hMo3CYyhg1VdUAMiMWqyosS76zMBbD3Mk\"}"
+    }
+  ]
+}

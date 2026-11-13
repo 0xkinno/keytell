@@ -1,0 +1,46 @@
+{
+  "query": "SELECT block_timestamp, signer_account_id, receipt_receiver_account_id, action_kind, is_delegate_action, args FROM `bigquery-public-data.crypto_near_mainnet_us.receipt_actions` WHERE block_date = '2025-01-15' AND action_kind = 'ADD_KEY' LIMIT 5",
+  "bytes_scanned_dry_run": 9418386622,
+  "rows": [
+    {
+      "block_timestamp": 1736900159307814692,
+      "signer_account_id": "sweat-relayer.near",
+      "receipt_receiver_account_id": "210430342b12b6c49ae163490f494b8a48734b4ab58635b6343b180cdc1db2e6",
+      "action_kind": "ADD_KEY",
+      "is_delegate_action": false,
+      "args": "{\"access_key\":{\"nonce\":0,\"permission\":\"FullAccess\"},\"public_key\":\"ed25519:1f2Ui9aRBgzS6qb84jYTD7XfAfgiLSnHu153cTW1h6M\"}"
+    },
+    {
+      "block_timestamp": 1736975588339376932,
+      "signer_account_id": "sweat-relayer.near",
+      "receipt_receiver_account_id": "2ea914afb727a39326b228cba0bc457163241052f8d27e09292e317365740223",
+      "action_kind": "ADD_KEY",
+      "is_delegate_action": false,
+      "args": "{\"access_key\":{\"nonce\":0,\"permission\":\"FullAccess\"},\"public_key\":\"ed25519:2PArJ9VmVUraKKF9WsyY8WGyEB8G2DAyppQHmNjpE31f\"}"
+    },
+    {
+      "block_timestamp": 1736928578308882545,
+      "signer_account_id": "sweat-relayer.near",
+      "receipt_receiver_account_id": "a58eafb0fbbcb6b78c46a02933c777e0c4cf8b1ddb39ed24ff733a8665666d77",
+      "action_kind": "ADD_KEY",
+      "is_delegate_action": false,
+      "args": "{\"access_key\":{\"nonce\":0,\"permission\":\"FullAccess\"},\"public_key\":\"ed25519:2RRK4UKZesMeh5oKjjkZefFDoWr6wH6nU5Q3EeyeRSkr\"}"
+    },
+    {
+      "block_timestamp": 1736942359465687106,
+      "signer_account_id": "sweat-relayer.near",
+      "receipt_receiver_account_id": "482d6c05ecddea798b833d6302e1c71d642af08968699476daeaa4e0328bffe7",
+      "action_kind": "ADD_KEY",
+      "is_delegate_action": false,
+      "args": "{\"access_key\":{\"nonce\":0,\"permission\":\"FullAccess\"},\"public_key\":\"ed25519:2RVfyeX3iSHhhyLvxRUbVXnTQHVjLTyfar4WgP2vbcXU\"}"
+    },
+    {
+      "block_timestamp": 1736973695769279571,
+      "signer_account_id": "sweat-relayer.near",
+      "receipt_receiver_account_id": "40fb919cfd8c5de06398b01bf4709c341a3afb5cb1d4d8753e4d1a4c8300e280",
+      "action_kind": "ADD_KEY",
+      "is_delegate_action": false,
+      "args": "{\"access_key\":{\"nonce\":0,\"permission\":\"FullAccess\"},\"public_key\":\"ed25519:2Wjoxi7w2FhKt5xyzjPiH9Wu8jXcr4JSJP6AVHvzKZcp\"}"
+    }
+  ]
+}

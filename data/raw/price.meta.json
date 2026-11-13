@@ -1,0 +1,10 @@
+{
+  "source": "Coin Metrics Community API, asset near, metric PriceUSD, frequency 1d",
+  "url": "https://community-api.coinmetrics.io/v4/timeseries/asset-metrics?assets=near&metrics=PriceUSD&frequency=1d&start_time=2021-12-01",
+  "licence": "Coin Metrics Community Data, free for non-commercial use with attribution",
+  "fetched_at": "2026-11-13T17:59:01.422Z",
+  "first": "2021-12-01",
+  "last": "2026-11-12",
+  "rows": 1808,
+  "sha256": "50fd9dca9a282de801644af042a8cd9d3af2c4129c64228253a720246caa94ca"
+}

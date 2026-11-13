@@ -1,0 +1,51 @@
+{
+  "query": "SELECT action_kind, is_delegate_action, COUNT(*) AS n FROM `bigquery-public-data.crypto_near_mainnet_us.receipt_actions` WHERE block_date = '2025-01-15' GROUP BY 1, 2 ORDER BY n DESC",
+  "bytes_scanned_dry_run": 663870088,
+  "rows": [
+    {
+      "action_kind": "TRANSFER",
+      "is_delegate_action": false,
+      "n": 15743634
+    },
+    {
+      "action_kind": "FUNCTION_CALL",
+      "is_delegate_action": false,
+      "n": 10430376
+    },
+    {
+      "action_kind": "DELEGATE_ACTION",
+      "is_delegate_action": false,
+      "n": 3918513
+    },
+    {
+      "action_kind": "ADD_KEY",
+      "is_delegate_action": false,
+      "n": 321104
+    },
+    {
+      "action_kind": "CREATE_ACCOUNT",
+      "is_delegate_action": false,
+      "n": 268811
+    },
+    {
+      "action_kind": "STAKE",
+      "is_delegate_action": false,
+      "n": 1516
+    },
+    {
+      "action_kind": "DELETE_KEY",
+      "is_delegate_action": false,
+      "n": 199
+    },
+    {
+      "action_kind": "DELETE_ACCOUNT",
+      "is_delegate_action": false,
+      "n": 60
+    },
+    {
+      "action_kind": "DEPLOY_CONTRACT",
+      "is_delegate_action": false,
+      "n": 23
+    }
+  ]
+}

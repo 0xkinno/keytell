@@ -1,0 +1,90 @@
+{
+  "query": "SELECT table_name, MIN(partition_id) AS first_day, MAX(partition_id) AS last_day, COUNT(*) AS days, SUM(total_rows) AS total_rows FROM `bigquery-public-data.crypto_near_mainnet_us.INFORMATION_SCHEMA.PARTITIONS` WHERE partition_id NOT IN ('__NULL__', '__UNPARTITIONED__') GROUP BY table_name ORDER BY table_name",
+  "bytes_scanned_dry_run": 10485760,
+  "rows": [
+    {
+      "table_name": "account_changes",
+      "first_day": "20200722",
+      "last_day": "20261113",
+      "days": 2306,
+      "total_rows": 36560996677
+    },
+    {
+      "table_name": "blocks",
+      "first_day": "20200721",
+      "last_day": "20261113",
+      "days": 2307,
+      "total_rows": 214194928
+    },
+    {
+      "table_name": "chunks",
+      "first_day": "20200722",
+      "last_day": "20261113",
+      "days": 2306,
+      "total_rows": 1187558214
+    },
+    {
+      "table_name": "execution_outcomes",
+      "first_day": "20200723",
+      "last_day": "20261113",
+      "days": 2294,
+      "total_rows": 22718211803
+    },
+    {
+      "table_name": "ft_balances_daily",
+      "first_day": "20230101",
+      "last_day": "20261112",
+      "days": 1395,
+      "total_rows": 27563388
+    },
+    {
+      "table_name": "ft_events",
+      "first_day": "20220223",
+      "last_day": "20261113",
+      "days": 1716,
+      "total_rows": 13746019638
+    },
+    {
+      "table_name": "nft_events",
+      "first_day": "20211123",
+      "last_day": "20261113",
+      "days": 1817,
+      "total_rows": 60639495
+    },
+    {
+      "table_name": "receipt_actions",
+      "first_day": "20200723",
+      "last_day": "20261113",
+      "days": 2294,
+      "total_rows": 23336898919
+    },
+    {
+      "table_name": "receipt_details",
+      "first_day": "20200723",
+      "last_day": "20261113",
+      "days": 2294,
+      "total_rows": 24457930275
+    },
+    {
+      "table_name": "receipt_origin_transaction",
+      "first_day": "20200723",
+      "last_day": "20261113",
+      "days": 2294,
+      "total_rows": 24478758095
+    },
+    {
+      "table_name": "transaction_actions",
+      "first_day": "20200723",
+      "last_day": "20261113",
+      "days": 2294,
+      "total_rows": 6032153056
+    },
+    {
+      "table_name": "transactions",
+      "first_day": "20200723",
+      "last_day": "20261113",
+      "days": 2294,
+      "total_rows": 5486112855
+    }
+  ]
+}

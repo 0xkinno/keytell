@@ -1,0 +1,11 @@
+PASS t1 add: sql FUNCTION_CALL, expected FUNCTION_CALL
+PASS t2 delete: sql UNKNOWN, expected UNKNOWN
+PASS t3 before delete: sql FULL_ACCESS, expected FULL_ACCESS
+PASS t4 re-add with new permission: sql FUNCTION_CALL, expected FUNCTION_CALL
+PASS t5 signed before re-add: sql FULL_ACCESS, expected FULL_ACCESS
+PASS t6 rotate: old key after rotation: sql UNKNOWN, expected UNKNOWN
+PASS t7 rotate: new key: sql FUNCTION_CALL, expected FUNCTION_CALL
+PASS t8 implicit account, derived key: sql IMPLICIT_FULL, expected IMPLICIT_FULL
+PASS t9 delegate: relayer outer, user FC inner: sql DELEGATED_INNER_FC, expected DELEGATED_INNER_FC
+PASS t10 genesis key, no event: sql UNKNOWN, expected UNKNOWN
+10 of 10 fixtures agree between sql/02 and the expected buckets

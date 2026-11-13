@@ -1,0 +1,20 @@
+{
+  "query": "SELECT transaction_hash, signer_account_id, signer_public_key, receiver_account_id, args FROM `bigquery-public-data.crypto_near_mainnet_us.transaction_actions` WHERE block_date = '2024-06-05' AND action_kind = 'DELEGATE_ACTION' LIMIT 2",
+  "bytes_scanned_dry_run": 5219032388,
+  "rows": [
+    {
+      "transaction_hash": "BvXtXWrWzkugwphqDzJmzomisbkbL7AJXJNwwUP2ioLB",
+      "signer_account_id": "relay.tg",
+      "signer_public_key": "ed25519:12a8PZTnf4znur6CZ45EMr4Hm7CctA5eZYjqRXTNbX98",
+      "receiver_account_id": "7159879543.tg",
+      "args": "{\"Delegate\":{\"delegate_action\":{\"actions\":[{\"FunctionCall\":{\"args\":\"eyJjaGFyZ2VfZ2FzX2ZlZSI6ZmFsc2UsInNpZ25hdHVyZSI6ImIwZWM1MDZlYTEyNDNhM2EyY2FiMWFhODY3ZTcwNGE0Y2E0MTU3ZTU3N2NlOGFlNjE1YjM1ZTQ4Mzg2MWU0ODgiLCJtaW5pbmdfdGltZSI6IjY5OTI2NiIsIm1heF90cyI6IjE3MTc1ODM0OTA3OTQyMTE2MDEiLCJib29tX3RpbWUiOjB9\",\"deposit\":\"0\",\"gas\":50000000000000,\"method_name\":\"l2_claim\"}}],\"max_block_height\":120886095,\"nonce\":118531485000224,\"public_key\":\"ed25519:ACFtCeKwJAa1VKno8KeqfAGnyvPi5TGwHuCNPYodL4R2\",\"receiver_id\":\"game.hot.tg\",\"sender_id\":\"7159879543.tg\"},\"signature\":\"ed25519:31opMTfrHYx9gcASAbfoUeSKkpQBWy8LF4dxjasYHxdewap5zW5SJE99rnrbz812GUKh9L4kEaBzLw9hviefxLsn\"}}"
+    },
+    {
+      "transaction_hash": "2QQRhTpG4nbGSwUmn1mphpfv2W1Pf8vqc6H6kZcoMXiY",
+      "signer_account_id": "relay.tg",
+      "signer_public_key": "ed25519:12a8PZTnf4znur6CZ45EMr4Hm7CctA5eZYjqRXTNbX98",
+      "receiver_account_id": "i7159174949.tg",
+      "args": "{\"Delegate\":{\"delegate_action\":{\"actions\":[{\"FunctionCall\":{\"args\":\"eyJyZWNlaXZlcl9pZCI6InJlZi5ob3QudGciLCJhbW91bnQiOiIxMDQyMjAwIiwibXNnIjoiW3tcInRva2VuX2luXCI6XCJ1c2R0LnRldGhlci10b2tlbi5uZWFyXCIsXCJ0b2tlbl9vdXRcIjpcIjE3MjA4NjI4Zjg0ZjVkNmFkMzNmMGRhM2JiYmViMjdmZmNiMzk4ZWFjNTAxYTMxYmQ2YWQyMDExZTM2MTMzYTFcIixcImFtb3VudF9pblwiOlwiMTA0MjIwMFwiLFwicG9vbF9pZFwiOjQxNzksXCJtaW5fYW1vdW50X291dFwiOlwiMTAyMDEwM1wifV0ifQ==\",\"deposit\":\"1\",\"gas\":280000000000000,\"method_name\":\"ft_transfer_call\"}}],\"max_block_height\":120870029,\"nonce\":114066871002140,\"public_key\":\"ed25519:BwVgPtaeYmyapr2MBC9xPQRRicwncGcCQrB5yKxtKhCU\",\"receiver_id\":\"usdt.tether-token.near\",\"sender_id\":\"i7159174949.tg\"},\"signature\":\"ed25519:42MpDBVqpd8RpGnRqcw9UGcRQUHmxkQmfUY4Ur1YrCgyXs1rrT7FuopDjcjzuT9i5rTB3eeVa4SVuv6Dqz6Zb7so\"}}"
+    }
+  ]
+}

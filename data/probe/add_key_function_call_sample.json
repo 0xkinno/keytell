@@ -1,0 +1,21 @@
+{
+  "query": "SELECT block_timestamp, receipt_receiver_account_id, args FROM `bigquery-public-data.crypto_near_mainnet_us.receipt_actions` WHERE block_date = '2024-06-05' AND action_kind = 'ADD_KEY' AND args NOT LIKE '%FullAccess%' LIMIT 3",
+  "bytes_scanned_dry_run": 8511985265,
+  "rows": [
+    {
+      "block_timestamp": 1717613143052644381,
+      "receipt_receiver_account_id": "4a229d05edbee58c1669f2947e28083a6367e47e0355ad2986683f218a05503b",
+      "args": "{\"access_key\":{\"nonce\":0,\"permission\":{\"FunctionCall\":{\"allowance\":\"0\",\"method_names\":[\"__wallet__metadata\"],\"receiver_id\":\"4a229d05edbee58c1669f2947e28083a6367e47e0355ad2986683f218a05503b\"}}},\"public_key\":\"ed25519:CDJrW4wKKq4CErE8x7fMQv4UfppWEi13bNTYUH5yB2zJ\"}"
+    },
+    {
+      "block_timestamp": 1717575621543721424,
+      "receipt_receiver_account_id": "ddika9077.near",
+      "args": "{\"access_key\":{\"nonce\":0,\"permission\":{\"FunctionCall\":{\"allowance\":\"250000000000000\",\"method_names\":[],\"receiver_id\":\"social.near\"}}},\"public_key\":\"ed25519:BjeQhuo2PyBh17EXXUiBENEr4b53d3dRPsZ27e5MukJe\"}"
+    },
+    {
+      "block_timestamp": 1717551158759354470,
+      "receipt_receiver_account_id": "elizdecortez930.near",
+      "args": "{\"access_key\":{\"nonce\":0,\"permission\":{\"FunctionCall\":{\"allowance\":\"250000000000000\",\"method_names\":[],\"receiver_id\":\"social.near\"}}},\"public_key\":\"ed25519:EvjokZ9fNhMhV89uMtgxic1orFzgGHwCMNyRXgDwNuoz\"}"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+# Pinned for `make analyze`. Python 3.12 or newer.
+numpy==2.3.4
+pandas==2.3.3
+scipy==1.16.3
+statsmodels==0.14.5
+google-cloud-bigquery==3.38.0
+db-dtypes==1.4.3

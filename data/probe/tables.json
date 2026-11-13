@@ -1,0 +1,70 @@
+{
+  "query": "SELECT table_name, table_type FROM `bigquery-public-data.crypto_near_mainnet_us.INFORMATION_SCHEMA.TABLES` ORDER BY table_name",
+  "bytes_scanned_dry_run": 10485760,
+  "rows": [
+    {
+      "table_name": "account_changes",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "accounts",
+      "table_type": "VIEW"
+    },
+    {
+      "table_name": "blocks",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "chunks",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "circulating_supply",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "execution_outcomes",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "ft_balances_daily",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "ft_events",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "ft_events_contracts_by_account",
+      "table_type": "MATERIALIZED VIEW"
+    },
+    {
+      "table_name": "nft_events",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "nft_events_contracts_by_account",
+      "table_type": "MATERIALIZED VIEW"
+    },
+    {
+      "table_name": "receipt_actions",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "receipt_details",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "receipt_origin_transaction",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "transaction_actions",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "transactions",
+      "table_type": "BASE TABLE"
+    }
+  ]
+}

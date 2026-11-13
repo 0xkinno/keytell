@@ -1,0 +1,27 @@
+{
+  "query": "SELECT transaction_hash, signer_account_id, signer_public_key, receiver_account_id, status FROM `bigquery-public-data.crypto_near_mainnet_us.transactions` WHERE block_date = '2025-01-15' LIMIT 3",
+  "bytes_scanned_dry_run": 1073683493,
+  "rows": [
+    {
+      "transaction_hash": "4eBKBm2qTkiuULFMjTy1KvWb5dpupYbKEgs5GCiEukUK",
+      "signer_account_id": "a99448ef6d5804ddfde7121eddd815f9d32b4128e97eceb8c41132995baa2010",
+      "signer_public_key": "ed25519:CQy3brCCwFZakCfk1XTjqrrphsvFrEDMSBxwQMArGPif",
+      "receiver_account_id": "a99448ef6d5804ddfde7121eddd815f9d32b4128e97eceb8c41132995baa2010",
+      "status": "SUCCESS_RECEIPT_ID"
+    },
+    {
+      "transaction_hash": "FbLbnkMi4eMvgwcCvnAGXkQeKYqeqHEjvstitKmfU9Lv",
+      "signer_account_id": "7174304091.tg",
+      "signer_public_key": "ed25519:4s5zy8ts9pfc3M1T1LPJf4UJtni9XZ9ZdrFsHUxM1USm",
+      "receiver_account_id": "7174304091.tg",
+      "status": "SUCCESS_RECEIPT_ID"
+    },
+    {
+      "transaction_hash": "BHNfB4FFDmtH6b61aeVjUtdUnZ6G1F2gVpmkDGo4PGny",
+      "signer_account_id": "7bbcc9c2ab0817ef0e0ffef410d102356f58dbf72500877d45f6c56727df204e",
+      "signer_public_key": "ed25519:9L27VmiXEh9XLj7u6PT3NdBno7rbmh7etcmd289Dtv9K",
+      "receiver_account_id": "7bbcc9c2ab0817ef0e0ffef410d102356f58dbf72500877d45f6c56727df204e",
+      "status": "SUCCESS_RECEIPT_ID"
+    }
+  ]
+}

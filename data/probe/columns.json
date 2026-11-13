@@ -1,0 +1,961 @@
+{
+  "query": "SELECT table_name, column_name, data_type FROM `bigquery-public-data.crypto_near_mainnet_us.INFORMATION_SCHEMA.COLUMNS` ORDER BY table_name, ordinal_position",
+  "bytes_scanned_dry_run": 10485760,
+  "rows": [
+    {
+      "table_name": "account_changes",
+      "column_name": "block_date",
+      "data_type": "DATE"
+    },
+    {
+      "table_name": "account_changes",
+      "column_name": "block_height",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "account_changes",
+      "column_name": "block_timestamp",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "account_changes",
+      "column_name": "block_timestamp_utc",
+      "data_type": "TIMESTAMP"
+    },
+    {
+      "table_name": "account_changes",
+      "column_name": "block_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "account_changes",
+      "column_name": "chunk_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "account_changes",
+      "column_name": "index_in_block",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "account_changes",
+      "column_name": "affected_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "account_changes",
+      "column_name": "caused_by_transaction_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "account_changes",
+      "column_name": "caused_by_receipt_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "account_changes",
+      "column_name": "update_reason",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "account_changes",
+      "column_name": "affected_account_nonstaked_balance",
+      "data_type": "FLOAT64"
+    },
+    {
+      "table_name": "account_changes",
+      "column_name": "affected_account_staked_balance",
+      "data_type": "FLOAT64"
+    },
+    {
+      "table_name": "account_changes",
+      "column_name": "affected_account_storage_usage",
+      "data_type": "FLOAT64"
+    },
+    {
+      "table_name": "accounts",
+      "column_name": "block_date",
+      "data_type": "DATE"
+    },
+    {
+      "table_name": "accounts",
+      "column_name": "block_height",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "accounts",
+      "column_name": "block_timestamp",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "accounts",
+      "column_name": "block_timestamp_utc",
+      "data_type": "TIMESTAMP"
+    },
+    {
+      "table_name": "accounts",
+      "column_name": "block_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "accounts",
+      "column_name": "chunk_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "accounts",
+      "column_name": "shard_id",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "accounts",
+      "column_name": "index_in_action_receipt",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "accounts",
+      "column_name": "receipt_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "accounts",
+      "column_name": "account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "accounts",
+      "column_name": "action_kind",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "accounts",
+      "column_name": "is_active",
+      "data_type": "BOOL"
+    },
+    {
+      "table_name": "blocks",
+      "column_name": "block_date",
+      "data_type": "DATE"
+    },
+    {
+      "table_name": "blocks",
+      "column_name": "block_height",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "blocks",
+      "column_name": "block_timestamp",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "blocks",
+      "column_name": "block_timestamp_utc",
+      "data_type": "TIMESTAMP"
+    },
+    {
+      "table_name": "blocks",
+      "column_name": "block_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "blocks",
+      "column_name": "prev_block_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "blocks",
+      "column_name": "total_supply",
+      "data_type": "FLOAT64"
+    },
+    {
+      "table_name": "blocks",
+      "column_name": "gas_price",
+      "data_type": "FLOAT64"
+    },
+    {
+      "table_name": "blocks",
+      "column_name": "author_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "chunks",
+      "column_name": "block_date",
+      "data_type": "DATE"
+    },
+    {
+      "table_name": "chunks",
+      "column_name": "block_height",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "chunks",
+      "column_name": "block_timestamp",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "chunks",
+      "column_name": "block_timestamp_utc",
+      "data_type": "TIMESTAMP"
+    },
+    {
+      "table_name": "chunks",
+      "column_name": "block_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "chunks",
+      "column_name": "chunk_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "chunks",
+      "column_name": "shard_id",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "chunks",
+      "column_name": "signature",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "chunks",
+      "column_name": "gas_limit",
+      "data_type": "FLOAT64"
+    },
+    {
+      "table_name": "chunks",
+      "column_name": "gas_used",
+      "data_type": "FLOAT64"
+    },
+    {
+      "table_name": "chunks",
+      "column_name": "author_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "circulating_supply",
+      "column_name": "block_date",
+      "data_type": "DATE"
+    },
+    {
+      "table_name": "circulating_supply",
+      "column_name": "computed_at_block_timestamp",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "circulating_supply",
+      "column_name": "computed_at_block_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "circulating_supply",
+      "column_name": "computed_at_block_height",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "circulating_supply",
+      "column_name": "circulating_tokens_supply",
+      "data_type": "FLOAT64"
+    },
+    {
+      "table_name": "circulating_supply",
+      "column_name": "total_tokens_supply",
+      "data_type": "FLOAT64"
+    },
+    {
+      "table_name": "execution_outcomes",
+      "column_name": "block_date",
+      "data_type": "DATE"
+    },
+    {
+      "table_name": "execution_outcomes",
+      "column_name": "block_height",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "execution_outcomes",
+      "column_name": "block_timestamp",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "execution_outcomes",
+      "column_name": "block_timestamp_utc",
+      "data_type": "TIMESTAMP"
+    },
+    {
+      "table_name": "execution_outcomes",
+      "column_name": "block_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "execution_outcomes",
+      "column_name": "chunk_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "execution_outcomes",
+      "column_name": "shard_id",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "execution_outcomes",
+      "column_name": "receipt_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "execution_outcomes",
+      "column_name": "executed_in_block_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "execution_outcomes",
+      "column_name": "outcome_receipt_ids",
+      "data_type": "STRUCT<list ARRAY<STRUCT<element STRING>>>"
+    },
+    {
+      "table_name": "execution_outcomes",
+      "column_name": "index_in_chunk",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "execution_outcomes",
+      "column_name": "gas_burnt",
+      "data_type": "FLOAT64"
+    },
+    {
+      "table_name": "execution_outcomes",
+      "column_name": "tokens_burnt",
+      "data_type": "FLOAT64"
+    },
+    {
+      "table_name": "execution_outcomes",
+      "column_name": "executor_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "execution_outcomes",
+      "column_name": "status",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "execution_outcomes",
+      "column_name": "logs",
+      "data_type": "STRUCT<list ARRAY<STRUCT<element STRING>>>"
+    },
+    {
+      "table_name": "ft_balances_daily",
+      "column_name": "epoch_date",
+      "data_type": "DATE"
+    },
+    {
+      "table_name": "ft_balances_daily",
+      "column_name": "epoch_block_height",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "ft_balances_daily",
+      "column_name": "account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "ft_balances_daily",
+      "column_name": "liquid",
+      "data_type": "FLOAT64"
+    },
+    {
+      "table_name": "ft_balances_daily",
+      "column_name": "storage_usage",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "ft_balances_daily",
+      "column_name": "unstaked_not_liquid",
+      "data_type": "FLOAT64"
+    },
+    {
+      "table_name": "ft_balances_daily",
+      "column_name": "staked",
+      "data_type": "FLOAT64"
+    },
+    {
+      "table_name": "ft_balances_daily",
+      "column_name": "reward",
+      "data_type": "FLOAT64"
+    },
+    {
+      "table_name": "ft_balances_daily",
+      "column_name": "lockup_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "ft_balances_daily",
+      "column_name": "lockup_liquid",
+      "data_type": "FLOAT64"
+    },
+    {
+      "table_name": "ft_balances_daily",
+      "column_name": "lockup_unstaked_not_liquid",
+      "data_type": "FLOAT64"
+    },
+    {
+      "table_name": "ft_balances_daily",
+      "column_name": "lockup_staked",
+      "data_type": "FLOAT64"
+    },
+    {
+      "table_name": "ft_balances_daily",
+      "column_name": "lockup_reward",
+      "data_type": "FLOAT64"
+    },
+    {
+      "table_name": "ft_events",
+      "column_name": "block_date",
+      "data_type": "DATE"
+    },
+    {
+      "table_name": "ft_events",
+      "column_name": "block_height",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "ft_events",
+      "column_name": "block_timestamp",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "ft_events",
+      "column_name": "block_timestamp_utc",
+      "data_type": "TIMESTAMP"
+    },
+    {
+      "table_name": "ft_events",
+      "column_name": "block_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "ft_events",
+      "column_name": "chunk_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "ft_events",
+      "column_name": "shard_id",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "ft_events",
+      "column_name": "standard",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "ft_events",
+      "column_name": "receipt_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "ft_events",
+      "column_name": "contract_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "ft_events",
+      "column_name": "affected_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "ft_events",
+      "column_name": "involved_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "ft_events",
+      "column_name": "delta_amount",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "ft_events",
+      "column_name": "cause",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "ft_events",
+      "column_name": "status",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "ft_events",
+      "column_name": "event_memo",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "ft_events",
+      "column_name": "event_index",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "ft_events",
+      "column_name": "token_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "ft_events_contracts_by_account",
+      "column_name": "affected_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "ft_events_contracts_by_account",
+      "column_name": "contract_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "nft_events",
+      "column_name": "block_date",
+      "data_type": "DATE"
+    },
+    {
+      "table_name": "nft_events",
+      "column_name": "block_height",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "nft_events",
+      "column_name": "block_timestamp",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "nft_events",
+      "column_name": "block_timestamp_utc",
+      "data_type": "TIMESTAMP"
+    },
+    {
+      "table_name": "nft_events",
+      "column_name": "block_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "nft_events",
+      "column_name": "chunk_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "nft_events",
+      "column_name": "shard_id",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "nft_events",
+      "column_name": "standard",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "nft_events",
+      "column_name": "receipt_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "nft_events",
+      "column_name": "contract_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "nft_events",
+      "column_name": "token_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "nft_events",
+      "column_name": "old_owner_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "nft_events",
+      "column_name": "new_owner_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "nft_events",
+      "column_name": "authorized_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "nft_events",
+      "column_name": "cause",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "nft_events",
+      "column_name": "status",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "nft_events",
+      "column_name": "event_memo",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "nft_events",
+      "column_name": "event_index",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "nft_events_contracts_by_account",
+      "column_name": "old_owner_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "nft_events_contracts_by_account",
+      "column_name": "new_owner_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "nft_events_contracts_by_account",
+      "column_name": "contract_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "receipt_actions",
+      "column_name": "block_date",
+      "data_type": "DATE"
+    },
+    {
+      "table_name": "receipt_actions",
+      "column_name": "block_height",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "receipt_actions",
+      "column_name": "block_timestamp",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "receipt_actions",
+      "column_name": "block_timestamp_utc",
+      "data_type": "TIMESTAMP"
+    },
+    {
+      "table_name": "receipt_actions",
+      "column_name": "block_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "receipt_actions",
+      "column_name": "chunk_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "receipt_actions",
+      "column_name": "shard_id",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "receipt_actions",
+      "column_name": "index_in_action_receipt",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "receipt_actions",
+      "column_name": "receipt_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "receipt_actions",
+      "column_name": "gas_price",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "receipt_actions",
+      "column_name": "signer_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "receipt_actions",
+      "column_name": "signer_public_key",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "receipt_actions",
+      "column_name": "args",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "receipt_actions",
+      "column_name": "receipt_predecessor_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "receipt_actions",
+      "column_name": "action_kind",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "receipt_actions",
+      "column_name": "receipt_receiver_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "receipt_actions",
+      "column_name": "is_delegate_action",
+      "data_type": "BOOL"
+    },
+    {
+      "table_name": "receipt_details",
+      "column_name": "block_date",
+      "data_type": "DATE"
+    },
+    {
+      "table_name": "receipt_details",
+      "column_name": "block_height",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "receipt_details",
+      "column_name": "block_timestamp",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "receipt_details",
+      "column_name": "block_timestamp_utc",
+      "data_type": "TIMESTAMP"
+    },
+    {
+      "table_name": "receipt_details",
+      "column_name": "block_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "receipt_details",
+      "column_name": "chunk_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "receipt_details",
+      "column_name": "shard_id",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "receipt_details",
+      "column_name": "index_in_chunk",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "receipt_details",
+      "column_name": "receipt_kind",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "receipt_details",
+      "column_name": "receipt_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "receipt_details",
+      "column_name": "data_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "receipt_details",
+      "column_name": "predecessor_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "receipt_details",
+      "column_name": "receiver_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "receipt_details",
+      "column_name": "receipt",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "receipt_origin_transaction",
+      "column_name": "block_date",
+      "data_type": "DATE"
+    },
+    {
+      "table_name": "receipt_origin_transaction",
+      "column_name": "block_height",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "receipt_origin_transaction",
+      "column_name": "receipt_kind",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "receipt_origin_transaction",
+      "column_name": "receipt_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "receipt_origin_transaction",
+      "column_name": "data_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "receipt_origin_transaction",
+      "column_name": "originated_from_transaction_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "receipt_origin_transaction",
+      "column_name": "_record_last_updated_utc",
+      "data_type": "TIMESTAMP"
+    },
+    {
+      "table_name": "transaction_actions",
+      "column_name": "block_date",
+      "data_type": "DATE"
+    },
+    {
+      "table_name": "transaction_actions",
+      "column_name": "block_height",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "transaction_actions",
+      "column_name": "block_timestamp",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "transaction_actions",
+      "column_name": "block_timestamp_utc",
+      "data_type": "TIMESTAMP"
+    },
+    {
+      "table_name": "transaction_actions",
+      "column_name": "transaction_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "transaction_actions",
+      "column_name": "transaction_status",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "transaction_actions",
+      "column_name": "converted_into_receipt_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "transaction_actions",
+      "column_name": "signer_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "transaction_actions",
+      "column_name": "signer_public_key",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "transaction_actions",
+      "column_name": "receiver_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "transaction_actions",
+      "column_name": "index_in_transaction",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "transaction_actions",
+      "column_name": "action_kind",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "transaction_actions",
+      "column_name": "args",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "block_date",
+      "data_type": "DATE"
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "block_height",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "block_timestamp",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "block_timestamp_utc",
+      "data_type": "TIMESTAMP"
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "block_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "chunk_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "shard_id",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "transaction_hash",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "index_in_chunk",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "signer_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "signer_public_key",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "nonce",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "receiver_account_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "signature",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "status",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "converted_into_receipt_id",
+      "data_type": "STRING"
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "receipt_conversion_gas_burnt",
+      "data_type": "INT64"
+    },
+    {
+      "table_name": "transactions",
+      "column_name": "receipt_conversion_tokens_burnt",
+      "data_type": "FLOAT64"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "_note": "Fixtures shared by scripts/classify.test.ts (TypeScript twin) and scripts/sql_fixture_test.py (sql/02 on BigQuery). Times are block timestamps in ns.",
+  "key_events": [
+    { "account": "alice.near", "publicKey": "ed25519:AAA", "kind": "ADD_KEY", "permission": "FunctionCall", "ts": 100, "idx": 0 },
+    { "account": "bob.near", "publicKey": "ed25519:BBB", "kind": "ADD_KEY", "permission": "FullAccess", "ts": 100, "idx": 0 },
+    { "account": "bob.near", "publicKey": "ed25519:BBB", "kind": "DELETE_KEY", "ts": 200, "idx": 0 },
+    { "account": "carol.near", "publicKey": "ed25519:CCC", "kind": "ADD_KEY", "permission": "FullAccess", "ts": 100, "idx": 0 },
+    { "account": "carol.near", "publicKey": "ed25519:CCC", "kind": "DELETE_KEY", "ts": 200, "idx": 0 },
+    { "account": "carol.near", "publicKey": "ed25519:CCC", "kind": "ADD_KEY", "permission": "FunctionCall", "ts": 300, "idx": 0 },
+    { "account": "dave.near", "publicKey": "ed25519:OLD", "kind": "ADD_KEY", "permission": "FullAccess", "ts": 100, "idx": 0 },
+    { "account": "dave.near", "publicKey": "ed25519:NEW", "kind": "ADD_KEY", "permission": "FunctionCall", "ts": 200, "idx": 0 },
+    { "account": "dave.near", "publicKey": "ed25519:OLD", "kind": "DELETE_KEY", "ts": 200, "idx": 1 },
+    { "account": "user.tg", "publicKey": "ed25519:USR", "kind": "ADD_KEY", "permission": "FunctionCall", "ts": 100, "idx": 0 }
+  ],
+  "transactions": [
+    { "case": "add", "hash": "t1", "signer": "alice.near", "publicKey": "ed25519:AAA", "ts": 150, "expect": "FUNCTION_CALL" },
+    { "case": "delete", "hash": "t2", "signer": "bob.near", "publicKey": "ed25519:BBB", "ts": 250, "expect": "UNKNOWN" },
+    { "case": "before delete", "hash": "t3", "signer": "bob.near", "publicKey": "ed25519:BBB", "ts": 150, "expect": "FULL_ACCESS" },
+    { "case": "re-add with new permission", "hash": "t4", "signer": "carol.near", "publicKey": "ed25519:CCC", "ts": 350, "expect": "FUNCTION_CALL" },
+    { "case": "signed before re-add", "hash": "t5", "signer": "carol.near", "publicKey": "ed25519:CCC", "ts": 150, "expect": "FULL_ACCESS" },
+    { "case": "rotate: old key after rotation", "hash": "t6", "signer": "dave.near", "publicKey": "ed25519:OLD", "ts": 250, "expect": "UNKNOWN" },
+    { "case": "rotate: new key", "hash": "t7", "signer": "dave.near", "publicKey": "ed25519:NEW", "ts": 250, "expect": "FUNCTION_CALL" },
+    { "case": "implicit account, derived key", "hash": "t8", "signer": "0d3e0b1bfa2bb4bcbaad8ef4ef1a4bfc93dbad04e8b0a0a6cc1fa2a2b2f4f6e3", "publicKey": "DERIVED", "ts": 150, "expect": "IMPLICIT_FULL" },
+    { "case": "delegate: relayer outer, user FC inner", "hash": "t9", "signer": "relay.tg", "publicKey": "ed25519:RLY", "ts": 150, "delegate": { "sender": "user.tg", "publicKey": "ed25519:USR" }, "expect": "DELEGATED_INNER_FC" },
+    { "case": "genesis key, no event", "hash": "t10", "signer": "genesis.near", "publicKey": "ed25519:GEN", "ts": 150, "expect": "UNKNOWN" }
+  ]
+}
