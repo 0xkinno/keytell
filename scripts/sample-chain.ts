@@ -2,7 +2,8 @@
 //
 // For each ISO week in [--from, --to] (Mondays, UTC):
 //   1. find the first block height of the week and of the next week (archival RPC, interpolation search)
-//   2. draw --blocks heights uniformly from that range with a PRNG seeded by "keytell-v1|<week>"
+//   2. draw --blocks heights uniformly from that range with a PRNG seeded by "keytell-v1|<week>",
+//      then --txs transactions from those blocks with a PRNG seeded by "keytell-v1|<week>|txs"
 //   3. read each block from the FastNEAR block archive: every transaction, plus USDC transfers and
 //      contract deploys executed in that block
 //   4. classify every transaction's signing key as of the block before it. Tier 1: the key's
@@ -24,7 +25,8 @@ const arg = (k: string, d?: string) => {
 };
 const FROM = new Date(`${arg("from", "2022-01-03")}T00:00:00Z`);
 const TO = new Date(`${arg("to", "2024-12-30")}T00:00:00Z`);
-const BLOCKS = Number(arg("blocks", "100"));
+const BLOCKS = Number(arg("blocks", "60"));
+const TXS = Number(arg("txs", "200")); // transactions classified per week (a seeded subsample)
 const CONC = Number(arg("conc", "24"));
 const OUT = arg("out", "data/raw/sample")!;
 const SEED = arg("seed", "keytell-v1")!;
@@ -211,6 +213,14 @@ async function sampleWeek(monday: Date) {
     blockRows.push([label, h, 1, hdr.timestamp, n, u.transfers, u.volumeE6, u.nativeE6, deploysInBlock(b)].join(","));
   });
 
+  // Stage two: a seeded random subsample of TXS transactions is classified. Totals come from every
+  // transaction in the sampled blocks (blocks.csv n_tx); the key mix comes from the subsample.
+  const allTx = txs.length;
+  txs.sort((a, b) => a.height - b.height || a.hash.localeCompare(b.hash));
+  const r2 = prng(`${SEED}|${label}|txs`);
+  for (let i = txs.length - 1; i > 0; i--) { const j = Math.floor(r2() * (i + 1)); [txs[i], txs[j]] = [txs[j], txs[i]]; }
+  txs.length = Math.min(txs.length, TXS);
+
   // Classify each distinct (account, key) once per week, as of the first block it signed in.
   const lookups = new Map<string, { account: string; key: string; prev: string; height: number; nonce: bigint }>();
   for (const t of txs) {
@@ -267,7 +277,7 @@ async function sampleWeek(monday: Date) {
   writeFileSync(`${txsFile}.tmp`, header + "\n" + lines.join("\n") + (lines.length ? "\n" : ""));
   writeFileSync(`${blocksFile}.tmp`, "week,height,exists,timestamp_ns,n_tx,usdc_transfers,usdc_volume_e6,usdc_native_e6,deploys\n" + blockRows.join("\n") + "\n");
   // Write meta: the height range so weekly totals can be scaled from the sample.
-  writeFileSync(`${OUT}/${label}.meta.json`, JSON.stringify({ week: label, monday: monday.toISOString().slice(0, 10), first_height: h0, next_week_first_height: h1, heights_in_week: h1 - h0, sampled: sample.length, seed: `${SEED}|${label}`, lookups: lookups.size, archival_lookups: needArchive.length }) + "\n");
+  writeFileSync(`${OUT}/${label}.meta.json`, JSON.stringify({ week: label, monday: monday.toISOString().slice(0, 10), first_height: h0, next_week_first_height: h1, heights_in_week: h1 - h0, sampled: sample.length, seed: `${SEED}|${label}`, txs_in_sampled_blocks: allTx, txs_classified: txs.length, lookups: lookups.size, archival_lookups: needArchive.length }) + "\n");
   renameSync(`${txsFile}.tmp`, txsFile);
   renameSync(`${blocksFile}.tmp`, blocksFile);
   return { label, skipped: false, blocks: sample.length, txs: txs.length, lookups: lookups.size, archival: needArchive.length };
