@@ -1,0 +1,23 @@
+{
+  "claim_id": "keytell-fc-leads-usdc-1",
+  "ledger": "ledger.keytell.testnet",
+  "tx": "FpHj8UhHEyVQBWhafiY4pQH3UzQpPf2wKXvDFVhTYZQo",
+  "explorer": "https://testnet.nearblocks.io/txns/FpHj8UhHEyVQBWhafiY4pQH3UzQpPf2wKXvDFVhTYZQo",
+  "registered_at_ns": "1794593863113844307",
+  "claim": {
+    "id": "keytell-fc-leads-usdc-1",
+    "statement": "On NEAR, the volume of transactions signed by function-call keys is a better leading indicator of real application usage than daily active accounts or token price.",
+    "metric": "fc_signed_tx: weekly share of sampled mainnet transactions signed by a function-call key (FUNCTION_CALL or DELEGATED_INNER_FC, classified at signing time) times the BigQuery census transaction count; log change week over week; one-step AR(2)+X forecast at its in-sample lag",
+    "outcome": "usdc_census: weekly USDC volume on NEAR, receiving side of successful NEP-141 ft_transfer events on native USDC 17208628...e36133a1 and USDC.e (BigQuery ft_events); log change",
+    "comparator": "LowerBeatsBothShare",
+    "threshold_e6": "500000",
+    "window_start_ns": "1794787200000000000",
+    "window_end_ns": "1802044800000000000",
+    "period_secs": "604800",
+    "min_periods": 10,
+    "method_sha256": "90f687b9d36d7ef630b8197e50adaa8529b3de0a4d4306b7a540998341ab389b",
+    "sql_sha256": "47e2d8be113495fc0fe63bf1fbd922812b50c41b4a455973b56b61c8fa151332",
+    "data_commit": "e27a50818aa1c2e924a4ae84b47dbf519a932d03"
+  },
+  "gas_burnt": "3568363061475"
+}
