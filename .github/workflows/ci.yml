@@ -1,0 +1,65 @@
+name: CI
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: 1.97.1
+          targets: wasm32-unknown-unknown
+      - uses: Swatinem/rust-cache@v2
+      - name: Unit and property tests (10,000 cases)
+        run: cargo test --profile proptest -p thesis_ledger --lib
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: npm ci
+      - run: python -m pip install -q -r analysis/requirements.txt
+      - name: Copy rules (no em or en dash, no emoji, no hype words)
+        run: npx tsx scripts/check-copy.ts
+      - name: Private word list (hashes only)
+        run: npx tsx scripts/check-names.ts
+      - name: Scripts typecheck
+        run: npx tsc -p tsconfig.json
+      - name: Key classifier twin on shared fixtures
+        run: npx tsx --test scripts/classify.test.ts
+      - name: Analysis reproduces committed outputs exactly
+        run: |
+          python analysis/weekly.py && python analysis/method.py && python analysis/controls.py
+          npx tsx scripts/facts.ts && python analysis/memo.py && npx tsx scripts/facts.ts
+          git diff --exit-code -- 'data/out/*.csv' docs/FACTS.json data/out/memo.md
+      - name: FACTS.json matches its sources
+        run: npx tsx scripts/facts.ts --check
+      - name: sql/02 on fixtures in BigQuery (only when a BQ_TEST secret exists)
+        env:
+          BQ_TEST: ${{ secrets.BQ_TEST }}
+          BQ_PROJECT: ${{ secrets.BQ_PROJECT }}
+          GCP_SA_JSON: ${{ secrets.GCP_SA_JSON }}
+        run: |
+          if [ "$BQ_TEST" = "1" ]; then echo "$GCP_SA_JSON" > "$RUNNER_TEMP/sa.json"; export GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/sa.json"; fi
+          python scripts/sql_fixture_test.py
+  app:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npx next build

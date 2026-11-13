@@ -1,0 +1,44 @@
+name: Forward crank
+on:
+  schedule:
+    - cron: "41 6 * * 1"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: crank
+  cancel-in-progress: false
+jobs:
+  crank:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: npm ci
+      - run: python -m venv .venv && .venv/bin/pip install -q -r analysis/requirements.txt
+      - name: Refresh forward weeks (keyless sample, BigQuery census, forecast errors)
+        env:
+          BQ_PROJECT: ${{ secrets.BQ_PROJECT }}
+          GCP_SA_JSON: ${{ secrets.GCP_SA_JSON }}
+        run: |
+          echo "$GCP_SA_JSON" > "$RUNNER_TEMP/sa.json"
+          export GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/sa.json"
+          make forward
+      - name: Post due weeks with the crank's post-only function-call key
+        env:
+          CRANK_ACCOUNT_ID: ${{ secrets.CRANK_ACCOUNT_ID }}
+          CRANK_POST_KEY: ${{ secrets.CRANK_POST_KEY }}
+        run: npx tsx scripts/crank.ts
+      - name: Commit the posted files
+        run: |
+          npx tsx scripts/facts.ts
+          git config user.name 0xkinno
+          git config user.email 140649226+0xkinno@users.noreply.github.com
+          git add data docs/FACTS.json app/lib/generated app/public/proof
+          git diff --cached --quiet || git commit -m "Forward crank: post due weeks"
+          git push
