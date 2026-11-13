@@ -1,0 +1,35 @@
+{
+  "network": "testnet",
+  "root": "keytell.testnet",
+  "publisher": "keytell.testnet",
+  "ledger": "ledger.keytell.testnet",
+  "crank": "crank.keytell.testnet",
+  "crank_post_key": "ed25519:B6W3BwS9KmV5TzAdFT172QGApTaWBa8xjdwjadCt5yQp",
+  "crank_post_key_permission": {
+    "FunctionCall": {
+      "allowance": "250000000000000000000000",
+      "method_names": [
+        "post"
+      ],
+      "receiver_id": "ledger.keytell.testnet"
+    }
+  },
+  "code_hashes": {
+    "thesis_ledger": {
+      "wasm_sha256_b58": "Hh455Fyw4X3orYw7RXYXNgDx9otwuTTqwNjzqogE2Ymp",
+      "wasm_sha256_hex": "f7fdb1d845cb8e4a202b5f783b050c6b52cb86669473be1a89091555ce4fe95b",
+      "on_chain": "Hh455Fyw4X3orYw7RXYXNgDx9otwuTTqwNjzqogE2Ymp"
+    }
+  },
+  "access_keys": {
+    "ledger": 0
+  },
+  "txs": {
+    "create_ledger": "5c6ngktV159oBSdPBqVWjaZtPftAevxSnRScWkQo9Ncf",
+    "create_crank": "6ub6aidTxxkgF7sju8k95RrmemCPqNyQczL87tqWyEDK",
+    "deploy_and_init": "3QVVUPwsFNtstbinBre7H6T2B4tTqim2v2AB4LMC4FKR",
+    "crank_fc_key": "3Wg1AM9h41obf3UoXdRGQzBjPxUGDJ1Ndm5ghVRyBjmv",
+    "seal_ledger": "CaKuchaw3kXmFqJAbw5v9c9XMEyUfnmpv9AFH4UtzQP4"
+  },
+  "deployed_at": "2026-11-13T17:58:17.707Z"
+}
