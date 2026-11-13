@@ -21,24 +21,28 @@ function get(path: string): any {
   return path.split(".").reduce((o, k) => (o === null || o === undefined ? undefined : o[k]), ctx);
 }
 
+const arg = (k: string, d: string) => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : d; };
+const TPL = arg("--tpl", "docs/README.template.md");
+const OUT = arg("--out", "README.md");
+
 export function render(): string {
-  const tpl = readFileSync("docs/README.template.md", "utf8");
+  const tpl = readFileSync(TPL, "utf8");
   const missing: string[] = [];
   const out = tpl.replace(/\{\{\s*([\w.]+)(?:\s*\|\s*(\w+))?\s*\}\}/g, (_, path: string, fmt?: string) => {
     const v = get(path);
     if (v === undefined) { missing.push(path); return "n/a"; }
     return fmt ? FORMATS[fmt](v) : typeof v === "object" ? JSON.stringify(v) : String(v);
   });
-  if (missing.length) throw new Error(`README template references unknown facts: ${[...new Set(missing)].join(", ")}`);
-  return `<!-- Generated from docs/README.template.md by scripts/readme.ts. Edit the template. -->\n${out}`;
+  if (missing.length) throw new Error(`${TPL} references unknown facts: ${[...new Set(missing)].join(", ")}`);
+  return `<!-- Generated from ${TPL} by scripts/readme.ts. Edit the template. -->\n${out}`;
 }
 
 const text = render();
 if (process.argv.includes("--check")) {
-  const cur = existsSync("README.md") ? readFileSync("README.md", "utf8") : "";
-  if (cur !== text) { console.error("FAIL readme: README.md is stale; run npx tsx scripts/readme.ts"); process.exit(1); }
-  console.log("PASS readme: README.md matches docs/FACTS.json");
+  const cur = existsSync(OUT) ? readFileSync(OUT, "utf8") : "";
+  if (cur !== text) { console.error(`FAIL readme: ${OUT} is stale; run npx tsx scripts/readme.ts`); process.exit(1); }
+  console.log(`PASS readme: ${OUT} matches docs/FACTS.json`);
 } else {
-  writeFileSync("README.md", text);
-  console.log("wrote README.md");
+  writeFileSync(OUT, text);
+  console.log(`wrote ${OUT}`);
 }

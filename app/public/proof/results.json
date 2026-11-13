@@ -1,0 +1,76 @@
+{
+  "outcome": "usdc_census",
+  "headline": "fc_signed_tx",
+  "baselines": [
+    "daa",
+    "price"
+  ],
+  "in_sample": [
+    "2023-10-16",
+    "2024-12-23"
+  ],
+  "out_of_sample": [
+    "2024-12-30",
+    "2026-11-02"
+  ],
+  "oos_weeks_scored": 94,
+  "best_in_sample_lag": {
+    "fc_signed_tx": 4,
+    "fc_share": 4,
+    "daa": 4,
+    "tx_count": 3,
+    "price": 3
+  },
+  "oos_gain_vs_ar2": {
+    "fc_signed_tx": -0.0508025447059397,
+    "fc_share": -0.07722511342744887,
+    "daa": -0.035620010986556094,
+    "tx_count": 0.01767010865036278,
+    "price": -0.054508485426351116
+  },
+  "comparisons": {
+    "daa": {
+      "mean_sq_error_difference": 0.006577770539941676,
+      "ci95": [
+        -0.055138696823290215,
+        0.06939879690928562
+      ],
+      "headline_better": false
+    },
+    "price": {
+      "mean_sq_error_difference": -0.0016055836360415981,
+      "ci95": [
+        -0.060525170200226824,
+        0.058149912586327734
+      ],
+      "headline_better": false
+    }
+  },
+  "passed": false,
+  "verdict": "The data did not support the claim",
+  "direction_counts": {
+    "daa": {
+      "false_alarm": 7,
+      "hit": 2,
+      "miss": 35,
+      "quiet": 50
+    },
+    "fc_signed_tx": {
+      "false_alarm": 15,
+      "hit": 13,
+      "miss": 24,
+      "quiet": 42
+    },
+    "price": {
+      "false_alarm": 10,
+      "hit": 7,
+      "miss": 30,
+      "quiet": 47
+    }
+  },
+  "seed": 20261113,
+  "bootstrap": {
+    "reps": 2000,
+    "block_weeks": 4
+  }
+}

@@ -1,0 +1,229 @@
+{
+  "headline_lag": 4,
+  "variants": {
+    "concentration_ex_top10_scopes": {
+      "weeks": 46,
+      "oos_gain_vs_ar2": {
+        "fc_signed_tx": -0.13138859667244351,
+        "daa": -0.039402003212176906,
+        "price": -0.0863126118567068
+      },
+      "comparisons": {
+        "daa": {
+          "mean_sq_error_difference": 0.027030965171442406,
+          "ci95": [
+            -0.028715020357145647,
+            0.09594755639408942
+          ],
+          "headline_better": false
+        },
+        "price": {
+          "mean_sq_error_difference": 0.013245923452409986,
+          "ci95": [
+            -0.06265762150259054,
+            0.09981611856335085
+          ],
+          "headline_better": false
+        }
+      },
+      "would_pass": false
+    },
+    "concentration_ex_top10_signers": {
+      "weeks": 86,
+      "oos_gain_vs_ar2": {
+        "fc_signed_tx": -0.015462526003833688,
+        "daa": -0.039902624593583624,
+        "price": -0.06708336131691994
+      },
+      "comparisons": {
+        "daa": {
+          "mean_sq_error_difference": -0.01074737932597175,
+          "ci95": [
+            -0.04769024607963479,
+            0.02506392088683037
+          ],
+          "headline_better": false
+        },
+        "price": {
+          "mean_sq_error_difference": -0.022699936998860273,
+          "ci95": [
+            -0.060774173105802076,
+            0.011924896038235848
+          ],
+          "headline_better": false
+        }
+      },
+      "would_pass": false
+    },
+    "relayers_fc_only": {
+      "weeks": 84,
+      "oos_gain_vs_ar2": {
+        "fc_signed_tx": -0.04650408380279547,
+        "daa": -0.04076778394128855,
+        "price": -0.07012740036284848
+      },
+      "comparisons": {
+        "daa": {
+          "mean_sq_error_difference": 0.0024528199892635888,
+          "ci95": [
+            -0.0323619496967097,
+            0.03676192804248289
+          ],
+          "headline_better": false
+        },
+        "price": {
+          "mean_sq_error_difference": -0.01010124025419727,
+          "ci95": [
+            -0.04558426227111147,
+            0.02711825333561758
+          ],
+          "headline_better": false
+        }
+      },
+      "would_pass": false
+    },
+    "relayers_all_delegated_as_fc": {
+      "weeks": 97,
+      "oos_gain_vs_ar2": {
+        "fc_signed_tx": 0.0006386743290830443,
+        "daa": -0.03484362863645929,
+        "price": -0.07183048184894436
+      },
+      "comparisons": {
+        "daa": {
+          "mean_sq_error_difference": -0.0149527265342528,
+          "ci95": [
+            -0.03428570720136351,
+            -0.0021749967356334897
+          ],
+          "headline_better": true
+        },
+        "price": {
+          "mean_sq_error_difference": -0.030539491068277535,
+          "ci95": [
+            -0.06300305422037854,
+            -0.0020067419831344573
+          ],
+          "headline_better": true
+        }
+      },
+      "would_pass": true
+    },
+    "relayers_delegated_excluded": {
+      "weeks": 84,
+      "oos_gain_vs_ar2": {
+        "fc_signed_tx": -0.024278606900261623,
+        "daa": -0.04076778394128855,
+        "price": -0.07012740036284848
+      },
+      "comparisons": {
+        "daa": {
+          "mean_sq_error_difference": -0.007050709347351444,
+          "ci95": [
+            -0.041223655605169,
+            0.022640765324788106
+          ],
+          "headline_better": false
+        },
+        "price": {
+          "mean_sq_error_difference": -0.0196047695908123,
+          "ci95": [
+            -0.05792263128576986,
+            0.014984116443776292
+          ],
+          "headline_better": false
+        }
+      },
+      "would_pass": false
+    },
+    "unknown_all_fc": {
+      "weeks": 94,
+      "oos_gain_vs_ar2": {
+        "fc_signed_tx": -0.05285827543029731,
+        "daa": -0.035620010986556094,
+        "price": -0.054508485426351116
+      },
+      "comparisons": {
+        "daa": {
+          "mean_sq_error_difference": 0.007468407455140341,
+          "ci95": [
+            -0.05371816053329892,
+            0.07323500131678644
+          ],
+          "headline_better": false
+        },
+        "price": {
+          "mean_sq_error_difference": -0.0007149467208429312,
+          "ci95": [
+            -0.060395163925779934,
+            0.05905323783425227
+          ],
+          "headline_better": false
+        }
+      },
+      "would_pass": false
+    },
+    "unknown_all_full": {
+      "weeks": 94,
+      "oos_gain_vs_ar2": {
+        "fc_signed_tx": -0.050802752803642326,
+        "daa": -0.035620010986556094,
+        "price": -0.054508485426351116
+      },
+      "comparisons": {
+        "daa": {
+          "mean_sq_error_difference": 0.006577860697418809,
+          "ci95": [
+            -0.05633041984033475,
+            0.06725074643291339
+          ],
+          "headline_better": false
+        },
+        "price": {
+          "mean_sq_error_difference": -0.0016054934785644643,
+          "ci95": [
+            -0.06264255271787425,
+            0.06206524963559563
+          ],
+          "headline_better": false
+        }
+      },
+      "would_pass": false
+    },
+    "episodes_excluded": {
+      "weeks": 43,
+      "oos_gain_vs_ar2": {
+        "fc_signed_tx": -0.027527871216807664,
+        "daa": -0.01936789282696405,
+        "price": -0.0853862441044757
+      },
+      "comparisons": {
+        "daa": {
+          "mean_sq_error_difference": 0.0020339566837509495,
+          "ci95": [
+            -0.010369962029397953,
+            0.016795672811788256
+          ],
+          "headline_better": false
+        },
+        "price": {
+          "mean_sq_error_difference": -0.014421781360634385,
+          "ci95": [
+            -0.03152430877685618,
+            0.016066359151746652
+          ],
+          "headline_better": false
+        }
+      },
+      "would_pass": false
+    }
+  },
+  "episodes_flagged": 125,
+  "placebo": {
+    "reps": 1000,
+    "real_oos_gain": -0.0508025447059397,
+    "placebo_p95": 0.01587021836853575,
+    "share_of_placebos_beaten": 0.051,
+    "real_beats_95pct": false
+  }
+}

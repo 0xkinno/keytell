@@ -29,6 +29,8 @@ const n = (v: string | undefined) => (v === undefined || v === "" || v === "nan"
 const r4 = (x: number | null) => (x === null || !Number.isFinite(x) ? null : Math.round(x * 1e4) / 1e4);
 const r6 = (x: number | null) => (x === null || !Number.isFinite(x) ? null : Math.round(x * 1e6) / 1e6);
 const pct = (x: number | null, d = 1) => (x === null ? "n/a" : `${(x * 100).toFixed(d)} percent`);
+// Out-of-sample gain is 1 - SSE(model) / SSE(AR(2)): positive means a smaller forecast error.
+const effect = (g: number | null) => (g === null ? "n/a" : g >= 0 ? `cut forecast error by ${pct(g)}` : `added ${pct(-g)} to forecast error`);
 
 const IN_START = "2023-10-16", IN_END = "2024-12-23", OOS_START = "2024-12-30", OOS_END = "2026-11-02", FORWARD_START = "2026-11-16";
 const windowOf = (m: string) => (m < IN_START ? "early" : m <= IN_END ? "in_sample" : m <= OOS_END ? "out_of_sample" : m >= FORWARD_START ? "forward" : "gap");
@@ -191,11 +193,20 @@ export function buildFacts() {
   const sentences: Record<string, string> = {};
   if (s.backtest) {
     const b = s.backtest;
-    sentences.verdict = `${b.verdict}: over ${b.oos_weeks_scored} out-of-sample weeks, function-call-signed activity cut one-step forecast error for weekly USDC volume by ${pct(b.oos_gain.fc_signed_tx)} against an AR(2) baseline, against ${pct(b.oos_gain.daa)} for daily active accounts and ${pct(b.oos_gain.price)} for price.`;
+    sentences.verdict = `${b.verdict}: over ${b.oos_weeks_scored} out-of-sample weeks of one-step forecasts of weekly USDC volume, adding function-call-signed activity to an AR(2) baseline ${effect(b.oos_gain.fc_signed_tx)}; daily active accounts ${effect(b.oos_gain.daa)}; price ${effect(b.oos_gain.price)}. The pass rule needs function-call activity to do better than both.`;
     sentences.vs_baselines = `Versus DAA the mean squared-error difference is ${b.vs_daa?.mean_sq_error_difference} (95 percent interval ${b.vs_daa?.ci95?.join(" to ")}); versus price ${b.vs_price?.mean_sq_error_difference} (${b.vs_price?.ci95?.join(" to ")}). Negative favours function-call keys; the pass rule needs both intervals below zero.`;
     sentences.directions = `Function-call keys flagged ${b.directions.fc_signed_tx.hits + b.directions.fc_signed_tx.false_alarms} weeks: ${b.directions.fc_signed_tx.hits} hits and ${b.directions.fc_signed_tx.false_alarms} false alarms, with ${b.directions.fc_signed_tx.misses} misses. DAA: ${b.directions.daa.hits} hits, ${b.directions.daa.false_alarms} false alarms, ${b.directions.daa.misses} misses.`;
   }
   if (s.latest) sentences.latest = `In ${s.latest.week}, ${pct(s.latest.fc_share)} of sampled mainnet transactions were signed by a function-call key (95 percent interval ${pct(s.latest.fc_share_lo)} to ${pct(s.latest.fc_share_hi)}); ${pct(s.latest.delegated_share)} were meta transactions relayed for a user.`;
+  if (s.controls) {
+    const names: Record<string, string> = { concentration_ex_top10_scopes: "the ten largest function-call scopes removed", concentration_ex_top10_signers: "the ten busiest signers removed", relayers_fc_only: "meta transactions dropped from function-call activity", relayers_all_delegated_as_fc: "every relayed meta transaction counted as function-call activity", relayers_delegated_excluded: "meta transactions removed from both sides", unknown_all_fc: "every unknown key counted as function-call", unknown_all_full: "every unknown key counted as full access", episodes_excluded: "flagged episode weeks left out" };
+    const v = Object.entries(s.controls.variants) as [string, any][];
+    const pass = v.filter(([, x]) => x.would_pass).map(([k]) => names[k] ?? k);
+    const passed = !!s.backtest?.passed;
+    sentences.controls = passed
+      ? `${pass.length} of ${v.length} control reruns still pass the registered rule${pass.length ? `: ${pass.join("; ")}` : ""}.`
+      : `${pass.length} of ${v.length} control reruns would pass the registered rule${pass.length ? `: ${pass.join("; ")}` : ""}.${pass.length === 1 ? " It was registered as a control, not as the claim, so it does not change the verdict; docs/FINDINGS.md treats it as a hypothesis for a new pre-registration." : pass.length ? " Each was registered as a control, not as the claim, so none changes the verdict; docs/FINDINGS.md treats them as hypotheses for a new pre-registration." : ""}`;
+  }
   if (s.controls) sentences.placebo = `The real out-of-sample gain (${pct(s.controls.placebo.real_oos_gain)}) beats ${pct(s.controls.placebo.share_beaten, 0)} of ${s.controls.placebo.reps} timing placebos; the bar is 95 percent.`;
   sentences.concentration = `The ten contracts that function-call keys were most often scoped to carry ${pct(s.concentration.top10_share_of_sampled_fc_all_weeks)} of all sampled function-call transactions.`;
   if (s.data.sample_vs_census_tx_median_abs_pct_error !== null) sentences.sample_check = `The sample's weekly transaction estimate lands within ${pct(s.data.sample_vs_census_tx_median_abs_pct_error)} of the BigQuery census in the median week.`;

@@ -25,14 +25,17 @@ analyze:
 	npx tsx scripts/facts.ts
 	$(PY) analysis/memo.py
 	npx tsx scripts/facts.ts
+	$(PY) analysis/findings.py
+	npx tsx scripts/readme.ts
+	npx tsx scripts/readme.ts --tpl docs/SUBMISSION.template.md --out SUBMISSION_NEARHACKATHON.md
 
 charts: analyze
 
 verify: analyze
 	@# CSVs are written at 6 significant digits and FACTS.json is rounded, so last-bit float noise
 	@# between machines cannot flip the check; raw JSON floats are compared through FACTS.json.
-	@git diff --quiet -- 'data/out/*.csv' docs/FACTS.json data/out/memo.md || (echo "FAIL drift: the rebuild changed committed outputs:"; git diff --stat -- 'data/out/*.csv' docs/FACTS.json data/out/memo.md; exit 1)
-	@echo "PASS rebuild: data/out CSVs, the memo and docs/FACTS.json reproduce exactly from committed inputs"
+	@git diff --quiet -- 'data/out/*.csv' docs/FACTS.json data/out/memo.md docs/FINDINGS.md README.md || (echo "FAIL drift: the rebuild changed committed outputs:"; git diff --stat -- 'data/out/*.csv' docs/FACTS.json data/out/memo.md docs/FINDINGS.md README.md; exit 1)
+	@echo "PASS rebuild: data/out CSVs, the memo, FINDINGS, README and docs/FACTS.json reproduce exactly from committed inputs"
 	npx tsx scripts/facts.ts --check
 	npx tsx scripts/verify.ts
 

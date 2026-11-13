@@ -24,6 +24,8 @@ for (const f of files) {
   lines.forEach((line, i) => {
     if (DASHES.test(line)) problems.push(`${f}:${i + 1} em or en dash`);
     if (EMOJI.test(line)) problems.push(`${f}:${i + 1} emoji`);
+    // data/raw holds on-chain identifiers (account names such as blazing7985737.tg), not our copy.
+    if (f.startsWith("data/raw/")) return;
     const lower = line.toLowerCase();
     for (const w of BANNED_WORDS) {
       if (new RegExp(`(^|[^a-z-])${w}([^a-z-]|$)`).test(lower)) problems.push(`${f}:${i + 1} banned word "${w}"`);

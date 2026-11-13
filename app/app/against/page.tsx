@@ -20,9 +20,10 @@ const LABELS: Record<string, string> = {
   episodes_excluded: "Flagged episode weeks left out of the scoring",
 };
 
-function Verdict({ ok }: { ok: boolean | undefined }) {
+function Verdict({ ok, headline }: { ok: boolean | undefined; headline: boolean }) {
   if (ok === undefined) return <span className="mono text-[color:var(--ink-2)]">n/a</span>;
-  return <span className={`tag ${ok ? "tag-for" : "tag-against"}`}>{ok ? "still passes" : "would fail"}</span>;
+  const label = headline ? (ok ? "still passes" : "would fail") : ok ? "would pass" : "fails too";
+  return <span className={`tag ${ok ? "tag-for" : "tag-against"}`}>{label}</span>;
 }
 
 export default function Against() {
@@ -38,14 +39,14 @@ export default function Against() {
       <p className="mt-5 max-w-3xl text-[18px] leading-relaxed text-[color:var(--ink-2)]">Every control here was written into the registered method before the out-of-sample data was read. Each reruns the same comparison with one assumption changed. If a control breaks the result, it says so in red.</p>
 
       <div className="mt-10 space-y-8">
-        <Plate n="2.1" side="against" question="Does the result survive every control?" sentence={c ? `${Object.values(c.variants).filter((v: any) => v.would_pass).length} of ${Object.keys(c.variants).length} reruns would still pass the registered rule.` : "Controls have not been computed yet."}
+        <Plate n="2.1" side="against" question="Does the result survive every control?" sentence={c ? (f.backtest?.passed ? `${Object.values(c.variants).filter((v: any) => v.would_pass).length} of ${Object.keys(c.variants).length} reruns would still pass the registered rule.` : `The headline failed, and ${Object.values(c.variants).filter((v: any) => v.would_pass).length} of ${Object.keys(c.variants).length} reruns would pass the registered rule. A control that passes after the fact does not change the verdict: it was never the claim.`) : "Controls have not been computed yet."}
           source="data/out/controls.json; each rerun keeps the headline's in-sample lag and the baselines' lags." code={[{ label: "Controls", path: "analysis/controls.py" }]}>
           <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Scrollable table">
             <table className="table-k">
               <thead><tr><th>Rerun</th><th>FC gain</th><th>DAA gain</th><th>Price gain</th><th>Weeks</th><th>Pass rule</th></tr></thead>
               <tbody>
                 {c ? Object.entries(c.variants).map(([k, v]: [string, any]) => (
-                  <tr key={k}><td>{LABELS[k] ?? k}</td><td className="mono">{pct(v.headline_gain)}</td><td className="mono">{pct(v.daa_gain)}</td><td className="mono">{pct(v.price_gain)}</td><td className="mono">{v.weeks}</td><td><Verdict ok={v.would_pass} /></td></tr>
+                  <tr key={k}><td>{LABELS[k] ?? k}</td><td className="mono">{pct(v.headline_gain)}</td><td className="mono">{pct(v.daa_gain)}</td><td className="mono">{pct(v.price_gain)}</td><td className="mono">{v.weeks}</td><td><Verdict ok={v.would_pass} headline={!!f.backtest?.passed} /></td></tr>
                 )) : <tr><td colSpan={6}>Not computed yet.</td></tr>}
               </tbody>
             </table>

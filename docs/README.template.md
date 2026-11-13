@@ -87,14 +87,14 @@ We lead with it as hard as with the case for.
 - {{sentences.placebo}}
 - {{sentences.concentration}}
 - {{sentences.directions}}
-- Control reruns (concentration, relayers, unknown keys, episodes): see [/against]({{app.url}}/against) and `data/out/controls.json`.
+- Control reruns (concentration, relayers, unknown keys, episodes): see [/against]({{app.url}}/against) and `data/out/controls.json`. {{sentences.controls}}
 - Largest weekly share of keys nobody could read: {{data.max_unknown_share|pct}}. Weeks above 5 percent in the scored window: {{data.weeks_unknown_over_5pct|list}}.
 
 ## What would change this conclusion
 
-- The forward claim failing on chain: fewer than half of the {{claim.forward_weeks}} forward weeks won.
-- A control breaking the result on new weeks.
-- DAA or price forecasting USDC volume as well over the same weeks.
+- The forward claim succeeding on chain: at least half of the {{claim.forward_weeks}} forward weeks won. That is new evidence, not a rerun of old weeks.
+- A new claim, registered before its data, that holds out of sample. A control picked after the fact does not count.
+- The USDC census proving wrong or incomplete in a way that changes the out-of-sample errors.
 
 ## How it works
 
@@ -126,6 +126,8 @@ flowchart LR
 - **Implicit accounts.** A 64-hex account signs with the key its name derives from; Keytell recognises it.
 
 ## Measured
+
+Out-of-sample gain is 1 minus the model's squared forecast error over the AR(2) baseline's: positive means smaller errors, negative means adding the signal made forecasts worse.
 
 | Measure | Value | Source |
 |---|---|---|
