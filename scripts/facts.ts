@@ -80,6 +80,12 @@ export function buildFacts() {
     txs_classified: n(w.txs_classified), episode: epSet.has(w.monday),
   }));
 
+  // The twelve forward weeks of the on-chain claim, as placeholders until they are measured.
+  for (let i = 0; i < 12; i++) {
+    const monday = new Date(Date.parse(`${FORWARD_START}T00:00:00Z`) + i * 7 * 86_400_000).toISOString().slice(0, 10);
+    if (weekly.some((w) => w.monday === monday)) continue;
+    weekly.push({ week: `forward ${i + 1}`, monday, window: "forward", fc_share: null, fc_share_lo: null, fc_share_hi: null, fc_only_share: null, unknown_share: null, delegated_share: null, implicit_share: null, full_share: null, fc_tx: null, census_tx: null, daa: null, price: null, usdc: null, tx_sampled_estimate: null, txs_classified: null, episode: false } as any);
+  }
   const sampled = weekly.filter((w) => w.fc_share !== null);
   const scored = weekly.filter((w) => w.window === "out_of_sample" && w.fc_share !== null);
   const lastWeek = sampled.at(-1) ?? null;
