@@ -1,5 +1,5 @@
 .venv/bin/python analysis/weekly.py
-weekly.csv: 185 weeks, 2022-01-03 to 2026-11-02
+weekly.csv: 253 weeks, 2022-01-03 to 2026-11-02
 .venv/bin/python analysis/method.py
 {
   "best_in_sample_lag": {
@@ -42,8 +42,8 @@ weekly.csv: 185 weeks, 2022-01-03 to 2026-11-02
   "placebo": {
     "reps": 1000,
     "real_oos_gain": -0.0508025447059397,
-    "placebo_p95": 0.01587021836853575,
-    "share_of_placebos_beaten": 0.051,
+    "placebo_p95": 0.009963091553317871,
+    "share_of_placebos_beaten": 0.091,
     "real_beats_95pct": false
   },
   "would_pass": {
