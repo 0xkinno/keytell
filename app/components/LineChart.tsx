@@ -30,8 +30,17 @@ export function LineChart({ dates, series, height = 300, logY = false, yFormat: 
   const [lo, hiV] = (extent(all) as [number, number]) ?? [0, 1];
   const x = scaleUtc().domain([xs[0], xs[xs.length - 1]]).range([PAD.l, W - PAD.r]);
   const y = (logY ? scaleLog().domain([Math.max(lo * 0.9, 1e-9), hiV * 1.1]) : scaleLinear().domain([Math.min(0, lo), hiV * 1.08])).range([height - PAD.b, PAD.t]).nice();
-  const yTicks = (y as any).ticks(logY ? 4 : 5).filter((_: number, i: number, a: number[]) => !logY || a.length <= 6 || i % Math.ceil(a.length / 5) === 0);
+  const [d0, d1] = (y as any).domain() as [number, number];
+  const yTicks: number[] = logY
+    ? (() => {
+        const out: number[] = [];
+        for (let e = Math.floor(Math.log10(d0)); e <= Math.ceil(Math.log10(d1)); e++) for (const m of [1, 3]) { const v = m * 10 ** e; if (v >= d0 && v <= d1) out.push(v); }
+        return out.length > 7 ? out.filter((v) => Math.log10(v) % 1 === 0) : out;
+      })()
+    : (y as any).ticks(5);
+  const spanDays = (xs[xs.length - 1].getTime() - xs[0].getTime()) / 86_400_000;
   const xTicks = x.ticks(6);
+  const xLabel = (t: Date) => (spanDays > 400 ? t.toISOString().slice(0, 7) : t.toISOString().slice(0, 10));
   const path = (vals: (number | null)[]) =>
     line<number | null>().defined((v) => v !== null && Number.isFinite(v) && (!logY || (v as number) > 0)).x((_, i) => x(xs[i])).y((v) => y(v as number))(vals) ?? "";
   // Direct labels at each series' last value, nudged apart.
@@ -67,7 +76,7 @@ export function LineChart({ dates, series, height = 300, logY = false, yFormat: 
           </g>
         ))}
         {xTicks.map((t) => (
-          <text key={t.toISOString()} x={x(t)} y={height - 12} textAnchor="middle" fontSize="11" fill="#4a5156" fontFamily="var(--font-plex)">{t.toISOString().slice(0, 7)}</text>
+          <text key={t.toISOString()} x={x(t)} y={height - 12} textAnchor="middle" fontSize="11" fill="#4a5156" fontFamily="var(--font-plex)">{xLabel(t)}</text>
         ))}
         {rules.map((r) => {
           const xr = x(new Date(`${r.date}T00:00:00Z`));

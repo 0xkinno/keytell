@@ -36,7 +36,8 @@ export default function Evidence() {
   let cumD = 0, cumP = 0;
   const cumDaa = oos.map((r) => (r.e_fc_signed_tx && r.e_daa ? (cumD += Number(r.e_fc_signed_tx) ** 2 - Number(r.e_daa) ** 2) : null));
   const cumPrice = oos.map((r) => (r.e_fc_signed_tx && r.e_price ? (cumP += Number(r.e_fc_signed_tx) ** 2 - Number(r.e_price) ** 2) : null));
-  const allWeeks = weekly.filter((w) => w.fc_share !== null);
+  // Keep unsampled weeks as gaps: the continuous axis comes from FACTS (nulls where not sampled).
+  const allWeeks = weekly;
 
   return (
     <div className="mx-auto max-w-[1200px] px-4 pt-10 sm:px-6">
@@ -52,7 +53,7 @@ export default function Evidence() {
           <LineChart title="Weekly FC-signed transactions, DAA, price and USDC volume, indexed" dates={dates} logY rules={rules}
             yFormat="compact" valueFormat="fixed0"
             series={[
-              { key: "usdc", label: "USDC volume", color: COLORS.usdc, values: indexed(scored.map((w) => w.usdc), base), width: 2.4 },
+              { key: "usdc", label: "USDC volume", color: COLORS.usdc, values: indexed(scored.map((w) => (w.monday < f.windows.in_sample[0] ? null : w.usdc)), base), width: 2.4 },
               { key: "fc", label: "FC-signed tx", color: COLORS.fc, values: indexed(scored.map((w) => w.fc_tx), base), width: 2.6 },
               { key: "daa", label: "DAA", color: COLORS.daa, values: indexed(scored.map((w) => w.daa), base), dash: "5 4" },
               { key: "price", label: "NEAR price", color: COLORS.price, values: indexed(scored.map((w) => w.price), base), dash: "2 3" },

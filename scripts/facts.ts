@@ -80,6 +80,16 @@ export function buildFacts() {
     txs_classified: n(w.txs_classified), episode: epSet.has(w.monday),
   }));
 
+  // A continuous week axis: weeks not sampled yet are rows of nulls, so charts show gaps, not bridges.
+  if (weekly.length) {
+    const have = new Set(weekly.map((w) => w.monday));
+    const first = Date.parse(`${weekly[0].monday}T00:00:00Z`), last = Date.parse(`${weekly.at(-1)!.monday}T00:00:00Z`);
+    for (let t = first; t <= last; t += 7 * 86_400_000) {
+      const monday = new Date(t).toISOString().slice(0, 10);
+      if (!have.has(monday)) weekly.push({ week: `${monday} (not sampled)`, monday, window: windowOf(monday), fc_share: null, fc_share_lo: null, fc_share_hi: null, fc_only_share: null, unknown_share: null, delegated_share: null, implicit_share: null, full_share: null, fc_tx: null, census_tx: null, daa: null, price: null, usdc: null, tx_sampled_estimate: null, txs_classified: null, episode: false } as any);
+    }
+    weekly.sort((a, b) => a.monday.localeCompare(b.monday));
+  }
   // The twelve forward weeks of the on-chain claim, as placeholders until they are measured.
   for (let i = 0; i < 12; i++) {
     const monday = new Date(Date.parse(`${FORWARD_START}T00:00:00Z`) + i * 7 * 86_400_000).toISOString().slice(0, 10);

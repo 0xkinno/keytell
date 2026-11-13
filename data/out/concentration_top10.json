@@ -1,23 +1,26 @@
 {
   "top10_fc_scopes_in_sample": [
+    "aa-harvest-moon.near",
+    "inscription.near",
     "app.nearcrowd.near",
-    "asset-manager.orderly-network.near",
     "token.sweat",
+    "asset-manager.orderly-network.near",
+    "tg",
     "v2_0_2.perp.spin-fi.near",
     "priceoracle.near",
-    "rn_rmn.near",
-    "aurora"
+    "harvest-moon.near",
+    "meteor-points.near"
   ],
   "top10_fc_signers_in_sample": [
+    "meteor-relayer.near",
     "oracle.sweat",
+    "tg",
     "operator.orderly-network.near",
-    "laki.near",
-    "f02f5e475457c0de22c657f9522c384ab05c88a85e869b02198dbd083da8f5ec",
-    "nezikwork13.near",
-    "6b6386408da10a7d9963e8db53c2505cd6c0ce5f08df4066d13ba439df086801",
-    "timetoevolut1on.near",
-    "michaelsena.near",
-    "ilyich.near",
-    "perp.spin-fi.near"
+    "pob.ref-labs.near",
+    "perp.spin-fi.near",
+    "mpc.hot.tg",
+    "keys.auth.hot.tg",
+    "a553febdc0ff3a77359902652a2db5c830eab2adf1ce805a936b23ba13edc926",
+    "3291ce9b85baad08ee61142daaff38f54b9e8ad46f2c4cc7d366182710c14bb2"
   ]
 }

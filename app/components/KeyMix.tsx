@@ -11,7 +11,7 @@ const LAYERS = [
 ];
 
 export function KeyMix() {
-  const w = (weekly as any[]).filter((x) => x.fc_share !== null);
+  const w = (weekly as any[]).filter((x) => x.window !== "forward");
   const rows = w.map((x) => ({ fc: x.fc_only_share, delegated: x.delegated_share, implicit: x.implicit_share, full: x.full_share, unknown: x.unknown_share }));
   return (
     <figure>
