@@ -1,6 +1,6 @@
 {
-  "base": "http://localhost:3100",
-  "ran_at": "2026-11-14T02:00:04.747Z",
+  "base": "https://keytell.vercel.app",
+  "ran_at": "2026-11-14T02:02:12.996Z",
   "passed": 24,
   "total": 24,
   "results": [
@@ -52,27 +52,27 @@
     {
       "name": "/keys aurora",
       "ok": true,
-      "detail": "\"0 function-call keys, 1 full-access key\" in 1534 ms"
+      "detail": "\"0 function-call keys, 1 full-access key\" in 130 ms"
     },
     {
       "name": "/keys relay.tg",
       "ok": true,
-      "detail": "\"RECENT TRANSACTIONS SIGNED BY RELAY.TG\" in 1981 ms"
+      "detail": "\"RECENT TRANSACTIONS SIGNED BY RELAY.TG\" in 1714 ms"
     },
     {
       "name": "/keys 0000000000000000000000000000000000000000000000000000000000000000",
       "ok": true,
-      "detail": "\"KEYS ON 0000000000000000000000000000000000000000000000000000000000000000\" in 815 ms"
+      "detail": "\"KEYS ON 0000000000000000000000000000000000000000000000000000000000000000\" in 862 ms"
     },
     {
       "name": "/keys this-account-does-not-exist-keytell.near",
       "ok": true,
-      "detail": "\"does not exist\" in 62 ms"
+      "detail": "\"does not exist\" in 181 ms"
     },
     {
       "name": "/keys Not An Account!!",
       "ok": true,
-      "detail": "\"not a valid\" in 30 ms"
+      "detail": "\"not a valid\" in 112 ms"
     },
     {
       "name": "memo Markdown export",
@@ -122,7 +122,7 @@
     {
       "name": "memo-verify refuses a forged signature",
       "ok": true,
-      "detail": "401 Signature check failed: Access key ed25519:11111111111111111111111111111111 does not exist at block height 224448469"
+      "detail": "401 Signature check failed: Access key ed25519:11111111111111111111111111111111 does not exist at block height 224448694"
     }
   ]
 }

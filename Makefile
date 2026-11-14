@@ -12,7 +12,7 @@ TO ?= 2025-01-06
 SAMPLE_OUT ?= data/raw/sample
 BQ = GOOGLE_APPLICATION_CREDENTIALS=$${GOOGLE_APPLICATION_CREDENTIALS} $(PY) -I scripts/bq.py
 
-.PHONY: setup verify rebuild analyze sample forward test charts census
+.PHONY: setup verify rebuild analyze sample forward test charts census e2e
 
 setup:
 	python3 -m venv .venv && $(PY) -m pip install -q -r analysis/requirements.txt
