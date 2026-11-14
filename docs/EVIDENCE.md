@@ -154,7 +154,7 @@ PASS t10 genesis key, no event: sql UNKNOWN, expected UNKNOWN
 
 ## The deployed app, end to end (`e2e/live.mjs`)
 
-Run at 2026-11-14T02:25:23.196Z against https://keytell.vercel.app: 24 of 24 pass.
+Run at 2026-11-14T02:45:37.252Z against https://keytell.vercel.app: 24 of 24 pass.
 
 | Check | Result | Detail |
 |---|---|---|
@@ -167,25 +167,25 @@ Run at 2026-11-14T02:25:23.196Z against https://keytell.vercel.app: 24 of 24 pas
 | route /rerun | PASS | 200, no console, page or request errors |
 | route /proof | PASS | 200, no console, page or request errors |
 | internal links | PASS | 10 distinct internal links answer 200 |
-| /keys aurora | PASS | "0 function-call keys, 1 full-access key" in 1314 ms |
-| /keys relay.tg | PASS | "RECENT TRANSACTIONS SIGNED BY RELAY.TG" in 1363 ms |
-| /keys 0000000000000000000000000000000000000000000000000000000000000000 | PASS | "KEYS ON 0000000000000000000000000000000000000000000000000000000000000000" in 667 ms |
-| /keys this-account-does-not-exist-keytell.near | PASS | "does not exist" in 162 ms |
-| /keys Not An Account!! | PASS | "not a valid" in 149 ms |
+| /keys aurora | PASS | "0 function-call keys, 1 full-access key" in 133 ms |
+| /keys relay.tg | PASS | "RECENT TRANSACTIONS SIGNED BY RELAY.TG" in 1433 ms |
+| /keys 0000000000000000000000000000000000000000000000000000000000000000 | PASS | "KEYS ON 0000000000000000000000000000000000000000000000000000000000000000" in 609 ms |
+| /keys this-account-does-not-exist-keytell.near | PASS | "does not exist" in 209 ms |
+| /keys Not An Account!! | PASS | "not a valid" in 144 ms |
 | memo Markdown export | PASS | keytell-memo.md, sha256 dc7c043c2de0163a..., equals data/out/memo.md: true |
 | memo PDF (print) button | PASS | visible; opens the browser print dialog |
 | memo signature opens the near-connect wallet selector (mainnet) | PASS | selector opened, wallets offered: Meteor Wallet, NEAR Mobile, Ethereum Wallets, NEAR CLI |
 | ledger reads the claim from chain | PASS | claim keytell-fc-leads-usdc-1 and ledger.keytell.testnet shown |
 | resolve is closed during the window | PASS | button disabled until the forward window ends (the contract refuses E_WINDOW_OPEN as well) |
-| /api/status | PASS | NEAR testnet RPC (ledger): ok; NEAR mainnet RPC (/keys): ok; FastNEAR transaction API (/keys): ok; FastNEAR block archive (sampler): ok; NEAR Intents Explorer API: ok; BigQuery data freshness: ok |
+| /api/status | PASS | NEAR testnet RPC (ledger): ok; NEAR mainnet RPC (/keys): ok; FastNEAR transaction API (/keys): ok; NearBlocks API (not used by /keys): down; FastNEAR block archive (sampler): ok; NEAR Intents Explorer API: ok; BigQuery data freshness: ok |
 | /proof.json | PASS | 9 of 9 proof checks pass, computed live from chain |
 | memo-verify refuses missing fields | PASS | 400 Missing fields. |
 | memo-verify refuses a message that is not an attestation | PASS | 400 The signed message is not a Keytell memo attestation. |
-| memo-verify refuses a forged signature | PASS | 401 Signature check failed: Access key ed25519:11111111111111111111111111111111 does not exist at block height 224451131 |
+| memo-verify refuses a forged signature | PASS | 401 Signature check failed: Access key ed25519:11111111111111111111111111111111 does not exist at block height 224453123 |
 
 ## Layout and accessibility (`e2e/layout.mjs`)
 
-Run at 2026-11-14T02:24:38.335Z against https://keytell.vercel.app: 64 of 64 views clean over 8 routes and 8 viewports (desktop-1440, laptop-1280, ipad-mini, ipad-pro-11, iphone-15, iphone-se, pixel-7, galaxy-s9).
+Run at 2026-11-14T02:48:38.270Z against https://keytell.vercel.app: 64 of 64 views clean over 8 routes and 8 viewports (desktop-1440, laptop-1280, ipad-mini, ipad-pro-11, iphone-15, iphone-se, pixel-7, galaxy-s9).
 
 ## `make verify`
 

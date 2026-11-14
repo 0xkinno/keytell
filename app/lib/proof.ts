@@ -60,7 +60,9 @@ export async function runChecks(base: string, onUpdate?: (c: Check[]) => void): 
       return [bad.length === 0, `${obs.length - bad.length} of ${obs.length} posted hashes match data/crank-last.json`];
     }],
     ["facts", "The numbers on this site come from the committed result files", async () => {
-      const h = await sha256Hex(await (await fetch(`${base}/proof/results.json`, { cache: "no-store" })).text());
+      // Canonical form, as scripts/facts.ts hashes it: numbers to 10 significant digits.
+      const raw = await (await fetch(`${base}/proof/results.json`, { cache: "no-store" })).text();
+      const h = await sha256Hex(JSON.stringify(JSON.parse(raw), (_k, v) => (typeof v === "number" && Number.isFinite(v) ? Number(v.toPrecision(10)) : v)));
       const want = f.files?.["data/out/results.json"];
       return [!!want && h === want, `served results.json ${h.slice(0, 16)}...; FACTS.json records ${String(want).slice(0, 16)}...`];
     }],

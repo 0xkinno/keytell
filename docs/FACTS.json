@@ -428,12 +428,13 @@
   ],
   "crank": null,
   "files": {
-    "data/out/results.json": "5b771333b38f3e98f4e804e03384388280d9524c9b297d6efe1ef097a999f213",
+    "data/out/results.json": "844a8d23e5802e7e60efe09cba0bd4c13189c47596bc919595463898726bea7d",
     "data/out/weekly.csv": "ab3e52e851537a1fb999f5961288785a9a7596bafa19557874594042ce5010f3",
-    "data/out/controls.json": "84b2be2fc9be09b68c8c70de8f139dd450804446a293b23b69956e0a558fac33",
+    "data/out/controls.json": "8fd59c7dda234523595036123d7268248b0a3d27c26f6a2c1308488a858c07df",
     "data/out/oos_errors.csv": "8ea824c42ba906970c1177fdbd40643f5d1294fd83f930bb741f2ac9b35d0f23",
     "data/out/bq_runs.jsonl": "8d8d30397ba4908a25c49134ec66f417549b3d75674f9e47f82693e3ae1b82f1"
   },
+  "files_note": "JSON files are hashed in canonical form (numbers to 10 significant digits); other files byte for byte.",
   "oos_queries_after_registration": true,
   "first_oos_query_at": "2026-11-13T18:18:03+00:00",
   "wild_set": {
@@ -458,7 +459,7 @@
       "base": "https://keytell.vercel.app",
       "passed": 24,
       "total": 24,
-      "ran_at": "2026-11-14T02:25:23.196Z"
+      "ran_at": "2026-11-14T02:45:37.252Z"
     },
     "layout": {
       "base": "https://keytell.vercel.app",
@@ -466,7 +467,7 @@
       "total": 64,
       "viewports": 8,
       "routes": 8,
-      "ran_at": "2026-11-14T02:24:38.335Z"
+      "ran_at": "2026-11-14T02:48:38.270Z"
     }
   },
   "break_campaign": {

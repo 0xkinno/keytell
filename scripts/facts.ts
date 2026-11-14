@@ -7,6 +7,11 @@ import { createHash } from "node:crypto";
 
 const read = (p: string): any => (existsSync(p) ? JSON.parse(readFileSync(p, "utf8")) : null);
 const sha = (p: string) => (existsSync(p) ? createHash("sha256").update(readFileSync(p)).digest("hex") : null);
+// JSON results carry full-precision floats whose last digits differ between CPUs (CI found it). Hash a
+// canonical form instead: numbers rounded to 10 significant digits, file key order kept. app/lib/proof.ts
+// computes the same form in the browser.
+export const canonJson = (text: string) => JSON.stringify(JSON.parse(text), (_k, v) => (typeof v === "number" && Number.isFinite(v) ? Number(v.toPrecision(10)) : v));
+const fileSha = (p: string) => (existsSync(p) ? (p.endsWith(".json") ? createHash("sha256").update(canonJson(readFileSync(p, "utf8"))).digest("hex") : sha(p)) : null);
 
 function csv(p: string): Record<string, string>[] {
   if (!existsSync(p)) return [];
@@ -212,7 +217,8 @@ export function buildFacts() {
       return Object.entries(by).sort().map(([year, b]) => ({ year, weeks: b.weeks, txs: b.txs, fc: r4(b.fc / b.weeks), meta: r4(b.meta / b.weeks), implicit: r4(b.implicit / b.weeks), full: r4(b.full / b.weeks) }));
     })(),
     crank: crank ? { last_run: crank.at, posted: crank.posted ?? [], file: "data/crank-last.json" } : null,
-    files: Object.fromEntries(["data/out/results.json", "data/out/weekly.csv", "data/out/controls.json", "data/out/oos_errors.csv", "data/out/bq_runs.jsonl"].map((p) => [p, sha(p)])),
+    files: Object.fromEntries(["data/out/results.json", "data/out/weekly.csv", "data/out/controls.json", "data/out/oos_errors.csv", "data/out/bq_runs.jsonl"].map((p) => [p, fileSha(p)])),
+    files_note: "JSON files are hashed in canonical form (numbers to 10 significant digits); other files byte for byte.",
     oos_queries_after_registration: reg ? runs.filter((r) => r.start >= OOS_START).every((r) => Date.parse(r.ran_at) > Number(BigInt(reg.registered_at_ns) / 1_000_000n)) && runs.some((r) => r.start >= OOS_START) : null,
     first_oos_query_at: runs.filter((r) => r.start >= OOS_START).map((r) => r.ran_at).sort()[0] ?? null,
     wild_set: existsSync("data/out/wild_set.csv") ? (() => {
