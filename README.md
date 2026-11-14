@@ -90,6 +90,7 @@ Registered at 2026-11-13T18:17:43.113Z in `ledger.keytell.testnet` ([transaction
 - The claim did not hold: over 94 out-of-sample weeks of one-step forecasts of weekly USDC volume, adding function-call-signed activity to an AR(2) baseline added 5.1 percent to forecast error; daily active accounts added 3.6 percent to forecast error; price added 5.5 percent to forecast error. The pass rule needs function-call activity to do better than both.
 - In 2026-W45, 29.5 percent of sampled mainnet transactions were signed by a function-call key (95 percent interval 23.6 percent to 36.2 percent); 35.5 percent were meta transactions relayed for a user.
 - The sample's weekly transaction estimate lands within 7.8 percent of the BigQuery census in the median week.
+- NEAR Intents, sampled from the Explorer API (12 seeded 10-minute windows a week, 2025-W27 to 2026-W46): a median week moves about $188.1M; 2026-W46 about $328.7M (interval $186.2M to $478.7M). Its weekly changes rank-correlate with USDC volume at 0.378 (0.133 to 0.543); with function-call activity at its registered lag at -0.08 (-0.394 to 0.245), with DAA at 0.094 (-0.086 to 0.266). Exploratory: the key arrived after registration, so it cannot change the verdict.
 - Best in-sample lags: function-call-signed 4 weeks, DAA 4, price 3. Only transaction count lowered the out-of-sample error at all (+1.8%).
 
 ## The evidence against
@@ -297,7 +298,7 @@ git clone https://github.com/0xkinno/keytell && cd keytell && make setup && make
 - The key mix is a sample: 50,600 transactions over 253 weeks, with intervals. The full ADD_KEY ledger would scan about 20 TB.
 - USDC volume before 2023-10-16 is not in the census (USDC.e logged no NEP-141 events until 2023-10-11), so earlier weeks are shown, not scored.
 - The contract resolves on the observations the crank posts. Trust in those numbers comes from `make verify`, which recomputes each from public data and compares hashes, not from the contract.
-- Retention and NEAR Intents volume are not computed: the first is above the scan budget; the second needs an Intents Explorer key (a 1Click partner key was tried and refused, because the Explorer accepts only its own key type).
+- Retention is not computed: it is above the scan budget. NEAR Intents volume is a sample, starts in mid 2025 (the Explorer holds nothing earlier) and is exploratory, because its key arrived after registration.
 - The ledger runs on testnet; the data is mainnet.
 
 ## Disclosures

@@ -89,6 +89,7 @@ Registered at {{claim.registered_at}} in `{{claim.ledger}}` ([transaction]({{cla
 - {{sentences.verdict}}
 - {{sentences.latest}}
 - {{sentences.sample_check}}
+- {{sentences.intents}}
 - Best in-sample lags: function-call-signed {{backtest.best_in_sample_lag.fc_signed_tx}} weeks, DAA {{backtest.best_in_sample_lag.daa}}, price {{backtest.best_in_sample_lag.price}}. Only transaction count lowered the out-of-sample error at all ({{backtest.oos_gain.tx_count|signed}}).
 
 ## The evidence against
@@ -276,7 +277,7 @@ git clone {{repo.url}} && cd keytell && make setup && make verify
 - The key mix is a sample: {{data.transactions_classified|int}} transactions over {{data.weeks_sampled}} weeks, with intervals. The full ADD_KEY ledger would scan about 20 TB.
 - USDC volume before 2023-10-16 is not in the census (USDC.e logged no NEP-141 events until 2023-10-11), so earlier weeks are shown, not scored.
 - The contract resolves on the observations the crank posts. Trust in those numbers comes from `make verify`, which recomputes each from public data and compares hashes, not from the contract.
-- Retention and NEAR Intents volume are not computed: the first is above the scan budget; the second needs an Intents Explorer key (a 1Click partner key was tried and refused, because the Explorer accepts only its own key type).
+- Retention is not computed: it is above the scan budget. NEAR Intents volume is a sample, starts in mid 2025 (the Explorer holds nothing earlier) and is exploratory, because its key arrived after registration.
 - The ledger runs on testnet; the data is mainnet.
 
 ## Disclosures

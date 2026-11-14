@@ -42,7 +42,7 @@ export default function Home() {
         <Reveal className="mx-auto max-w-3xl text-center">
           <p className="eyebrow">Monday, 07:40, Lagos</p>
           <h2 className="display mt-4 text-[40px] sm:text-[60px]">&ldquo;Is anyone actually using NEAR, or is it bots and airdrop farmers?&rdquo;</h2>
-          <p className="mt-6 text-[18px] leading-relaxed text-[color:var(--ink-2)]">Tolu Adeyemi (fictional), a research analyst at a crypto fund, has twenty minutes before the investment committee. Every dashboard Tolu can open shows daily active accounts and price. Both are cheap to fake: one script makes a thousand accounts, one post moves price. Keytell gives Tolu a claim that was fixed before the data, the evidence for and against it, the SQL behind every chart, and a memo to sign.</p>
+          <p className="mt-6 text-[18px] leading-relaxed text-[color:var(--ink-2)]">Tolu Adeyemi, a research analyst at a crypto fund, has twenty minutes before the investment committee. Every dashboard Tolu can open shows daily active accounts and price. Both are cheap to fake: one script makes a thousand accounts, one post moves price. Keytell gives Tolu a claim that was fixed before the data, the evidence for and against it, the SQL behind every chart, and a memo to sign.</p>
         </Reveal>
         <div className="mx-auto mt-14 grid max-w-[1200px] gap-4 md:grid-cols-3">
           <Reveal className="plate p-6">

@@ -1,0 +1,57 @@
+{
+  "note": "Exploratory secondary outcome, not part of the registered test; cannot change the verdict.",
+  "weeks": 72,
+  "first_week": "2025-W27",
+  "last_week": "2026-W46",
+  "median_weekly_usd": 188128553.5,
+  "latest_week": "2026-W46",
+  "latest_usd": 328680519.0,
+  "latest_usd_lo": 186153134.0,
+  "latest_usd_hi": 478727181.0,
+  "with_usdc_census": {
+    "spearman": 0.3776572478348351,
+    "ci95": [
+      0.13282909241651555,
+      0.5429713705084408
+    ],
+    "weeks": 70
+  },
+  "signals": {
+    "fc_signed_tx": {
+      "lag": 4,
+      "spearman": -0.08025544571778497,
+      "ci95": [
+        -0.39371237527574704,
+        0.24549076289254515
+      ],
+      "weeks": 70
+    },
+    "daa": {
+      "lag": 4,
+      "spearman": 0.09435744904207856,
+      "ci95": [
+        -0.08566736425679816,
+        0.26564985300706806
+      ],
+      "weeks": 70
+    },
+    "price": {
+      "lag": 3,
+      "spearman": -0.12371621030531012,
+      "ci95": [
+        -0.37024481639801826,
+        0.14552444198322362
+      ],
+      "weeks": 70
+    },
+    "tx_count": {
+      "lag": 3,
+      "spearman": -0.1193421397952935,
+      "ci95": [
+        -0.3238864256485771,
+        0.09824680800717916
+      ],
+      "weeks": 70
+    }
+  }
+}

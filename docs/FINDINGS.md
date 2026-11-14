@@ -53,6 +53,10 @@ Ten contracts carry 91.4% of all sampled function-call transactions. The largest
 | `aurora` | 62 | 15 | 1.0% |
 | `tg` | 44 | 30 | 0.7% |
 
+## NEAR Intents volume (exploratory)
+
+NEAR Intents, sampled from the Explorer API (12 seeded 10-minute windows a week, 2025-W27 to 2026-W46): a median week moves about $188.1M; 2026-W46 about $328.7M (interval $186.2M to $478.7M). Its weekly changes rank-correlate with USDC volume at 0.378 (0.133 to 0.543); with function-call activity at its registered lag at -0.08 (-0.394 to 0.245), with DAA at 0.094 (-0.086 to 0.266). Exploratory: the key arrived after registration, so it cannot change the verdict. Rebuild: `npx tsx scripts/fetch-intents.ts` with an Intents Explorer key in `.env.local`, then `python analysis/intents.py`; weekly estimates in `data/raw/intents_weekly.csv`, every sampled window in `data/raw/intents/`.
+
 ## 4. House of Stake names: keyless, and no delegation yet
 
 House of Stake has leased 80 top-level names on mainnet (2026-09-18 to 2026-11-13, read from `registry.hos` at 2026-11-14T02:34 UTC). 80 of 80 hold no access key at all: they act only through their holder. 0 grant a wallet extension to any third party beyond the holder and House of Stake's default `ext.hos`, so delegated signing (the thing this thesis counts) has not reached them yet. A small side series, not part of the registered test. Rebuild: `npx tsx scripts/fetch-hos.ts` (free mainnet reads), rows in `data/raw/hos_names.csv`.

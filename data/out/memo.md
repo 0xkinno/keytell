@@ -1,6 +1,6 @@
 # Investment memo: is NEAR usage real?
 
-Prepared with Keytell for an investment committee. Analyst: Tolu Adeyemi (fictional). Not investment advice.
+Prepared with Keytell for an investment committee. Analyst: Tolu Adeyemi (illustrative persona). Not investment advice.
 
 ## The question
 Is anyone actually using NEAR, or is it bots and airdrop farmers? Daily active accounts and price are cheap to fake, so this memo tests a signal that is harder to fake: transactions signed by function-call keys, the scoped keys apps and agents use.

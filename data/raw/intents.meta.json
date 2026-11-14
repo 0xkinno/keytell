@@ -1,0 +1,12 @@
+{
+  "fetched_at": "2026-11-14T06:03:27.787Z",
+  "source": "https://explorer.near-intents.org/api/v0/transactions",
+  "statuses": "SUCCESS",
+  "windows_per_week": 12,
+  "window_minutes": 10,
+  "seed": "keytell-intents-v1|<ISO week>",
+  "weeks": 72,
+  "first_week": "2025-W27",
+  "last_week": "2026-W46",
+  "coverage_note": "The Explorer returns no transactions before late June 2025."
+}

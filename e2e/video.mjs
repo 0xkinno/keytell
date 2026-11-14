@@ -42,7 +42,7 @@ async function scrollTo(selector) {
 
 // 0:00 the person and the question
 await go("/");
-await caption("Monday, 07:40. Tolu (a fictional analyst) has twenty minutes before the investment committee.", "\"Is anyone actually using NEAR, or is it bots and airdrop farmers?\"");
+await caption("Monday, 07:40. Tolu Adeyemi has twenty minutes before the investment committee.", "\"Is anyone actually using NEAR, or is it bots and airdrop farmers?\"");
 await wait(7);
 await caption("Every dashboard shows daily active accounts and price. Both are cheap to fake.", "Keytell counts something harder to fake: transactions signed by NEAR function-call keys");
 await wait(7);

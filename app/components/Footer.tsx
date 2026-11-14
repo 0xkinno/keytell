@@ -12,7 +12,7 @@ export function Footer() {
         <div>
           <div className="flex items-center gap-3"><Mark size={30} title="" /><span className="display text-[26px]">Keytell</span></div>
           <p className="mt-4 max-w-md text-[15px] text-[color:var(--fog)]">A pre-registered, re-runnable test of one claim about NEAR: that scoped app keys, not account counts or price, show real usage first. Built at NEAR HACKATHON, November 2026.</p>
-          <p className="mt-3 max-w-md text-[13px] text-[color:var(--fog)]">Nothing here is investment advice. Tolu Adeyemi is a fictional analyst. Price data: Coin Metrics Community Data. Chain data: BigQuery public dataset {f.data?.bigquery_dataset} and the FastNEAR block archive.</p>
+          <p className="mt-3 max-w-md text-[13px] text-[color:var(--fog)]">Nothing here is investment advice. Tolu Adeyemi is an illustrative analyst. Price data: Coin Metrics Community Data. Chain data: BigQuery public dataset {f.data?.bigquery_dataset} and the FastNEAR block archive.</p>
         </div>
         <nav aria-label="Research">
           <p className="eyebrow">Research</p>
