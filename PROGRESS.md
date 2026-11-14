@@ -20,7 +20,7 @@ Scored 1 to 5 against the build plan's ten questions, on the deployed app at htt
 
 | Part | Status |
 |---|---|
-| 0 Rules | Authorship hooks and workflow; every commit by 0xkinno; house style and name checks in CI; competitors only in `reference/`; nothing spent, posted, submitted or made public without asking |
+| 0 Rules | Authorship hooks and workflow; every commit by 0xkinno; house style and name checks in CI; other entries' names kept only in `reference/`; nothing spent, posted, submitted or made public without asking |
 | 1 Briefing | Track text, judges and form fields in `RULES_EXTRACT.md`; name check in `docs/THESIS.md`; persona labelled; founder stake stated |
 | 2 Reuse Berthright | Hooks, checks, facts, verify, repro build, live and crank workflows, app shell and e2e suites adapted, never imported |
 | 3 Data | BigQuery census (DAA, transactions, USDC); keyless block sample for the key mix (two-tier key lookup); Coin Metrics price (CoinGecko covers 365 days only); House of Stake side series. Not computable, with reasons: the full key ledger (about 20 TB), retention (154 GB), deploys (481 GB), Intents volume (partner token) |
