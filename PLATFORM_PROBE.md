@@ -89,7 +89,7 @@ ADD_KEY ledger 8.5 to 10.2 GB (about 20 TB from genesis, not run).
 | NearBlocks API v3 | `/v3/stats` and `/v3/txns` answered once; `/v1/charts` returned 429 "exceeded your API request limit" on every try; not used |
 | CoinGecko `market_chart` | public callers limited to the last 365 days (error 10012); cannot cover 2022 to 2024; not used |
 | Coin Metrics Community API | `PriceUSD` for `near`, daily, 2021-12-01 to 2026-11-12, free, no key: used for price (`data/raw/price.csv`) |
-| NEAR Intents Explorer | `/api/v0/openapi.yaml` reachable; every data endpoint needs a partner JWT (one request per 5 seconds); no JWT in this build, so Intents volume is reported as not computable |
+| NEAR Intents Explorer | `/api/v0/openapi.yaml` reachable; every data endpoint needs a partner JWT (one request per 5 seconds); a 1Click partner token (key type `distribution_channel`) was tried on 14 Nov 2026 and refused with `INVALID_TOKEN` (the Explorer needs key type `explorer`), so Intents volume is reported as not computable |
 | Circle docs | native USDC on NEAR: `17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1`; `ft_metadata` confirms `USDC`, 6 decimals; USDC.e `ft_metadata` says `Bridged USDC`, 6 decimals |
 | `registry.hos` (House of Stake names) | `nft_total_supply` and `nft_tokens` answer on mainnet (free reads); each token's `metadata.extra` carries `rented_at` and `expires_at` in nanoseconds, as on testnet; each name's wallet answers `w_extensions`. Side series in `scripts/fetch-hos.ts`, `data/raw/hos_names.csv` |
 

@@ -12,16 +12,32 @@ jobs:
   crank:
     runs-on: ubuntu-latest
     steps:
+      # Skip cleanly (no red run, no commit, no redeploy) until the secrets exist and the first forward
+      # week has ended: the window opens 2026-11-16, so nothing is due before 2026-11-23.
+      - name: Ready to post?
+        id: ready
+        env:
+          HAVE: ${{ secrets.CRANK_POST_KEY != '' && secrets.GCP_SA_JSON != '' && secrets.BQ_PROJECT != '' && secrets.CRANK_ACCOUNT_ID != '' }}
+        run: |
+          if [ "$HAVE" != "true" ]; then echo "::notice::Crank secrets not set; skipping."; echo "go=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          if [ "$(date -u +%F)" \< "2026-11-23" ]; then echo "::notice::No forward week has ended yet; skipping."; echo "go=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          echo "go=true" >> "$GITHUB_OUTPUT"
       - uses: actions/checkout@v4
+        if: steps.ready.outputs.go == 'true'
       - uses: actions/setup-node@v4
+        if: steps.ready.outputs.go == 'true'
         with:
           node-version: 22
       - uses: actions/setup-python@v5
+        if: steps.ready.outputs.go == 'true'
         with:
           python-version: "3.12"
       - run: npm ci
+        if: steps.ready.outputs.go == 'true'
       - run: python -m venv .venv && .venv/bin/pip install -q -r analysis/requirements.txt
+        if: steps.ready.outputs.go == 'true'
       - name: Refresh forward weeks (keyless sample, BigQuery census, forecast errors)
+        if: steps.ready.outputs.go == 'true'
         env:
           BQ_PROJECT: ${{ secrets.BQ_PROJECT }}
           GCP_SA_JSON: ${{ secrets.GCP_SA_JSON }}
@@ -30,11 +46,13 @@ jobs:
           export GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/sa.json"
           make forward
       - name: Post due weeks with the crank's post-only function-call key
+        if: steps.ready.outputs.go == 'true'
         env:
           CRANK_ACCOUNT_ID: ${{ secrets.CRANK_ACCOUNT_ID }}
           CRANK_POST_KEY: ${{ secrets.CRANK_POST_KEY }}
         run: npx tsx scripts/crank.ts
       - name: Commit the posted files
+        if: steps.ready.outputs.go == 'true'
         run: |
           npx tsx scripts/facts.ts
           git config user.name 0xkinno

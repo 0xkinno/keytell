@@ -27,7 +27,7 @@ Scored 1 to 5 against the build plan's ten questions, on the deployed app at htt
 | 4 Method | Registered on chain before the out-of-sample run; test, controls, both directions, placebo, cost per rebuild |
 | 5 Architecture | `sql/00..08`, `analysis/`, `scripts/`, `data/raw`, `data/out`, `contracts/thesis_ledger` (keyless, testnet), `app/`, `docs/`, Makefile targets |
 | 6 App | All nine routes live; `/keys` rate-limited and cached; `/proof` 9 of 9 from chain; memo export and NEP-413 signing through the wallet selector |
-| 7 Proof plan | Ground truth, controls, wild set (rule published; labels need a person), counterfactual, both directions, fault switch, break campaign (16 of 16), cost per rebuild and per observation, surprising finding |
+| 7 Proof plan | Ground truth, controls, wild set (rule published first; all 50 labels approved by Kinnoski), counterfactual, both directions, fault switch, break campaign (16 of 16), cost per rebuild and per observation, surprising finding |
 | 8 Phases | 0 to 7 done; 8 done except the video, the X post (Kinnoski posts), the tag and the freeze, which follow submission steps |
 | 9 Design | Assay system, hero and Key Wall per 9.3, hand-built charts per 9.4, 64 of 64 views clean, reduced motion respected |
 | 10 README | Part 10 structure, every number from FACTS, no first-screen ban words |

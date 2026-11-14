@@ -25,7 +25,7 @@ Found by walking the plan part by part, fixed before round 2:
 | Plan item | Was | Now |
 |---|---|---|
 | Part 3.4 House of Stake leased names | not built | `scripts/fetch-hos.ts`: 80 names on mainnet, all keyless, none granting a third-party extension; in FACTS, FINDINGS and the README |
-| Part 7 wild set | ranked scopes only | `analysis/wild_set.py` and `docs/WILD_SET.md`: top 50 with signers, top signer share and methods; the labelling rule published first; 16 of 50 are run by one operator, carrying 41 percent of sampled function-call transactions. Final labels need a person (Kinnoski) |
+| Part 7 wild set | ranked scopes only | `analysis/wild_set.py` and `docs/WILD_SET.md`: top 50 with signers, top signer share and methods; the labelling rule published first; 16 of 50 are run by one operator, carrying 41 percent of sampled function-call transactions. Kinnoski approved all 50 labels |
 | Part 7 cost per observation | not measured | 2.59 Tgas, 0.000237 NEAR, from the crank's control `post` on chain |
 | Part 6 `/api/status` NearBlocks probe | missing | probed and reported honestly |
 | Part 2 `app/.env.example` | missing | committed, no values |
@@ -47,6 +47,6 @@ Run on the redeployed URL after the fixes above.
 
 ## Open
 
-- Wild-set labels: the mechanical proposal is published; a person gives the final label (Kinnoski).
-- NEAR Intents volume: needs a partner token; Kinnoski's 1Click partner token may work.
+- Wild-set labels: closed. Kinnoski approved all 50 labels on 14 Nov (`data/wild_set_labels.csv`).
+- NEAR Intents volume: a 1Click partner token was tried on 14 Nov and refused by the Explorer API (`INVALID_TOKEN`: the key type must be `explorer`, not `distribution_channel`). It stays not computable until an Explorer key exists.
 - The first forward observation lands after 2026-11-23, when the first forward week has ended.

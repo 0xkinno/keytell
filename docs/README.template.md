@@ -276,7 +276,7 @@ git clone {{repo.url}} && cd keytell && make setup && make verify
 - The key mix is a sample: {{data.transactions_classified|int}} transactions over {{data.weeks_sampled}} weeks, with intervals. The full ADD_KEY ledger would scan about 20 TB.
 - USDC volume before 2023-10-16 is not in the census (USDC.e logged no NEP-141 events until 2023-10-11), so earlier weeks are shown, not scored.
 - The contract resolves on the observations the crank posts. Trust in those numbers comes from `make verify`, which recomputes each from public data and compares hashes, not from the contract.
-- Retention and NEAR Intents volume are not computed: the first is above the scan budget, the second needs a partner key this build did not have.
+- Retention and NEAR Intents volume are not computed: the first is above the scan budget; the second needs an Intents Explorer key (a 1Click partner key was tried and refused, because the Explorer accepts only its own key type).
 - The ledger runs on testnet; the data is mainnet.
 
 ## Disclosures
