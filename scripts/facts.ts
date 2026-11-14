@@ -225,6 +225,13 @@ export function buildFacts() {
       const w = csv("data/out/wild_set.csv"); const bots = w.filter((r) => r.proposed_label.startsWith("bot"));
       return { contracts: w.length, operator_run: bots.length, operator_share_of_fc: r4(bots.reduce((a, r) => a + Number(r.share_of_fc), 0)), top_operator: bots[0]?.scope ?? null, top_operator_txs: Number(bots[0]?.sampled_fc_txs ?? 0), file: "data/out/wild_set.csv" };
     })() : null,
+    intents: existsSync("data/out/intents_exploratory.json") ? (() => {
+      const j = JSON.parse(readFileSync("data/out/intents_exploratory.json", "utf8")), m = JSON.parse(readFileSync("data/raw/intents.meta.json", "utf8"));
+      const r = (x: number) => Math.round(x * 1000) / 1000;
+      return { weeks: j.weeks, first_week: j.first_week, last_week: j.last_week, windows_per_week: m.windows_per_week, window_minutes: m.window_minutes, median_weekly_usd: Math.round(j.median_weekly_usd), latest_usd: Math.round(j.latest_usd), latest_usd_lo: Math.round(j.latest_usd_lo), latest_usd_hi: Math.round(j.latest_usd_hi),
+        with_usdc: { spearman: r(j.with_usdc_census.spearman), lo: r(j.with_usdc_census.ci95[0]), hi: r(j.with_usdc_census.ci95[1]), weeks: j.with_usdc_census.weeks },
+        signals: Object.fromEntries(Object.entries(j.signals).map(([k, v]: [string, any]) => [k, { lag: v.lag, spearman: r(v.spearman), lo: r(v.ci95[0]), hi: r(v.ci95[1]), weeks: v.weeks }])), file: "data/out/intents_exploratory.json" };
+    })() : null,
     hos: existsSync("data/raw/hos.meta.json") ? (() => { const h = JSON.parse(readFileSync("data/raw/hos.meta.json", "utf8")); return { names: h.names, keyless_names: h.keyless_names, names_with_third_party_extension: h.names_with_third_party_extension, first_lease: h.first_lease, last_lease: h.last_lease, fetched_at: h.fetched_at, file: "data/raw/hos_names.csv" }; })() : null,
     e2e: (() => {
       const rd = (f: string) => (existsSync(f) ? JSON.parse(readFileSync(f, "utf8")) : null);
@@ -266,6 +273,11 @@ export function buildFacts() {
   sentences.concentration = `The ten contracts that function-call keys were most often scoped to carry ${pct(s.concentration.top10_share_of_sampled_fc_all_weeks)} of all sampled function-call transactions.`;
   if (s.data.sample_vs_census_tx_median_abs_pct_error !== null) sentences.sample_check = `The sample's weekly transaction estimate lands within ${pct(s.data.sample_vs_census_tx_median_abs_pct_error)} of the BigQuery census in the median week.`;
   if (s.wild_set) sentences.wild_set = `${s.wild_set.operator_run} of the ${s.wild_set.contracts} contracts that function-call keys were most often scoped to are run by one operator account, carrying ${pct(s.wild_set.operator_share_of_fc)} of all sampled function-call transactions; \`${s.wild_set.top_operator}\` alone shows ${s.wild_set.top_operator_txs} sampled transactions from a single signer. Much of what looks like app-held keys is an app's back office signing for itself (docs/WILD_SET.md).`;
+  if (s.intents) {
+    const i = s.intents, f = i.signals.fc_signed_tx, d = i.signals.daa;
+    const usd = (x: number) => `$${(x / 1e6).toFixed(1)}M`;
+    sentences.intents = `NEAR Intents, sampled from the Explorer API (${i.windows_per_week} seeded ${i.window_minutes}-minute windows a week, ${i.first_week} to ${i.last_week}): a median week moves about ${usd(i.median_weekly_usd)}; ${i.last_week} about ${usd(i.latest_usd)} (interval ${usd(i.latest_usd_lo)} to ${usd(i.latest_usd_hi)}). Its weekly changes rank-correlate with USDC volume at ${i.with_usdc.spearman} (${i.with_usdc.lo} to ${i.with_usdc.hi}); with function-call activity at its registered lag at ${f?.spearman ?? "n/a"} (${f?.lo ?? "n/a"} to ${f?.hi ?? "n/a"}), with DAA at ${d?.spearman ?? "n/a"} (${d?.lo ?? "n/a"} to ${d?.hi ?? "n/a"}). Exploratory: the key arrived after registration, so it cannot change the verdict.`;
+  }
   if (s.hos) sentences.hos = `House of Stake has leased ${s.hos.names} top-level names on mainnet (${s.hos.first_lease} to ${s.hos.last_lease}); ${s.hos.keyless_names} of them hold no access key at all, and ${s.hos.names_with_third_party_extension} grant an extension to anyone beyond their holder and House of Stake's default. Delegated signing has not reached them yet.`;
   (facts as any).sentences = sentences;
 

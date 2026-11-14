@@ -445,6 +445,7 @@
     "top_operator_txs": 1419,
     "file": "data/out/wild_set.csv"
   },
+  "intents": null,
   "hos": {
     "names": 80,
     "keyless_names": 80,

@@ -44,7 +44,7 @@ export async function GET() {
     probe("NEAR Intents Explorer API", async () => {
       if (fault === "intents_down") throw new Error("designed degraded state: KEYTELL_FAULT=intents_down");
       const r = await fetch("https://explorer.near-intents.org/api/v0/openapi.yaml", { signal: AbortSignal.timeout(5000), cache: "no-store" });
-      return `OpenAPI reachable, HTTP ${r.status}; data needs a partner JWT this build does not hold`;
+      return `OpenAPI reachable, HTTP ${r.status}; weekly volume is sampled offline by scripts/fetch-intents.ts with a partner key this server never holds`;
     }),
     probe("BigQuery data freshness", async () => {
       if (fault === "stale_bq") throw new Error("designed degraded state: KEYTELL_FAULT=stale_bq; charts show committed data through the last census day");

@@ -98,6 +98,17 @@ def main():
         L.append(f"| `{r.fc_receiver}` | {int(r.sampled_fc_txs)} | {int(r.weeks_seen)} | {pct(r.share_of_fc)} |")
     L.append("")
 
+    # NEAR Intents (exploratory)
+    try:
+        f = json.load(open("docs/FACTS.json"))
+        if f.get("sentences", {}).get("intents"):
+            L.append("## NEAR Intents volume (exploratory)")
+            L.append("")
+            L.append(f["sentences"]["intents"] + " Rebuild: `npx tsx scripts/fetch-intents.ts` with an Intents Explorer key in `.env.local`, then `python analysis/intents.py`; weekly estimates in `data/raw/intents_weekly.csv`, every sampled window in `data/raw/intents/`.")
+            L.append("")
+    except FileNotFoundError:
+        pass
+
     # 4. House of Stake names
     try:
         hos = json.load(open("data/raw/hos.meta.json"))

@@ -23,6 +23,7 @@ analyze:
 	$(PY) analysis/method.py
 	$(PY) analysis/controls.py
 	$(PY) analysis/wild_set.py
+	@if [ -f data/raw/intents_weekly.csv ]; then $(PY) analysis/intents.py > /dev/null; fi
 	npx tsx scripts/facts.ts
 	$(PY) analysis/memo.py
 	npx tsx scripts/facts.ts
