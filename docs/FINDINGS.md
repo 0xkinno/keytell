@@ -53,6 +53,10 @@ Ten contracts carry 91.4% of all sampled function-call transactions. The largest
 | `aurora` | 62 | 15 | 1.0% |
 | `tg` | 44 | 30 | 0.7% |
 
+## 4. House of Stake names: keyless, and no delegation yet
+
+House of Stake has leased 80 top-level names on mainnet (2026-09-18 to 2026-11-13, read from `registry.hos` at 2026-11-14T02:34 UTC). 80 of 80 hold no access key at all: they act only through their holder. 0 grant a wallet extension to any third party beyond the holder and House of Stake's default `ext.hos`, so delegated signing (the thing this thesis counts) has not reached them yet. A small side series, not part of the registered test. Rebuild: `npx tsx scripts/fetch-hos.ts` (free mainnet reads), rows in `data/raw/hos_names.csv`.
+
 ## The query
 
 These findings come from the keyless block sample, not from a BigQuery scan (the full key ledger would scan about 20 TB). To reproduce one week from scratch and the yearly table from the committed sample:

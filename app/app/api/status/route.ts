@@ -31,6 +31,11 @@ export async function GET() {
       const r = await fetch("https://tx.main.fastnear.com/v0/account", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ account_id: "aurora", limit: 1 }), signal: AbortSignal.timeout(5000), cache: "no-store" });
       return `HTTP ${r.status}`;
     }),
+    probe("NearBlocks API (not used by /keys)", async () => {
+      const r = await fetch("https://api.nearblocks.io/v1/stats", { signal: AbortSignal.timeout(5000), cache: "no-store" });
+      if (!r.ok) throw new Error(`HTTP ${r.status}; /keys reads FastNEAR instead`);
+      return `HTTP ${r.status}`;
+    }),
     probe("FastNEAR block archive (sampler)", async () => {
       const r = await fetch("https://mainnet.neardata.xyz/v0/last_block/final", { signal: AbortSignal.timeout(6000), cache: "no-store", redirect: "follow" });
       const j = await r.json();

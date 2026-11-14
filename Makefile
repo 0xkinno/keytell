@@ -22,6 +22,7 @@ analyze:
 	$(PY) analysis/weekly.py
 	$(PY) analysis/method.py
 	$(PY) analysis/controls.py
+	$(PY) analysis/wild_set.py
 	npx tsx scripts/facts.ts
 	$(PY) analysis/memo.py
 	npx tsx scripts/facts.ts
@@ -34,7 +35,7 @@ charts: analyze
 verify: analyze
 	@# CSVs are written at 6 significant digits and FACTS.json is rounded, so last-bit float noise
 	@# between machines cannot flip the check; raw JSON floats are compared through FACTS.json.
-	@git diff --quiet -- 'data/out/*.csv' docs/FACTS.json data/out/memo.md docs/FINDINGS.md README.md || (echo "FAIL drift: the rebuild changed committed outputs:"; git diff --stat -- 'data/out/*.csv' docs/FACTS.json data/out/memo.md docs/FINDINGS.md README.md; exit 1)
+	@git diff --quiet -- 'data/out/*.csv' docs/FACTS.json data/out/memo.md docs/FINDINGS.md docs/WILD_SET.md README.md || (echo "FAIL drift: the rebuild changed committed outputs:"; git diff --stat -- 'data/out/*.csv' docs/FACTS.json data/out/memo.md docs/FINDINGS.md README.md; exit 1)
 	@echo "PASS rebuild: data/out CSVs, the memo, FINDINGS, README and docs/FACTS.json reproduce exactly from committed inputs"
 	npx tsx scripts/facts.ts --check
 	npx tsx scripts/verify.ts

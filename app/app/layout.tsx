@@ -4,6 +4,7 @@ import { fraunces, instrument, plexMono } from "./fonts";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { SmoothScroll } from "@/components/SmoothScroll";
+import { MotionPrefs } from "@/components/MotionPrefs";
 
 export const metadata: Metadata = {
   title: "Keytell: count the small keys, not the accounts",
@@ -19,9 +20,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-[color:var(--ink)] focus:px-4 focus:py-2 focus:text-white">Skip to content</a>
         <SmoothScroll />
-        <Nav />
-        <main id="main">{children}</main>
-        <Footer />
+        <MotionPrefs>
+          <Nav />
+          <main id="main">{children}</main>
+          <Footer />
+        </MotionPrefs>
       </body>
     </html>
   );

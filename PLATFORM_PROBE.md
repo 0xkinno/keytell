@@ -91,7 +91,7 @@ ADD_KEY ledger 8.5 to 10.2 GB (about 20 TB from genesis, not run).
 | Coin Metrics Community API | `PriceUSD` for `near`, daily, 2021-12-01 to 2026-11-12, free, no key: used for price (`data/raw/price.csv`) |
 | NEAR Intents Explorer | `/api/v0/openapi.yaml` reachable; every data endpoint needs a partner JWT (one request per 5 seconds); no JWT in this build, so Intents volume is reported as not computable |
 | Circle docs | native USDC on NEAR: `17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1`; `ft_metadata` confirms `USDC`, 6 decimals; USDC.e `ft_metadata` says `Bridged USDC`, 6 decimals |
-| `registry.hos` (House of Stake names) | not probed for this build's analysis; the leased-name side series is out of scope (see TASK) |
+| `registry.hos` (House of Stake names) | `nft_total_supply` and `nft_tokens` answer on mainnet (free reads); each token's `metadata.extra` carries `rented_at` and `expires_at` in nanoseconds, as on testnet; each name's wallet answers `w_extensions`. Side series in `scripts/fetch-hos.ts`, `data/raw/hos_names.csv` |
 
 ## Testnet
 

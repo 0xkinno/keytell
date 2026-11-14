@@ -9,7 +9,7 @@ Every result lands in docs/FACTS.json, generated from committed files.
 | Pre-registration on chain before the out-of-sample run | data/registration.json, /ledger, /proof (registration 18:17:43 UTC; first out-of-sample query 18:18:03 UTC) |
 | Placebo: 1,000 circular shifts | analysis/controls.py, Brief 2.2 |
 | Concentration exclusion | analysis/controls.py, Brief 2.3 |
-| Wild set: the contracts function-call keys are scoped to, ranked, with links | data/out/fc_receivers.csv, Brief 2.3. Labels are not assigned by a person in this build; the list is published unlabelled rather than labelled by the build agent |
+| Wild set: the 50 contracts function-call keys are scoped to most often, with links, signers and methods; the labelling rule published first, a mechanical proposal for the rules that need no judgement, and a column for the person's label | analysis/wild_set.py, docs/WILD_SET.md, data/wild_set_labels.csv |
 | Counterfactual: the committee with DAA only | data/out/directions.csv, Brief 2.4 |
 | Both error directions and misses | data/out/directions.csv, Brief 2.4 |
 | Fault switch: KEYTELL_FAULT=stale_bq, intents_down, rpc_down | /api/status, /api/lookup |
@@ -17,5 +17,6 @@ Every result lands in docs/FACTS.json, generated from committed files.
 | Cost per rebuild and per observation | data/out/bq_runs.jsonl, /rerun |
 | Surprising finding | docs/FINDINGS.md |
 
-The proof can come out against us. If the backtest fails, the headline says "The data did not
-support the claim", and the build is still complete.
+The proof can come out against us. The backtest failed: the registered code wrote "The data did not
+support the claim" to results.json, and every page leads with it in plain words ("The claim did not
+hold"). The build is still complete.

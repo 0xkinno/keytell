@@ -73,6 +73,8 @@ Tolu Adeyemi, a research analyst at a crypto fund in Lagos, has twenty minutes b
 
 With Keytell, Tolu opens one page: the claim as it was written before the test, the evidence for, the evidence against, the SQL behind every chart, a lookup that classifies any account, and a memo to sign. Keytell never says buy. The NEP-413 signature on the memo is Tolu's attestation that the evidence against was read. *Tolu is an illustrative analyst; the data, the chain and the verdict are real.*
 
+**Our stake, stated plainly.** The builder, Kinnoski, ships on NEAR: Berthright's crank signs with function-call keys, the very signal this thesis counts. We wanted the claim to hold. Writing it to chain before the data is what kept that wish out of the result.
+
 ---
 
 ## The claim
@@ -96,6 +98,7 @@ We lead with it as hard as with the case for.
 
 - The real out-of-sample gain (-5.1 percent) beats 9 percent of 1000 timing placebos; the bar is 95 percent.
 - The ten contracts that function-call keys were most often scoped to carry 91.4 percent of all sampled function-call transactions.
+- 16 of the 50 contracts that function-call keys were most often scoped to are run by one operator account, carrying 41.0 percent of all sampled function-call transactions; `token.sweat` alone shows 1419 sampled transactions from a single signer. Much of what looks like app-held keys is an app's back office signing for itself (docs/WILD_SET.md).
 - Function-call keys flagged 28 weeks: 13 hits and 15 false alarms, with 24 misses. DAA: 2 hits, 7 false alarms, 35 misses.
 - 1 of 8 control reruns would pass the registered rule: every relayed meta transaction counted as function-call activity. It was registered as a control, not as the claim, so it does not change the verdict; docs/FINDINGS.md treats it as a hypothesis for a new pre-registration.
 - Largest weekly share of keys nobody could read: 1.5%. Weeks above 5 percent in the scored window: none.
@@ -183,7 +186,7 @@ sequenceDiagram
 - **Access key types.** A function-call key is bound to one receiver, optional methods and a gas allowance, and cannot attach NEAR. Apps hold these keys for users. Every signature's key kind is public and can be read at any block, which is what makes the signal hard to fake.
 - **Meta transactions.** NEP-366 delegate actions separate the relayer's signature from the user's. Keytell counts the user's inner signature, so a relayer carrying thousands of users does not read as one account.
 - **Implicit accounts.** A 64-hex account signs with the key its name derives from; Keytell recognises it instead of guessing.
-- **Names, not hashes.** `relay.tg`, `aurora`, `intents.near` and House of Stake's top-level names are readable accounts, so the concentration brief can say which apps carry the signal, and `/keys` can classify any of them.
+- **Names, not hashes.** `relay.tg`, `aurora` and `intents.near` are readable accounts, so the concentration brief can say which apps carry the signal, and `/keys` can classify any of them. House of Stake has leased 80 top-level names on mainnet (2026-09-18 to 2026-11-13); 80 of them hold no access key at all, and 0 grant an extension to anyone beyond their holder and House of Stake's default. Delegated signing has not reached them yet.
 
 ---
 

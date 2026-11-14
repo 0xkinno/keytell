@@ -98,6 +98,16 @@ def main():
         L.append(f"| `{r.fc_receiver}` | {int(r.sampled_fc_txs)} | {int(r.weeks_seen)} | {pct(r.share_of_fc)} |")
     L.append("")
 
+    # 4. House of Stake names
+    try:
+        hos = json.load(open("data/raw/hos.meta.json"))
+        L.append("## 4. House of Stake names: keyless, and no delegation yet")
+        L.append("")
+        L.append(f"House of Stake has leased {hos['names']} top-level names on mainnet ({hos['first_lease']} to {hos['last_lease']}, read from `registry.hos` at {hos['fetched_at'][:16]} UTC). {hos['keyless_names']} of {hos['names']} hold no access key at all: they act only through their holder. {hos['names_with_third_party_extension']} grant a wallet extension to any third party beyond the holder and House of Stake's default `ext.hos`, so delegated signing (the thing this thesis counts) has not reached them yet. A small side series, not part of the registered test. Rebuild: `npx tsx scripts/fetch-hos.ts` (free mainnet reads), rows in `data/raw/hos_names.csv`.")
+        L.append("")
+    except FileNotFoundError:
+        pass
+
     # The query
     L.append("## The query")
     L.append("")

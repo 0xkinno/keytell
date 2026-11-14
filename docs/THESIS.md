@@ -32,3 +32,7 @@ Collision check, 13 Nov 2026:
 | Hackathon gallery | no project with this name seen |
 
 No conflict that matters, so Keytell stands. Fallbacks, unused: Latchkey, Small Keys.
+
+## Founder stake
+
+Kinnoski builds on NEAR, and Berthright's crank signs with function-call keys: the signal this thesis counts. That is a stake in the answer. The claim was registered on chain before the out-of-sample data was read, and the registered test came out against it; both are published.

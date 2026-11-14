@@ -72,6 +72,8 @@ Tolu Adeyemi, a research analyst at a crypto fund in Lagos, has twenty minutes b
 
 With Keytell, Tolu opens one page: the claim as it was written before the test, the evidence for, the evidence against, the SQL behind every chart, a lookup that classifies any account, and a memo to sign. Keytell never says buy. The NEP-413 signature on the memo is Tolu's attestation that the evidence against was read. *Tolu is an illustrative analyst; the data, the chain and the verdict are real.*
 
+**Our stake, stated plainly.** The builder, Kinnoski, ships on NEAR: Berthright's crank signs with function-call keys, the very signal this thesis counts. We wanted the claim to hold. Writing it to chain before the data is what kept that wish out of the result.
+
 ---
 
 ## The claim
@@ -95,6 +97,7 @@ We lead with it as hard as with the case for.
 
 - {{sentences.placebo}}
 - {{sentences.concentration}}
+- {{sentences.wild_set}}
 - {{sentences.directions}}
 - {{sentences.controls}}
 - Largest weekly share of keys nobody could read: {{data.max_unknown_share|pct}}. Weeks above 5 percent in the scored window: {{data.weeks_unknown_over_5pct|list}}.
@@ -175,7 +178,7 @@ sequenceDiagram
 - **Access key types.** A function-call key is bound to one receiver, optional methods and a gas allowance, and cannot attach NEAR. Apps hold these keys for users. Every signature's key kind is public and can be read at any block, which is what makes the signal hard to fake.
 - **Meta transactions.** NEP-366 delegate actions separate the relayer's signature from the user's. Keytell counts the user's inner signature, so a relayer carrying thousands of users does not read as one account.
 - **Implicit accounts.** A 64-hex account signs with the key its name derives from; Keytell recognises it instead of guessing.
-- **Names, not hashes.** `relay.tg`, `aurora`, `intents.near` and House of Stake's top-level names are readable accounts, so the concentration brief can say which apps carry the signal, and `/keys` can classify any of them.
+- **Names, not hashes.** `relay.tg`, `aurora` and `intents.near` are readable accounts, so the concentration brief can say which apps carry the signal, and `/keys` can classify any of them. {{sentences.hos}}
 
 ---
 
