@@ -16,7 +16,7 @@
   <a href="https://keytell.vercel.app/against"><b>Against</b></a> &nbsp;·&nbsp;
   <a href="https://keytell.vercel.app/ledger"><b>Ledger</b></a> &nbsp;·&nbsp;
   <a href="https://keytell.vercel.app/proof"><b>Proof from chain</b></a> &nbsp;·&nbsp;
-  Video: linked at submission
+  <a href="https://x.com/0xkiddok/status/2121691058698351096"><b>Demo video</b></a>
 </p>
 
 <p align="center">

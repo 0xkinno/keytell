@@ -1,9 +1,9 @@
 <!-- Generated from docs/SUBMISSION.template.md by scripts/readme.ts. Edit the template. -->
 # Submission: NEAR HACKATHON, Investment Thesis track
 
-Draft for Kinnoski. Nothing here is sent until Kinnoski confirms the exact payload. Recheck the live
-form before submitting; mistakes go through https://nearhackathon.com/request-changes, never a second
-submission. Own cut-off: 14 Nov 2026 21:59 UTC (two hours before the deadline).
+**Submitted by Kinnoski on 14 Nov 2026, before the deadline.** This is the record of what was sent.
+Corrections go through https://nearhackathon.com/request-changes, never a second submission. The contact
+email was given on the form and is not stored in this repository.
 
 ## Form fields
 
@@ -11,14 +11,14 @@ submission. Own cut-off: 14 Nov 2026 21:59 UTC (two hours before the deadline).
 |---|---|
 | Project name | Keytell |
 | Team lead | Kinnoski (0xkinno) |
-| Email | Kinnoski fills in |
+| Email | given on the form (personal data, not stored here) |
 | Team size | `1` |
 | Tracks | `thesis` |
-| NEAR mainnet wallet for the prize | Kinnoski's own account (never created for them) |
-| Repository link | https://github.com/0xkinno/keytell (public before submitting) |
-| Demo post link | the X post URL, after Kinnoski posts it |
+| NEAR mainnet wallet for the prize | `kinnoski.near` |
+| Repository link | https://github.com/0xkinno/keytell (public) |
+| Demo post link | https://x.com/0xkiddok/status/2121691058698351096 |
 | Website (API spam trap) | leave empty |
-| Consent | ticked by Kinnoski |
+| Consent | given by Kinnoski |
 
 ## What did you build? (20 to 2,000 characters)
 
@@ -34,24 +34,14 @@ What we found instead: signing moved from app-held function-call keys to relayed
 How: a keyless sampler classifies the key that signed 50,600 mainnet transactions at signing time over public RPC; BigQuery counts DAA and USDC; the app shows every chart's SQL, the case against (controls, 1,000 timing placebos, concentration), a /keys lookup for any account, and a memo the analyst signs with NEP-413. A twelve-week forward claim is open on chain; a crank posts each week with a function-call key limited to post, and anyone can resolve it. make verify rebuilds every number from a clean clone. Ledger on testnet; data from mainnet.
 ```
 
-## X post (Kinnoski approves and posts)
+## Demo post
 
-```text
-Built at #NEARHackathon: do NEAR function-call keys lead real usage better than active accounts or price?
+Posted by Kinnoski on X with the demo film, tagging @NEARProtocol and #NEARHackathon: https://x.com/0xkiddok/status/2121691058698351096
 
-Registered on chain before the test. Result: The claim did not hold. Published anyway.
+## At submission
 
-https://keytell.vercel.app
-https://github.com/0xkinno/keytell
-
-@NEARProtocol
-```
-
-Attach two screenshots: `docs/screens/hero.png` and `docs/screens/verdict.png`.
-
-## Before submitting
-
-- Repository public (Kinnoski approves), README renders, CI green.
-- Deployed app reachable; `live.yml` green.
-- Video uploaded and linked in the README.
-- Berthright README names Keytell (Q-015), after Kinnoski approves that one line.
+- Repository public: https://github.com/0xkinno/keytell
+- Deployed app: https://keytell.vercel.app, frozen through results (18 Nov 2026)
+- Demo film linked in the README
+- Berthright's README names Keytell, and Keytell's names Berthright (Q-015)
+- `make verify` from a clean clone: exit 0

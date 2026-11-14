@@ -13,8 +13,8 @@ Scored 1 to 5 against the build plan's ten questions, on the deployed app at htt
 | 6 | Does `/keys` work on any account a judge types? | 5 | `e2e/live.mjs` on production: named, relayer, implicit, non-existent and malformed accounts all answer correctly; every README example answers in under 2 s | The per-IP daily limit is per serverless instance (accepted, stated) |
 | 7 | Are both error directions and the misses published? | 5 | Hits, false alarms and misses for function-call activity and DAA in `/against` 2.4, the README Measured table and the memo | |
 | 8 | Is anything typed by hand that should be generated? | 5 | README, memo, FINDINGS, EVIDENCE, WILD_SET and the submission draft render from committed outputs; `make verify` fails if any is stale. The red team found one typed threshold on the landing page; it now reads FACTS | |
-| 9 | Do the README, UI and video say only what the deployed app shows? | 4 | Every README link resolves; all 19 cited testnet transactions exist with the outcome the README states; screenshots come from production at 2x | Video not recorded yet (waiting for Kinnoski's instructions) |
-| 10 | Do both READMEs name each other (Q-015)? | 2 | Keytell's README names Berthright in Disclosures | Berthright's README line waits for Kinnoski's approval |
+| 9 | Do the README, UI and video say only what the deployed app shows? | 5 | Every README link resolves; all 19 cited testnet transactions exist with the outcome the README states; screenshots and the demo film were captured from the deployed app, and every number in the film comes from FACTS.json | |
+| 10 | Do both READMEs name each other (Q-015)? | 5 | Keytell's README names Berthright in Disclosures; Berthright's README names Keytell | |
 
 ## Plan coverage
 
@@ -28,9 +28,9 @@ Scored 1 to 5 against the build plan's ten questions, on the deployed app at htt
 | 5 Architecture | `sql/00..08`, `analysis/`, `scripts/`, `data/raw`, `data/out`, `contracts/thesis_ledger` (keyless, testnet), `app/`, `docs/`, Makefile targets |
 | 6 App | All nine routes live; `/keys` rate-limited and cached; `/proof` 9 of 9 from chain; memo export and NEP-413 signing through the wallet selector |
 | 7 Proof plan | Ground truth, controls, wild set (rule published first; all 50 labels approved by Kinnoski), counterfactual, both directions, fault switch, break campaign (16 of 16), cost per rebuild and per observation, surprising finding |
-| 8 Phases | 0 to 7 done; 8 done except the video, the X post (Kinnoski posts), the tag and the freeze, which follow submission steps |
+| 8 Phases | All done: README, EVIDENCE, screenshots, demo film, X post (posted by Kinnoski), submission (sent by Kinnoski), tag `hackathon-submission`, deployment frozen through 18 Nov |
 | 9 Design | Assay system, hero and Key Wall per 9.3, hand-built charts per 9.4, 64 of 64 views clean, reduced motion respected |
 | 10 README | Part 10 structure, every number from FACTS, no first-screen ban words |
-| 11 Video, X, submission | X post and form fields drafted in `SUBMISSION_NEARHACKATHON.md`; video next |
+| 11 Video, X, submission | Demo film (2:50) posted on X by Kinnoski; submission sent; record in `SUBMISSION_NEARHACKATHON.md` |
 | 12 Risk | `docs/RISK.md` covers all six points |
 | 13 Self-judge | this file |

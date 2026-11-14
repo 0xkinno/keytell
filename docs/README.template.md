@@ -15,7 +15,7 @@
   <a href="{{app.url}}/against"><b>Against</b></a> &nbsp;·&nbsp;
   <a href="{{app.url}}/ledger"><b>Ledger</b></a> &nbsp;·&nbsp;
   <a href="{{app.url}}/proof"><b>Proof from chain</b></a> &nbsp;·&nbsp;
-  Video: linked at submission
+  <a href="https://x.com/0xkiddok/status/2121691058698351096"><b>Demo video</b></a>
 </p>
 
 <p align="center">
