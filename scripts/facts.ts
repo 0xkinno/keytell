@@ -215,6 +215,14 @@ export function buildFacts() {
     files: Object.fromEntries(["data/out/results.json", "data/out/weekly.csv", "data/out/controls.json", "data/out/oos_errors.csv", "data/out/bq_runs.jsonl"].map((p) => [p, sha(p)])),
     oos_queries_after_registration: reg ? runs.filter((r) => r.start >= OOS_START).every((r) => Date.parse(r.ran_at) > Number(BigInt(reg.registered_at_ns) / 1_000_000n)) && runs.some((r) => r.start >= OOS_START) : null,
     first_oos_query_at: runs.filter((r) => r.start >= OOS_START).map((r) => r.ran_at).sort()[0] ?? null,
+    e2e: (() => {
+      const rd = (f: string) => (existsSync(f) ? JSON.parse(readFileSync(f, "utf8")) : null);
+      const live = rd("e2e/live-report.json"), lay = rd("e2e/layout-report.json");
+      return {
+        live: live ? { base: live.base, passed: live.passed, total: live.total, ran_at: live.ran_at } : null,
+        layout: lay ? { base: lay.base, clean: lay.clean, total: lay.total, viewports: lay.viewports.length, routes: lay.routes.length, ran_at: lay.ran_at } : null,
+      };
+    })(),
     break_campaign: brk ? { refusals: brk.results?.length ?? 0, all_refused_as_designed: brk.results?.every((r: any) => r.ok_as_designed) ?? false, twin: brk.twin, rows: brk.results.map((r: any) => ({ name: r.name, signer: r.signer, method: r.method, expected: r.expected, got: r.got, tx: r.hash, tx_short: String(r.hash ?? "").slice(0, 10) })), file: "data/break.json" } : null,
   };
 

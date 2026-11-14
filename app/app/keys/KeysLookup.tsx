@@ -5,12 +5,12 @@ import { EXPLORER } from "@/lib/config";
 
 const EXAMPLES = ["aurora", "relay.tg", "social.near", "intents.near"];
 
-const BUCKET: Record<string, { label: string; cls: string }> = {
-  FUNCTION_CALL: { label: "function-call key", cls: "bg-[color:var(--copper)] text-[#1d1206]" },
-  FULL_ACCESS: { label: "full-access key", cls: "bg-[#c9d0d4] text-[#14181b]" },
-  IMPLICIT_OR_FULL: { label: "full-access (implicit account)", cls: "bg-[#c9d0d4] text-[#14181b]" },
-  RELAYS_META_TX: { label: "relays a meta transaction", cls: "bg-[#e7c9a5] text-[#14181b]" },
-  UNKNOWN: { label: "unknown", cls: "bg-[color:var(--oxide)] text-white" },
+const BUCKET: Record<string, { label: string; cls: string; sum?: string }> = {
+  FUNCTION_CALL: { sum: "signed by a function-call key", label: "function-call key", cls: "bg-[color:var(--copper)] text-[#1d1206]" },
+  FULL_ACCESS: { sum: "signed by a full-access key", label: "full-access key", cls: "bg-[#c9d0d4] text-[#14181b]" },
+  IMPLICIT_OR_FULL: { sum: "signed by an implicit account", label: "full-access (implicit account)", cls: "bg-[#c9d0d4] text-[#14181b]" },
+  RELAYS_META_TX: { sum: "relayed meta transactions", label: "relays a meta transaction", cls: "bg-[#e7c9a5] text-[#14181b]" },
+  UNKNOWN: { sum: "with a key nobody could read", label: "unknown", cls: "bg-[color:var(--oxide)] text-white" },
 };
 
 export function KeysLookup() {
@@ -69,7 +69,7 @@ export function KeysLookup() {
             </div>
             <div className="plate p-6">
               <p className="eyebrow">Recent transactions signed by {res.account}</p>
-              <p className="mt-2 text-[15px] text-[color:var(--ink-2)]">{Object.entries(res.counts).map(([k, v]) => `${v} by ${BUCKET[k]?.label ?? k}`).join(" · ") || "No signed transactions found in the recent window."}</p>
+              <p className="mt-2 text-[15px] text-[color:var(--ink-2)]">{Object.entries(res.counts).map(([k, v]) => `${v} ${BUCKET[k]?.sum ?? k}`).join(" · ") || "No signed transactions found in the recent window."}</p>
               <ul className="mt-4 space-y-2">
                 {res.recent.map((t: any) => (
                   <li key={t.hash} className="flex flex-wrap items-center gap-3 border-b border-[color:var(--hair)] pb-2 text-[14px]">

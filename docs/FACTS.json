@@ -436,6 +436,15 @@
   },
   "oos_queries_after_registration": true,
   "first_oos_query_at": "2026-11-13T18:18:03+00:00",
+  "e2e": {
+    "live": {
+      "base": "https://keytell.vercel.app",
+      "passed": 24,
+      "total": 24,
+      "ran_at": "2026-11-14T02:02:12.996Z"
+    },
+    "layout": null
+  },
   "break_campaign": {
     "refusals": 16,
     "all_refused_as_designed": true,

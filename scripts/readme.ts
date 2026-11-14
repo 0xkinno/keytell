@@ -15,8 +15,9 @@ const FORMATS: Record<string, (v: any) => string> = {
   date: (v) => String(v).slice(0, 10),
   list: (v) => (Array.isArray(v) && v.length ? v.join(", ") : "none"),
   bool: (v) => (v ? "yes" : "no"),
+  explorer: (v) => `https://testnet.nearblocks.io/txns/${v}`,
   pass: (v) => (v ? "**passes**" : "fails"),
-  signed: (v) => (v === null || v === undefined ? "n/a" : `${Number(v) >= 0 ? "+" : "−"}${Math.abs(Number(v) * 100).toFixed(1)}%`),
+  signed: (v) => (v === null || v === undefined ? "n/a" : `${Number(v) >= 0 ? "+" : "-"}${Math.abs(Number(v) * 100).toFixed(1)}%`),
 };
 
 function get(path: string): any {

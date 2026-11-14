@@ -67,6 +67,9 @@ for (const [vpName, opts] of VIEWPORTS) {
 }
 await browser.close();
 writeFileSync("e2e/report.json", JSON.stringify(report, null, 2));
+// Committed summary (read by scripts/facts.ts): the base URL, when, and how many views were clean.
+const isBad = (x) => x.hscroll > 0 || x.overlaps.length || x.small.length || x.axe.length || x.errors.length;
+writeFileSync("e2e/layout-report.json", JSON.stringify({ base: BASE, ran_at: new Date().toISOString(), viewports: [...new Set(report.map((x) => x.viewport))], routes: [...new Set(report.map((x) => x.route))], clean: report.filter((x) => !isBad(x)).length, total: report.length, failures: report.filter(isBad) }, null, 2) + "\n");
 for (const x of report.filter((x) => x.hscroll > 0 || x.overlaps.length || x.small.length || x.axe.length || x.errors.length)) {
   console.log(`${x.viewport} ${x.route}: hscroll ${x.hscroll} overlaps ${x.overlaps} small ${x.small.slice(0, 4).join("; ")} axe ${x.axe.map((a) => `${a.id}(${a.n}) ${a.sample}`).join(", ")} errors ${x.errors.slice(0, 2)}`);
 }
