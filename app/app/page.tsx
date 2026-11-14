@@ -47,7 +47,7 @@ export default function Home() {
         <div className="mx-auto mt-14 grid max-w-[1200px] gap-4 md:grid-cols-3">
           <Reveal className="plate p-6">
             <p className="eyebrow">The backtest verdict</p>
-            <p className={`display mt-3 text-[30px] ${b?.passed ? "text-[color:var(--verdigris-ink)]" : "text-[color:var(--oxide-ink)]"}`}>{b?.verdict ?? "Not computed yet"}</p>
+            <p className={`display mt-3 text-[30px] ${b?.passed ? "text-[color:var(--verdigris-ink)]" : "text-[color:var(--oxide-ink)]"}`}>{b?.headline ?? "Not computed yet"}</p>
             <p className="mt-3 text-[15px] text-[color:var(--ink-2)]">{b ? `Out-of-sample gain over ${b.oos_weeks_scored} weeks: function-call keys ${pct(b.oos_gain.fc_signed_tx)}, DAA ${pct(b.oos_gain.daa)}, price ${pct(b.oos_gain.price)}. Positive means a smaller forecast error than an AR(2) baseline.` : "The out-of-sample run has not finished."}</p>
           </Reveal>
           <Reveal className="plate p-6" delay={0.08}>

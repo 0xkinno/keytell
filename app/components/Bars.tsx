@@ -8,7 +8,8 @@ export function Bars({ rows, title, format = (v: number) => `${(v * 100).toFixed
   const vals = rows.map((r) => r.value ?? 0);
   const lo = Math.min(0, ...vals), hi = Math.max(0, ...vals);
   const span = hi - lo || 1;
-  const x = scaleLinear().domain([lo - span * 0.05, hi + span * 0.05]).range([PAD.l, W - PAD.r]);
+  // Negative values carry their number to the left of the bar: keep a gutter so it never meets the labels.
+  const x = scaleLinear().domain([lo - span * 0.05, hi + span * 0.05]).range([PAD.l + (lo < 0 ? 64 : 0), W - PAD.r]);
   const H = PAD.t + rows.length * rowH + PAD.b;
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img" aria-label={title}>

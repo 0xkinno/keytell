@@ -44,7 +44,8 @@ export default function Evidence() {
       <p className="eyebrow">Brief 01 · The case for</p>
       <h1 className="display mt-3 max-w-4xl text-[44px] sm:text-[64px]">Do small keys move before USDC does?</h1>
       <p className="mt-5 max-w-3xl text-[18px] leading-relaxed text-[color:var(--ink-2)]">Each brief below asks one question, answers it in one sentence generated from the results file, and shows the exact query, its bytes scanned and its dates. The pass rule was registered on chain first; the <Link className="ulink" href="/against">case against</Link> is published with the same weight.</p>
-      <p className={`display mt-6 text-[28px] ${b?.passed ? "text-[color:var(--verdigris-ink)]" : "text-[color:var(--oxide-ink)]"}`}>{b?.verdict ?? "The out-of-sample run has not finished."}</p>
+      <p className={`display mt-6 text-[28px] ${b?.passed ? "text-[color:var(--verdigris-ink)]" : "text-[color:var(--oxide-ink)]"}`}>{b?.headline ?? "The out-of-sample run has not finished."}</p>
+      {b?.plain && <p className="mt-2 max-w-3xl text-[16px] leading-relaxed text-[color:var(--ink-2)]">{b.plain}</p>}
 
       <div className="mt-10 space-y-8">
         <Plate n="1.1" side="for" question="Does function-call activity rise before USDC volume does?" sentence={f.sentences?.verdict ?? null}
@@ -123,7 +124,7 @@ export default function Evidence() {
               { key: "hi", label: "upper 95%", color: "#e7c9a5", values: allWeeks.map((w) => w.fc_share_hi), width: 1 },
               { key: "fc", label: "FC share", color: COLORS.fc, values: allWeeks.map((w) => w.fc_share), width: 2.4 },
               { key: "lo", label: "lower 95%", color: "#e7c9a5", values: allWeeks.map((w) => w.fc_share_lo), width: 1 },
-              { key: "fco", label: "FUNCTION_CALL only", color: "#9a5212", values: allWeeks.map((w) => w.fc_only_share), dash: "4 3", width: 1.4 },
+              { key: "fco", label: "Direct FC only", color: "#9a5212", values: allWeeks.map((w) => w.fc_only_share), dash: "4 3", width: 1.4 },
             ]} />
         </Plate>
 

@@ -15,6 +15,8 @@ const FORMATS: Record<string, (v: any) => string> = {
   date: (v) => String(v).slice(0, 10),
   list: (v) => (Array.isArray(v) && v.length ? v.join(", ") : "none"),
   bool: (v) => (v ? "yes" : "no"),
+  pass: (v) => (v ? "**passes**" : "fails"),
+  signed: (v) => (v === null || v === undefined ? "n/a" : `${Number(v) >= 0 ? "+" : "−"}${Math.abs(Number(v) * 100).toFixed(1)}%`),
 };
 
 function get(path: string): any {
@@ -28,7 +30,17 @@ const OUT = arg("--out", "README.md");
 export function render(): string {
   const tpl = readFileSync(TPL, "utf8");
   const missing: string[] = [];
-  const out = tpl.replace(/\{\{\s*([\w.]+)(?:\s*\|\s*(\w+))?\s*\}\}/g, (_, path: string, fmt?: string) => {
+  // {{#each path}} ... {{.field|fmt}} ... {{/each}} repeats a block for every item of an array fact.
+  const expanded = tpl.replace(/\{\{#each\s+([\w.]+)\s*\}\}\n?([\s\S]*?)\{\{\/each\}\}\n?/g, (_, path: string, body: string) => {
+    const arr = get(path);
+    if (!Array.isArray(arr)) { missing.push(path); return ""; }
+    return arr.map((item) => body.replace(/\{\{\s*\.([\w.]+)(?:\s*\|\s*(\w+))?\s*\}\}/g, (__: string, k: string, fmt?: string) => {
+      const v = k.split(".").reduce((o: any, kk) => (o == null ? undefined : o[kk]), item);
+      if (v === undefined) { missing.push(`${path}[].${k}`); return "n/a"; }
+      return fmt ? FORMATS[fmt](v) : String(v);
+    })).join("");
+  });
+  const out = expanded.replace(/\{\{\s*([\w.]+)(?:\s*\|\s*(\w+))?\s*\}\}/g, (_, path: string, fmt?: string) => {
     const v = get(path);
     if (v === undefined) { missing.push(path); return "n/a"; }
     return fmt ? FORMATS[fmt](v) : typeof v === "object" ? JSON.stringify(v) : String(v);

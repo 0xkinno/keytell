@@ -11,7 +11,7 @@ Is anyone actually using NEAR, or is it bots and airdrop farmers? Daily active a
 Registered on NEAR testnet at 2026-11-13T18:17:43.113Z in `ledger.keytell.testnet` (claim `keytell-fc-leads-usdc-1`), before any out-of-sample query ran: [registration transaction](https://testnet.nearblocks.io/txns/FpHj8UhHEyVQBWhafiY4pQH3UzQpPf2wKXvDFVhTYZQo). Method hash `90f687b9d36d7ef6...` ([docs/METHOD.md](https://github.com/0xkinno/keytell/blob/main/docs/METHOD.md)), code manifest hash `47e2d8be113495fc...`. Both match the repository: yes.
 
 ## What the test found
-- Backtest verdict: **The data did not support the claim** ([results.json](https://github.com/0xkinno/keytell/blob/main/data/out/results.json)).
+- Result: **The claim did not hold.** Out of sample, function-call keys did not forecast weekly USDC volume better than daily active accounts or price. The data is complete and the test ran exactly as registered; the thesis failed it, and Keytell publishes that. ([results.json](https://github.com/0xkinno/keytell/blob/main/data/out/results.json)).
 - Out-of-sample gain in forecasting weekly USDC volume over 94 weeks, against an AR(2) baseline (positive means a smaller error than the baseline, negative a larger one): function-call-signed activity -5.1%, daily active accounts -3.6%, price -5.5% ([oos_errors.csv](https://github.com/0xkinno/keytell/blob/main/data/out/oos_errors.csv)).
 - Mean squared-error difference against DAA 0.006578 (95% interval -0.055139 to 0.069399); against price -0.001606 (-0.060525 to 0.05815). Negative favours function-call keys.
 - In 2026-W45, 29.5% of sampled mainnet transactions were signed by a function-call key (interval 23.6% to 36.2%) ([weekly.csv](https://github.com/0xkinno/keytell/blob/main/data/out/weekly.csv)).

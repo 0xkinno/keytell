@@ -26,6 +26,16 @@ function splitCsv(line: string): string[] {
   return out;
 }
 const n = (v: string | undefined) => (v === undefined || v === "" || v === "nan" ? null : Number(v));
+const CONTROL_LABELS: Record<string, string> = {
+  concentration_ex_top10_scopes: "Ten largest function-call scopes removed",
+  concentration_ex_top10_signers: "Ten busiest signers removed",
+  relayers_fc_only: "Meta transactions dropped from function-call activity",
+  relayers_all_delegated_as_fc: "Every relayed meta transaction counted as function-call",
+  relayers_delegated_excluded: "Meta transactions removed from both sides",
+  unknown_all_fc: "Every unknown key counted as function-call",
+  unknown_all_full: "Every unknown key counted as full access",
+  episodes_excluded: "Flagged bot or farming weeks left out",
+};
 const r4 = (x: number | null) => (x === null || !Number.isFinite(x) ? null : Math.round(x * 1e4) / 1e4);
 const r6 = (x: number | null) => (x === null || !Number.isFinite(x) ? null : Math.round(x * 1e6) / 1e6);
 const pct = (x: number | null, d = 1) => (x === null ? "n/a" : `${(x * 100).toFixed(d)} percent`);
@@ -159,6 +169,11 @@ export function buildFacts() {
     } : null,
     backtest: results ? {
       verdict: results.verdict, passed: results.passed, oos_weeks_scored: results.oos_weeks_scored,
+      // Plain-language headline for readers. `verdict` above is the registered code's own wording.
+      headline: results.passed ? "The claim held" : "The claim did not hold",
+      plain: results.passed
+        ? "Out of sample, function-call keys forecast weekly USDC volume better than daily active accounts and price, by the rule registered before the test."
+        : "Out of sample, function-call keys did not forecast weekly USDC volume better than daily active accounts or price. The data is complete and the test ran exactly as registered; the thesis failed it, and Keytell publishes that.",
       best_in_sample_lag: results.best_in_sample_lag,
       oos_gain: Object.fromEntries(Object.entries(g ?? {}).map(([k, v]) => [k, r6(v as number)])),
       vs_daa: comp?.daa ? { mean_sq_error_difference: r6(comp.daa.mean_sq_error_difference), ci95: comp.daa.ci95.map((x: number) => r6(x)), headline_better: comp.daa.headline_better } : null,
@@ -173,6 +188,7 @@ export function buildFacts() {
     controls: controls ? {
       placebo: { reps: controls.placebo.reps, real_oos_gain: r6(controls.placebo.real_oos_gain), placebo_p95: r6(controls.placebo.placebo_p95), share_beaten: r4(controls.placebo.share_of_placebos_beaten), real_beats_95pct: controls.placebo.real_beats_95pct },
       variants: Object.fromEntries(Object.entries(controls.variants).map(([k, v]: [string, any]) => [k, { would_pass: v.would_pass, headline_gain: r6(v.oos_gain_vs_ar2.fc_signed_tx), daa_gain: r6(v.oos_gain_vs_ar2.daa), price_gain: r6(v.oos_gain_vs_ar2.price), weeks: v.weeks }])),
+      rows: Object.entries(controls.variants).map(([k, v]: [string, any]) => ({ key: k, label: CONTROL_LABELS[k] ?? k, would_pass: v.would_pass, headline_gain: r6(v.oos_gain_vs_ar2.fc_signed_tx), daa_gain: r6(v.oos_gain_vs_ar2.daa), price_gain: r6(v.oos_gain_vs_ar2.price), weeks: v.weeks })),
       episodes_flagged: controls.episodes_flagged,
       file: "data/out/controls.json",
     } : null,
@@ -181,19 +197,32 @@ export function buildFacts() {
       rebuild_bytes_billed: rebuildBytes, rebuild_gb: Math.round(rebuildBytes / 1e8) / 10, rebuild_usd_at_on_demand_price: Math.round(rebuildUsd * 100) / 100,
       free_tier_note: "BigQuery bills on-demand queries by bytes scanned; the first 1 TiB each month is free.",
       sampler_keys_needed: 0, file: "data/out/bq_runs.jsonl",
+      ...(existsSync("data/cost_per_observation.json") ? (() => { const c = JSON.parse(readFileSync("data/cost_per_observation.json", "utf8")); return { per_observation_tgas: Math.round(c.tgas * 100) / 100, per_observation_near: Number(c.near_burnt.toPrecision(3)), per_observation_tx: c.tx, forward_claim_near: Number((c.near_burnt * 12).toPrecision(3)) }; })() : {}),
     },
+    key_mix_by_year: (() => {
+      const by: Record<string, { weeks: number; txs: number; fc: number; meta: number; implicit: number; full: number }> = {};
+      for (const w of weeklyRows) {
+        const n = Number(w.txs_classified); if (!(n > 0)) continue;
+        const y = w.monday.slice(0, 4);
+        const b = (by[y] ??= { weeks: 0, txs: 0, fc: 0, meta: 0, implicit: 0, full: 0 });
+        b.weeks++; b.txs += n; b.fc += Number(w.fc_only_share);
+        b.meta += (Number(w.n_delegated_inner_fc) + Number(w.n_delegated_inner_full)) / n;
+        b.implicit += Number(w.n_implicit_full) / n; b.full += Number(w.n_full_access) / n;
+      }
+      return Object.entries(by).sort().map(([year, b]) => ({ year, weeks: b.weeks, txs: b.txs, fc: r4(b.fc / b.weeks), meta: r4(b.meta / b.weeks), implicit: r4(b.implicit / b.weeks), full: r4(b.full / b.weeks) }));
+    })(),
     crank: crank ? { last_run: crank.at, posted: crank.posted ?? [], file: "data/crank-last.json" } : null,
     files: Object.fromEntries(["data/out/results.json", "data/out/weekly.csv", "data/out/controls.json", "data/out/oos_errors.csv", "data/out/bq_runs.jsonl"].map((p) => [p, sha(p)])),
     oos_queries_after_registration: reg ? runs.filter((r) => r.start >= OOS_START).every((r) => Date.parse(r.ran_at) > Number(BigInt(reg.registered_at_ns) / 1_000_000n)) && runs.some((r) => r.start >= OOS_START) : null,
     first_oos_query_at: runs.filter((r) => r.start >= OOS_START).map((r) => r.ran_at).sort()[0] ?? null,
-    break_campaign: brk ? { refusals: brk.results?.length ?? 0, all_refused_as_designed: brk.results?.every((r: any) => r.ok_as_designed) ?? false, file: "data/break.json" } : null,
+    break_campaign: brk ? { refusals: brk.results?.length ?? 0, all_refused_as_designed: brk.results?.every((r: any) => r.ok_as_designed) ?? false, twin: brk.twin, rows: brk.results.map((r: any) => ({ name: r.name, signer: r.signer, method: r.method, expected: r.expected, got: r.got, tx: r.hash, tx_short: String(r.hash ?? "").slice(0, 10) })), file: "data/break.json" } : null,
   };
 
   const s = (facts as any);
   const sentences: Record<string, string> = {};
   if (s.backtest) {
     const b = s.backtest;
-    sentences.verdict = `${b.verdict}: over ${b.oos_weeks_scored} out-of-sample weeks of one-step forecasts of weekly USDC volume, adding function-call-signed activity to an AR(2) baseline ${effect(b.oos_gain.fc_signed_tx)}; daily active accounts ${effect(b.oos_gain.daa)}; price ${effect(b.oos_gain.price)}. The pass rule needs function-call activity to do better than both.`;
+    sentences.verdict = `${b.headline}: over ${b.oos_weeks_scored} out-of-sample weeks of one-step forecasts of weekly USDC volume, adding function-call-signed activity to an AR(2) baseline ${effect(b.oos_gain.fc_signed_tx)}; daily active accounts ${effect(b.oos_gain.daa)}; price ${effect(b.oos_gain.price)}. The pass rule needs function-call activity to do better than both.`;
     sentences.vs_baselines = `Versus DAA the mean squared-error difference is ${b.vs_daa?.mean_sq_error_difference} (95 percent interval ${b.vs_daa?.ci95?.join(" to ")}); versus price ${b.vs_price?.mean_sq_error_difference} (${b.vs_price?.ci95?.join(" to ")}). Negative favours function-call keys; the pass rule needs both intervals below zero.`;
     sentences.directions = `Function-call keys flagged ${b.directions.fc_signed_tx.hits + b.directions.fc_signed_tx.false_alarms} weeks: ${b.directions.fc_signed_tx.hits} hits and ${b.directions.fc_signed_tx.false_alarms} false alarms, with ${b.directions.fc_signed_tx.misses} misses. DAA: ${b.directions.daa.hits} hits, ${b.directions.daa.false_alarms} false alarms, ${b.directions.daa.misses} misses.`;
   }

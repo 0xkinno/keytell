@@ -1,0 +1,10 @@
+{
+  "tx": "6ZYP8Y1k94ACM9XyEGXMKpuGpwSaD2ua5S2J7DiALVo",
+  "signer": "crank.keytell.testnet",
+  "method": "post",
+  "gas_burnt": "2592959433730",
+  "tgas": 2.59295943373,
+  "near_burnt": 0.000236977687123,
+  "measured_at": "2026-11-14T02:09:49.078Z",
+  "source": "EXPERIMENTAL_tx_status on rpc.testnet.fastnear.com"
+}

@@ -19,7 +19,7 @@ Pre-registered on NEAR before the test data existed. Rebuild every number with o
 
 ## The verdict first
 
-**The data did not support the claim.** The data did not support the claim: over 94 out-of-sample weeks of one-step forecasts of weekly USDC volume, adding function-call-signed activity to an AR(2) baseline added 5.1 percent to forecast error; daily active accounts added 3.6 percent to forecast error; price added 5.5 percent to forecast error. The pass rule needs function-call activity to do better than both.
+**The data did not support the claim.** The claim did not hold: over 94 out-of-sample weeks of one-step forecasts of weekly USDC volume, adding function-call-signed activity to an AR(2) baseline added 5.1 percent to forecast error; daily active accounts added 3.6 percent to forecast error; price added 5.5 percent to forecast error. The pass rule needs function-call activity to do better than both.
 
 Versus DAA the mean squared-error difference is 0.006578 (95 percent interval -0.055139 to 0.069399); versus price -0.001606 (-0.060525 to 0.05815). Negative favours function-call keys; the pass rule needs both intervals below zero.
 
@@ -76,7 +76,7 @@ Registered at 2026-11-13T18:17:43.113Z in `ledger.keytell.testnet`. Method hash 
 
 ## The evidence for
 
-- The data did not support the claim: over 94 out-of-sample weeks of one-step forecasts of weekly USDC volume, adding function-call-signed activity to an AR(2) baseline added 5.1 percent to forecast error; daily active accounts added 3.6 percent to forecast error; price added 5.5 percent to forecast error. The pass rule needs function-call activity to do better than both.
+- The claim did not hold: over 94 out-of-sample weeks of one-step forecasts of weekly USDC volume, adding function-call-signed activity to an AR(2) baseline added 5.1 percent to forecast error; daily active accounts added 3.6 percent to forecast error; price added 5.5 percent to forecast error. The pass rule needs function-call activity to do better than both.
 - In 2026-W45, 29.5 percent of sampled mainnet transactions were signed by a function-call key (95 percent interval 23.6 percent to 36.2 percent); 35.5 percent were meta transactions relayed for a user.
 - The sample's weekly transaction estimate lands within 7.8 percent of the BigQuery census in the median week.
 - Best in-sample lags: function-call-signed 4 weeks, DAA 4, price 3.

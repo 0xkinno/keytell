@@ -92,6 +92,8 @@
     "verdict": "The data did not support the claim",
     "passed": false,
     "oos_weeks_scored": 94,
+    "headline": "The claim did not hold",
+    "plain": "Out of sample, function-call keys did not forecast weekly USDC volume better than daily active accounts or price. The data is complete and the test ran exactly as registered; the thesis failed it, and Keytell publishes that.",
     "best_in_sample_lag": {
       "fc_signed_tx": 4,
       "fc_share": 4,
@@ -210,6 +212,80 @@
         "weeks": 43
       }
     },
+    "rows": [
+      {
+        "key": "concentration_ex_top10_scopes",
+        "label": "Ten largest function-call scopes removed",
+        "would_pass": false,
+        "headline_gain": -0.131389,
+        "daa_gain": -0.039402,
+        "price_gain": -0.086313,
+        "weeks": 46
+      },
+      {
+        "key": "concentration_ex_top10_signers",
+        "label": "Ten busiest signers removed",
+        "would_pass": false,
+        "headline_gain": -0.015463,
+        "daa_gain": -0.039903,
+        "price_gain": -0.067083,
+        "weeks": 86
+      },
+      {
+        "key": "relayers_fc_only",
+        "label": "Meta transactions dropped from function-call activity",
+        "would_pass": false,
+        "headline_gain": -0.046504,
+        "daa_gain": -0.040768,
+        "price_gain": -0.070127,
+        "weeks": 84
+      },
+      {
+        "key": "relayers_all_delegated_as_fc",
+        "label": "Every relayed meta transaction counted as function-call",
+        "would_pass": true,
+        "headline_gain": 0.000639,
+        "daa_gain": -0.034844,
+        "price_gain": -0.07183,
+        "weeks": 97
+      },
+      {
+        "key": "relayers_delegated_excluded",
+        "label": "Meta transactions removed from both sides",
+        "would_pass": false,
+        "headline_gain": -0.024279,
+        "daa_gain": -0.040768,
+        "price_gain": -0.070127,
+        "weeks": 84
+      },
+      {
+        "key": "unknown_all_fc",
+        "label": "Every unknown key counted as function-call",
+        "would_pass": false,
+        "headline_gain": -0.052858,
+        "daa_gain": -0.03562,
+        "price_gain": -0.054508,
+        "weeks": 94
+      },
+      {
+        "key": "unknown_all_full",
+        "label": "Every unknown key counted as full access",
+        "would_pass": false,
+        "headline_gain": -0.050803,
+        "daa_gain": -0.03562,
+        "price_gain": -0.054508,
+        "weeks": 94
+      },
+      {
+        "key": "episodes_excluded",
+        "label": "Flagged bot or farming weeks left out",
+        "would_pass": false,
+        "headline_gain": -0.027528,
+        "daa_gain": -0.019368,
+        "price_gain": -0.085386,
+        "weeks": 43
+      }
+    ],
     "episodes_flagged": 167,
     "file": "data/out/controls.json"
   },
@@ -297,8 +373,59 @@
     "rebuild_usd_at_on_demand_price": 1.02,
     "free_tier_note": "BigQuery bills on-demand queries by bytes scanned; the first 1 TiB each month is free.",
     "sampler_keys_needed": 0,
-    "file": "data/out/bq_runs.jsonl"
+    "file": "data/out/bq_runs.jsonl",
+    "per_observation_tgas": 2.59,
+    "per_observation_near": 0.000237,
+    "per_observation_tx": "6ZYP8Y1k94ACM9XyEGXMKpuGpwSaD2ua5S2J7DiALVo",
+    "forward_claim_near": 0.00284
   },
+  "key_mix_by_year": [
+    {
+      "year": "2022",
+      "weeks": 52,
+      "txs": 10400,
+      "fc": 0.225,
+      "meta": 0,
+      "implicit": 0.0921,
+      "full": 0.6822
+    },
+    {
+      "year": "2023",
+      "weeks": 52,
+      "txs": 10400,
+      "fc": 0.1913,
+      "meta": 0.0036,
+      "implicit": 0.2124,
+      "full": 0.5924
+    },
+    {
+      "year": "2024",
+      "weeks": 53,
+      "txs": 10600,
+      "fc": 0.0335,
+      "meta": 0.4575,
+      "implicit": 0.0533,
+      "full": 0.4557
+    },
+    {
+      "year": "2025",
+      "weeks": 52,
+      "txs": 10400,
+      "fc": 0.0158,
+      "meta": 0.7347,
+      "implicit": 0.0104,
+      "full": 0.2391
+    },
+    {
+      "year": "2026",
+      "weeks": 44,
+      "txs": 8800,
+      "fc": 0.0642,
+      "meta": 0.5439,
+      "implicit": 0.027,
+      "full": 0.3649
+    }
+  ],
   "crank": null,
   "files": {
     "data/out/results.json": "5b771333b38f3e98f4e804e03384388280d9524c9b297d6efe1ef097a999f213",
@@ -312,10 +439,157 @@
   "break_campaign": {
     "refusals": 16,
     "all_refused_as_designed": true,
+    "twin": "break.keytell.testnet",
+    "rows": [
+      {
+        "name": "A stranger registers a claim",
+        "signer": "stranger.keytell.testnet",
+        "method": "register",
+        "expected": "E_NOT_PUBLISHER",
+        "got": "E_NOT_PUBLISHER",
+        "tx": "HR39qKmSYThq8hh9FyX2bLmqkw844oLxcPbVcAoqyWTd",
+        "tx_short": "HR39qKmSYT"
+      },
+      {
+        "name": "The publisher registers after the window opened",
+        "signer": "keytell.testnet",
+        "method": "register",
+        "expected": "E_WINDOW_STARTED",
+        "got": "E_WINDOW_STARTED",
+        "tx": "A2saGV3CjMaztgidosCpcLr5ZJmbT7JnGCcx6YrKemoD",
+        "tx_short": "A2saGV3CjM"
+      },
+      {
+        "name": "The publisher registers a valid claim (control)",
+        "signer": "keytell.testnet",
+        "method": "register",
+        "expected": "OK",
+        "got": "OK",
+        "tx": "EE1txMBD8dmW9ZeFGrCKkA9HdVkAE3dPWsSjx8wjU5R4",
+        "tx_short": "EE1txMBD8d"
+      },
+      {
+        "name": "The publisher registers the same id again",
+        "signer": "keytell.testnet",
+        "method": "register",
+        "expected": "E_CLAIM_EXISTS",
+        "got": "E_CLAIM_EXISTS",
+        "tx": "Exw6RVDAaBqZVFRjF1WZaS8N1WNtkRAJoDv9CTC6RQvo",
+        "tx_short": "Exw6RVDAaB"
+      },
+      {
+        "name": "The publisher tries to edit the threshold",
+        "signer": "keytell.testnet",
+        "method": "edit_threshold",
+        "expected": "MethodNotFound",
+        "got": "MethodNotFound",
+        "tx": "4BLPGJT7BFcyzw2xVHPoHb3xWpzRRNkVh4ri57TcZnvX",
+        "tx_short": "4BLPGJT7BF"
+      },
+      {
+        "name": "Anyone resolves before the window ends",
+        "signer": "stranger.keytell.testnet",
+        "method": "resolve",
+        "expected": "E_WINDOW_OPEN",
+        "got": "E_WINDOW_OPEN",
+        "tx": "AN12BPNiaM67jPxnDzgbcXnNKDyYLhdy4xVxxh6cECj",
+        "tx_short": "AN12BPNiaM"
+      },
+      {
+        "name": "A stranger posts an observation",
+        "signer": "stranger.keytell.testnet",
+        "method": "post",
+        "expected": "E_NOT_CRANK",
+        "got": "E_NOT_CRANK",
+        "tx": "N2Axv82SaRmUG5ZWKHrqJEeheRUo8DkMwVdEYLBW5n2",
+        "tx_short": "N2Axv82SaR"
+      },
+      {
+        "name": "The crank posts before the period has ended",
+        "signer": "crank.keytell.testnet",
+        "method": "post",
+        "expected": "E_PERIOD_NOT_ENDED",
+        "got": "E_PERIOD_NOT_ENDED",
+        "tx": "HmsUfkZBEve7VR9AoebccwaGBJyp4DjDZhppkUDoiwx2",
+        "tx_short": "HmsUfkZBEv"
+      },
+      {
+        "name": "The crank posts period 1 (control)",
+        "signer": "crank.keytell.testnet",
+        "method": "post",
+        "expected": "OK",
+        "got": "OK",
+        "tx": "6ZYP8Y1k94ACM9XyEGXMKpuGpwSaD2ua5S2J7DiALVo",
+        "tx_short": "6ZYP8Y1k94"
+      },
+      {
+        "name": "The crank backdates a post to period 0",
+        "signer": "crank.keytell.testnet",
+        "method": "post",
+        "expected": "E_BACKDATE",
+        "got": "E_BACKDATE",
+        "tx": "3XgJxHAorKCQR1r5zY5ju5FVXJoeDQ6DxRkz25uZj4CK",
+        "tx_short": "3XgJxHAorK"
+      },
+      {
+        "name": "The crank posts period 1 twice",
+        "signer": "crank.keytell.testnet",
+        "method": "post",
+        "expected": "E_ALREADY_POSTED",
+        "got": "E_ALREADY_POSTED",
+        "tx": "DY5PFunsspB1NhaHcmZcERBsWqTE4fWWq23RKXJZofNR",
+        "tx_short": "DY5PFunssp"
+      },
+      {
+        "name": "The crank posts past the window",
+        "signer": "crank.keytell.testnet",
+        "method": "post",
+        "expected": "E_OUT_OF_WINDOW",
+        "got": "E_OUT_OF_WINDOW",
+        "tx": "HM8tttT6fJx2vDBjeb4HHmMzEP4KWdtgaCrz6hYXRw9e",
+        "tx_short": "HM8tttT6fJ"
+      },
+      {
+        "name": "Anyone resolves after the window (control)",
+        "signer": "stranger.keytell.testnet",
+        "method": "resolve",
+        "expected": "OK",
+        "got": "OK",
+        "tx": "AtUerHVSLAQL7JeaLFaBStW3iNFrnkrznvji9oi2nR9C",
+        "tx_short": "AtUerHVSLA"
+      },
+      {
+        "name": "The crank posts after resolution",
+        "signer": "crank.keytell.testnet",
+        "method": "post",
+        "expected": "E_RESOLVED",
+        "got": "E_RESOLVED",
+        "tx": "6EEAnyEBLceXmiHWjBeXZEGgLiDyXT5pVCD43ePpLNw8",
+        "tx_short": "6EEAnyEBLc"
+      },
+      {
+        "name": "Anyone resolves a second time",
+        "signer": "stranger.keytell.testnet",
+        "method": "resolve",
+        "expected": "E_RESOLVED",
+        "got": "E_RESOLVED",
+        "tx": "3QcSTd4k652BqNQACZaurxjqytpdH5UVX9Fc4Lg8zaAF",
+        "tx_short": "3QcSTd4k65"
+      },
+      {
+        "name": "The crank's post-only key calls resolve on the real ledger",
+        "signer": "crank.keytell.testnet",
+        "method": "resolve",
+        "expected": "MethodNameMismatch",
+        "got": "MethodNameMismatch (rejected by the protocol)",
+        "tx": null,
+        "tx_short": ""
+      }
+    ],
     "file": "data/break.json"
   },
   "sentences": {
-    "verdict": "The data did not support the claim: over 94 out-of-sample weeks of one-step forecasts of weekly USDC volume, adding function-call-signed activity to an AR(2) baseline added 5.1 percent to forecast error; daily active accounts added 3.6 percent to forecast error; price added 5.5 percent to forecast error. The pass rule needs function-call activity to do better than both.",
+    "verdict": "The claim did not hold: over 94 out-of-sample weeks of one-step forecasts of weekly USDC volume, adding function-call-signed activity to an AR(2) baseline added 5.1 percent to forecast error; daily active accounts added 3.6 percent to forecast error; price added 5.5 percent to forecast error. The pass rule needs function-call activity to do better than both.",
     "vs_baselines": "Versus DAA the mean squared-error difference is 0.006578 (95 percent interval -0.055139 to 0.069399); versus price -0.001606 (-0.060525 to 0.05815). Negative favours function-call keys; the pass rule needs both intervals below zero.",
     "directions": "Function-call keys flagged 28 weeks: 13 hits and 15 false alarms, with 24 misses. DAA: 2 hits, 7 false alarms, 35 misses.",
     "latest": "In 2026-W45, 29.5 percent of sampled mainnet transactions were signed by a function-call key (95 percent interval 23.6 percent to 36.2 percent); 35.5 percent were meta transactions relayed for a user.",

@@ -35,7 +35,7 @@ def main():
     L.append("## Evidence for" if passed else "## What the test found")
     if b:
         g = b["oos_gain"]
-        L.append(f"- Backtest verdict: **{b['verdict']}** ({link('results.json', 'data/out/results.json')}).")
+        L.append(f"- Result: **{b.get('headline', b['verdict'])}.** {b.get('plain', '')} ({link('results.json', 'data/out/results.json')}).")
         L.append(f"- Out-of-sample gain in forecasting weekly USDC volume over {b['oos_weeks_scored']} weeks, against an AR(2) baseline (positive means a smaller error than the baseline, negative a larger one): function-call-signed activity {pct(g.get('fc_signed_tx'))}, daily active accounts {pct(g.get('daa'))}, price {pct(g.get('price'))} ({link('oos_errors.csv', 'data/out/oos_errors.csv')}).")
         L.append(f"- Mean squared-error difference against DAA {b['vs_daa']['mean_sq_error_difference']} (95% interval {b['vs_daa']['ci95'][0]} to {b['vs_daa']['ci95'][1]}); against price {b['vs_price']['mean_sq_error_difference']} ({b['vs_price']['ci95'][0]} to {b['vs_price']['ci95'][1]}). Negative favours function-call keys.")
     if lat:
