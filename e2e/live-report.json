@@ -1,0 +1,128 @@
+{
+  "base": "http://localhost:3100",
+  "ran_at": "2026-11-14T02:00:04.747Z",
+  "passed": 24,
+  "total": 24,
+  "results": [
+    {
+      "name": "route /",
+      "ok": true,
+      "detail": "200, no console, page or request errors"
+    },
+    {
+      "name": "route /evidence",
+      "ok": true,
+      "detail": "200, no console, page or request errors"
+    },
+    {
+      "name": "route /against",
+      "ok": true,
+      "detail": "200, no console, page or request errors"
+    },
+    {
+      "name": "route /ledger",
+      "ok": true,
+      "detail": "200, no console, page or request errors"
+    },
+    {
+      "name": "route /keys",
+      "ok": true,
+      "detail": "200, no console, page or request errors"
+    },
+    {
+      "name": "route /memo",
+      "ok": true,
+      "detail": "200, no console, page or request errors"
+    },
+    {
+      "name": "route /rerun",
+      "ok": true,
+      "detail": "200, no console, page or request errors"
+    },
+    {
+      "name": "route /proof",
+      "ok": true,
+      "detail": "200, no console, page or request errors"
+    },
+    {
+      "name": "internal links",
+      "ok": true,
+      "detail": "10 distinct internal links answer 200"
+    },
+    {
+      "name": "/keys aurora",
+      "ok": true,
+      "detail": "\"0 function-call keys, 1 full-access key\" in 1534 ms"
+    },
+    {
+      "name": "/keys relay.tg",
+      "ok": true,
+      "detail": "\"RECENT TRANSACTIONS SIGNED BY RELAY.TG\" in 1981 ms"
+    },
+    {
+      "name": "/keys 0000000000000000000000000000000000000000000000000000000000000000",
+      "ok": true,
+      "detail": "\"KEYS ON 0000000000000000000000000000000000000000000000000000000000000000\" in 815 ms"
+    },
+    {
+      "name": "/keys this-account-does-not-exist-keytell.near",
+      "ok": true,
+      "detail": "\"does not exist\" in 62 ms"
+    },
+    {
+      "name": "/keys Not An Account!!",
+      "ok": true,
+      "detail": "\"not a valid\" in 30 ms"
+    },
+    {
+      "name": "memo Markdown export",
+      "ok": true,
+      "detail": "keytell-memo.md, sha256 6789bd1c5198a362..., equals data/out/memo.md: true"
+    },
+    {
+      "name": "memo PDF (print) button",
+      "ok": true,
+      "detail": "visible; opens the browser print dialog"
+    },
+    {
+      "name": "memo signature opens the near-connect wallet selector (mainnet)",
+      "ok": true,
+      "detail": "selector opened, wallets offered: Meteor Wallet, NEAR Mobile, Ethereum Wallets, NEAR CLI"
+    },
+    {
+      "name": "ledger reads the claim from chain",
+      "ok": true,
+      "detail": "claim keytell-fc-leads-usdc-1 and ledger.keytell.testnet shown"
+    },
+    {
+      "name": "resolve is closed during the window",
+      "ok": true,
+      "detail": "button disabled until the forward window ends (the contract refuses E_WINDOW_OPEN as well)"
+    },
+    {
+      "name": "/api/status",
+      "ok": true,
+      "detail": "NEAR testnet RPC (ledger): ok; NEAR mainnet RPC (/keys): ok; FastNEAR transaction API (/keys): ok; FastNEAR block archive (sampler): ok; NEAR Intents Explorer API: ok; BigQuery data freshness: ok"
+    },
+    {
+      "name": "/proof.json",
+      "ok": true,
+      "detail": "9 of 9 proof checks pass, computed live from chain"
+    },
+    {
+      "name": "memo-verify refuses missing fields",
+      "ok": true,
+      "detail": "400 Missing fields."
+    },
+    {
+      "name": "memo-verify refuses a message that is not an attestation",
+      "ok": true,
+      "detail": "400 The signed message is not a Keytell memo attestation."
+    },
+    {
+      "name": "memo-verify refuses a forged signature",
+      "ok": true,
+      "detail": "401 Signature check failed: Access key ed25519:11111111111111111111111111111111 does not exist at block height 224448469"
+    }
+  ]
+}

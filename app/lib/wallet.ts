@@ -23,6 +23,7 @@ export function getConnector(net: Net): Promise<any> {
   return connectors[net]!;
 }
 
+// Must equal MEMO_RECIPIENT in lib/memo-verify.ts (e2e/nep413.ts asserts it).
 export const MEMO_RECIPIENT = "keytell.memo";
 
 export interface Signed413 { accountId: string; publicKey: string; signature: string; message: string; nonce: string; recipient: string }
@@ -37,7 +38,8 @@ function b64(bytes: Uint8Array): string {
 export async function signMemo(message: string): Promise<Signed413> {
   const c = await getConnector("mainnet");
   const nonce = crypto.getRandomValues(new Uint8Array(32));
-  const wallet = await c.wallet();
+  // First visit: no wallet is connected yet, so open the selector and sign in before signing.
+  const wallet = await c.wallet().catch(() => c.connect());
   const s: any = await wallet.signMessage({ message, recipient: MEMO_RECIPIENT, nonce } as never);
   const sig = typeof s.signature === "string" ? s.signature : b64(s.signature);
   return { accountId: s.accountId, publicKey: s.publicKey, signature: sig, message, nonce: b64(nonce), recipient: MEMO_RECIPIENT };
@@ -45,6 +47,8 @@ export async function signMemo(message: string): Promise<Signed413> {
 
 export async function connect(net: Net): Promise<string | null> {
   const c = await getConnector(net);
+  const existing = await c.getConnectedWallet().catch(() => null);
+  if (existing?.accounts?.length) return existing.accounts[0].accountId;
   await c.connect();
   const { accounts } = await c.getConnectedWallet();
   return accounts?.[0]?.accountId ?? null;

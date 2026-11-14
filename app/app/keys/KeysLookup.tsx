@@ -55,7 +55,7 @@ export function KeysLookup() {
             <div className="plate p-6">
               <p className="eyebrow">Keys on {res.account} now</p>
               {res.keys_note ? <p className="mt-2 text-[16px]">{res.keys_note}</p> : <p className="display mt-2 text-[30px]">{res.fc_keys} function-call key{res.fc_keys === 1 ? "" : "s"}, {res.full_keys} full-access key{res.full_keys === 1 ? "" : "s"}</p>}
-              <div className="mt-4 overflow-x-auto" tabIndex={0} role="region" aria-label="Scrollable table">
+              {res.keys.length > 0 && <div className="mt-4 overflow-x-auto" tabIndex={0} role="region" aria-label="Scrollable table">
                 <table className="table-k">
                   <thead><tr><th>Public key</th><th>Kind</th><th>Scoped to</th><th>Methods</th><th>Allowance (yocto)</th></tr></thead>
                   <tbody>
@@ -64,7 +64,7 @@ export function KeysLookup() {
                     ))}
                   </tbody>
                 </table>
-              </div>
+              </div>}
               {res.keys.length > 40 && <p className="mt-2 text-[13px] text-[color:var(--ink-2)]">Showing 40 of {res.keys.length} keys.</p>}
             </div>
             <div className="plate p-6">

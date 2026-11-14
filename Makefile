@@ -70,3 +70,12 @@ test:
 	LD_PRELOAD=$$PWD/fleet/shim/libfdlimit.so cargo test -p thesis_ledger --test sandbox
 	npx tsx --test scripts/classify.test.ts
 	BQ_TEST=$${BQ_TEST:-0} $(PY) -I scripts/sql_fixture_test.py
+
+# End-to-end checks on the deployed app (BASE defaults to the live URL) and the memo signature check
+# on real testnet keys (needs ~/.near-credentials/testnet; skipped without it).
+BASE ?= https://keytell.vercel.app
+e2e:
+	BASE=$(BASE) node e2e/judge.mjs
+	BASE=$(BASE) node e2e/live.mjs
+	BASE=$(BASE) node e2e/layout.mjs
+	@if [ -d $$HOME/.near-credentials/testnet ]; then npx tsx e2e/nep413.ts; else echo "skip nep413: no testnet credentials"; fi

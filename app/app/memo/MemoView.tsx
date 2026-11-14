@@ -54,7 +54,8 @@ export function MemoView() {
       const j = await r.json();
       setCheck(j.ok ? `Verified by the server: the signature is valid and ${j.publicKey} is a full-access key of ${j.accountId}.` : `Not verified: ${j.reason}`);
     } catch (e) {
-      setErr(String((e as Error).message ?? e));
+      const m = String((e as Error).message ?? e);
+      setErr(/rejected/i.test(m) ? "Wallet selection closed. Nothing was signed." : m);
     }
   }
 
