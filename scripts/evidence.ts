@@ -68,6 +68,14 @@ if (facts?.data) {
   L.push(`${facts.data.weeks_sampled} weeks sampled, ${Number(facts.data.blocks_sampled).toLocaleString("en-US")} blocks, ${Number(facts.data.transactions_classified).toLocaleString("en-US")} transactions classified, ${Number(facts.data.archival_lookups).toLocaleString("en-US")} archival key lookups. ${facts.sentences?.sample_check ?? ""}`, "");
 }
 
+const live = j("e2e/live-report.json");
+if (live) {
+  L.push("## The deployed app, end to end (`e2e/live.mjs`)", "", `Run at ${live.ran_at} against ${live.base}: ${live.passed} of ${live.total} pass.`, "", "| Check | Result | Detail |", "|---|---|---|");
+  for (const r of live.results) L.push(`| ${r.name} | ${r.ok ? "PASS" : "FAIL"} | ${String(r.detail).replace(/\|/g, "/")} |`);
+  L.push("");
+}
+const lay = j("e2e/layout-report.json");
+if (lay) L.push("## Layout and accessibility (`e2e/layout.mjs`)", "", `Run at ${lay.ran_at} against ${lay.base}: ${lay.clean} of ${lay.total} views clean over ${lay.routes.length} routes and ${lay.viewports.length} viewports (${lay.viewports.join(", ")}).`, "");
 if (verifyLog) L.push("## `make verify`", "", "Captured in `e2e/verify.log`.", "", "```", tail(verifyLog, /PASS|FAIL|checks pass/), "```", "");
 
 const text = L.join("\n") + "\n";

@@ -15,6 +15,8 @@ const FORMATS: Record<string, (v: any) => string> = {
   date: (v) => String(v).slice(0, 10),
   list: (v) => (Array.isArray(v) && v.length ? v.join(", ") : "none"),
   bool: (v) => (v ? "yes" : "no"),
+  effect: (v) => (v === null || v === undefined ? "n/a" : `${Math.abs(Number(v) * 100).toFixed(1)}% ${Number(v) >= 0 ? "better" : "worse"}`),
+  txlink: (v) => (v ? `[${String(v).slice(0, 10)}...](https://testnet.nearblocks.io/txns/${v})` : "none: the protocol refused it before a transaction existed"),
   explorer: (v) => `https://testnet.nearblocks.io/txns/${v}`,
   pass: (v) => (v ? "**passes**" : "fails"),
   signed: (v) => (v === null || v === undefined ? "n/a" : `${Number(v) >= 0 ? "+" : "-"}${Math.abs(Number(v) * 100).toFixed(1)}%`),

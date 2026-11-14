@@ -1,6 +1,6 @@
 {
   "base": "https://keytell.vercel.app",
-  "ran_at": "2026-11-14T02:02:12.996Z",
+  "ran_at": "2026-11-14T02:25:23.196Z",
   "passed": 24,
   "total": 24,
   "results": [
@@ -52,32 +52,32 @@
     {
       "name": "/keys aurora",
       "ok": true,
-      "detail": "\"0 function-call keys, 1 full-access key\" in 130 ms"
+      "detail": "\"0 function-call keys, 1 full-access key\" in 1314 ms"
     },
     {
       "name": "/keys relay.tg",
       "ok": true,
-      "detail": "\"RECENT TRANSACTIONS SIGNED BY RELAY.TG\" in 1714 ms"
+      "detail": "\"RECENT TRANSACTIONS SIGNED BY RELAY.TG\" in 1363 ms"
     },
     {
       "name": "/keys 0000000000000000000000000000000000000000000000000000000000000000",
       "ok": true,
-      "detail": "\"KEYS ON 0000000000000000000000000000000000000000000000000000000000000000\" in 862 ms"
+      "detail": "\"KEYS ON 0000000000000000000000000000000000000000000000000000000000000000\" in 667 ms"
     },
     {
       "name": "/keys this-account-does-not-exist-keytell.near",
       "ok": true,
-      "detail": "\"does not exist\" in 181 ms"
+      "detail": "\"does not exist\" in 162 ms"
     },
     {
       "name": "/keys Not An Account!!",
       "ok": true,
-      "detail": "\"not a valid\" in 112 ms"
+      "detail": "\"not a valid\" in 149 ms"
     },
     {
       "name": "memo Markdown export",
       "ok": true,
-      "detail": "keytell-memo.md, sha256 6789bd1c5198a362..., equals data/out/memo.md: true"
+      "detail": "keytell-memo.md, sha256 dc7c043c2de0163a..., equals data/out/memo.md: true"
     },
     {
       "name": "memo PDF (print) button",
@@ -122,7 +122,7 @@
     {
       "name": "memo-verify refuses a forged signature",
       "ok": true,
-      "detail": "401 Signature check failed: Access key ed25519:11111111111111111111111111111111 does not exist at block height 224448694"
+      "detail": "401 Signature check failed: Access key ed25519:11111111111111111111111111111111 does not exist at block height 224451131"
     }
   ]
 }

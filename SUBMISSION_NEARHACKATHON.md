@@ -25,13 +25,13 @@ submission. Own cut-off: 14 Nov 2026 21:59 UTC (two hours before the deadline).
 ```text
 Keytell tests one investment thesis about NEAR and publishes the result either way: are transactions signed by function-call keys (the scoped keys apps and agents hold) a better leading indicator of real usage, measured as weekly USDC volume, than daily active accounts or price? Only NEAR has protocol-level function-call keys, and the kind of key behind every signature is public.
 
-The claim, its pass rule and the SHA-256 of the method and every query were written to a keyless NEAR contract (thesis_ledger, zero access keys, no edit method) before any out-of-sample data was read. Registration: 2026-11-13T18:17:43.113Z. First out-of-sample query: 2026-11-13T18:18:03+00:00.
+The claim, its pass rule and the SHA-256 of the method and every query were written to a keyless NEAR contract with no edit method before any out-of-sample data was read. Registered 2026-11-13, before the first out-of-sample query.
 
-Verdict: The data did not support the claim. Over 94 out-of-sample weeks, the forecast gain from function-call activity over an AR(2) baseline was -5.1%, against -3.6% for DAA and -5.5% for price (positive means smaller errors). The rule needed function-call activity to beat both.
+Result: The claim did not hold. Over 94 weeks the test had never seen, adding function-call activity to a baseline forecast of weekly USDC volume made it 5.1% worse; daily active accounts made it 3.6% worse, price 5.5% worse. It needed to beat both. It beat price but not daily active accounts, and neither difference was clear of noise (both bootstrap intervals straddle zero).
 
 What we found instead: signing moved from app-held function-call keys to relayed meta transactions (NEP-366). 1 of 8 control reruns would pass the registered rule: every relayed meta transaction counted as function-call activity. It was registered as a control, not as the claim, so it does not change the verdict; docs/FINDINGS.md treats it as a hypothesis for a new pre-registration.
 
-How: a keyless sampler classifies the key that signed 50,600 mainnet transactions at signing time over public RPC; BigQuery counts DAA and USDC; the app shows every chart's SQL, the case against (controls, 1,000 timing placebos, concentration), a /keys lookup for any account, and a memo the analyst signs with NEP-413. A twelve-week forward claim is open on chain; a crank posts each week with a function-call key limited to post, and anyone can resolve it. make verify rebuilds every number from a clean clone without keys. Ledger on testnet; data from mainnet.
+How: a keyless sampler classifies the key that signed 50,600 mainnet transactions at signing time over public RPC; BigQuery counts DAA and USDC; the app shows every chart's SQL, the case against (controls, 1,000 timing placebos, concentration), a /keys lookup for any account, and a memo the analyst signs with NEP-413. A twelve-week forward claim is open on chain; a crank posts each week with a function-call key limited to post, and anyone can resolve it. make verify rebuilds every number from a clean clone. Ledger on testnet; data from mainnet.
 ```
 
 ## X post (Kinnoski approves and posts)
@@ -39,7 +39,7 @@ How: a keyless sampler classifies the key that signed 50,600 mainnet transaction
 ```text
 Built at #NEARHackathon: do NEAR function-call keys lead real usage better than active accounts or price?
 
-Registered on chain before the test. Verdict: The data did not support the claim. Published anyway.
+Registered on chain before the test. Result: The claim did not hold. Published anyway.
 
 https://keytell.vercel.app
 https://github.com/0xkinno/keytell

@@ -441,9 +441,16 @@
       "base": "https://keytell.vercel.app",
       "passed": 24,
       "total": 24,
-      "ran_at": "2026-11-14T02:02:12.996Z"
+      "ran_at": "2026-11-14T02:25:23.196Z"
     },
-    "layout": null
+    "layout": {
+      "base": "https://keytell.vercel.app",
+      "clean": 64,
+      "total": 64,
+      "viewports": 8,
+      "routes": 8,
+      "ran_at": "2026-11-14T02:24:38.335Z"
+    }
   },
   "break_campaign": {
     "refusals": 16,
@@ -456,8 +463,8 @@
         "method": "register",
         "expected": "E_NOT_PUBLISHER",
         "got": "E_NOT_PUBLISHER",
-        "tx": "HR39qKmSYThq8hh9FyX2bLmqkw844oLxcPbVcAoqyWTd",
-        "tx_short": "HR39qKmSYT"
+        "result": "refused, `E_NOT_PUBLISHER`",
+        "tx": "HR39qKmSYThq8hh9FyX2bLmqkw844oLxcPbVcAoqyWTd"
       },
       {
         "name": "The publisher registers after the window opened",
@@ -465,8 +472,8 @@
         "method": "register",
         "expected": "E_WINDOW_STARTED",
         "got": "E_WINDOW_STARTED",
-        "tx": "A2saGV3CjMaztgidosCpcLr5ZJmbT7JnGCcx6YrKemoD",
-        "tx_short": "A2saGV3CjM"
+        "result": "refused, `E_WINDOW_STARTED`",
+        "tx": "A2saGV3CjMaztgidosCpcLr5ZJmbT7JnGCcx6YrKemoD"
       },
       {
         "name": "The publisher registers a valid claim (control)",
@@ -474,8 +481,8 @@
         "method": "register",
         "expected": "OK",
         "got": "OK",
-        "tx": "EE1txMBD8dmW9ZeFGrCKkA9HdVkAE3dPWsSjx8wjU5R4",
-        "tx_short": "EE1txMBD8d"
+        "result": "accepted (control)",
+        "tx": "EE1txMBD8dmW9ZeFGrCKkA9HdVkAE3dPWsSjx8wjU5R4"
       },
       {
         "name": "The publisher registers the same id again",
@@ -483,8 +490,8 @@
         "method": "register",
         "expected": "E_CLAIM_EXISTS",
         "got": "E_CLAIM_EXISTS",
-        "tx": "Exw6RVDAaBqZVFRjF1WZaS8N1WNtkRAJoDv9CTC6RQvo",
-        "tx_short": "Exw6RVDAaB"
+        "result": "refused, `E_CLAIM_EXISTS`",
+        "tx": "Exw6RVDAaBqZVFRjF1WZaS8N1WNtkRAJoDv9CTC6RQvo"
       },
       {
         "name": "The publisher tries to edit the threshold",
@@ -492,8 +499,8 @@
         "method": "edit_threshold",
         "expected": "MethodNotFound",
         "got": "MethodNotFound",
-        "tx": "4BLPGJT7BFcyzw2xVHPoHb3xWpzRRNkVh4ri57TcZnvX",
-        "tx_short": "4BLPGJT7BF"
+        "result": "refused, `MethodNotFound`",
+        "tx": "4BLPGJT7BFcyzw2xVHPoHb3xWpzRRNkVh4ri57TcZnvX"
       },
       {
         "name": "Anyone resolves before the window ends",
@@ -501,8 +508,8 @@
         "method": "resolve",
         "expected": "E_WINDOW_OPEN",
         "got": "E_WINDOW_OPEN",
-        "tx": "AN12BPNiaM67jPxnDzgbcXnNKDyYLhdy4xVxxh6cECj",
-        "tx_short": "AN12BPNiaM"
+        "result": "refused, `E_WINDOW_OPEN`",
+        "tx": "AN12BPNiaM67jPxnDzgbcXnNKDyYLhdy4xVxxh6cECj"
       },
       {
         "name": "A stranger posts an observation",
@@ -510,8 +517,8 @@
         "method": "post",
         "expected": "E_NOT_CRANK",
         "got": "E_NOT_CRANK",
-        "tx": "N2Axv82SaRmUG5ZWKHrqJEeheRUo8DkMwVdEYLBW5n2",
-        "tx_short": "N2Axv82SaR"
+        "result": "refused, `E_NOT_CRANK`",
+        "tx": "N2Axv82SaRmUG5ZWKHrqJEeheRUo8DkMwVdEYLBW5n2"
       },
       {
         "name": "The crank posts before the period has ended",
@@ -519,8 +526,8 @@
         "method": "post",
         "expected": "E_PERIOD_NOT_ENDED",
         "got": "E_PERIOD_NOT_ENDED",
-        "tx": "HmsUfkZBEve7VR9AoebccwaGBJyp4DjDZhppkUDoiwx2",
-        "tx_short": "HmsUfkZBEv"
+        "result": "refused, `E_PERIOD_NOT_ENDED`",
+        "tx": "HmsUfkZBEve7VR9AoebccwaGBJyp4DjDZhppkUDoiwx2"
       },
       {
         "name": "The crank posts period 1 (control)",
@@ -528,8 +535,8 @@
         "method": "post",
         "expected": "OK",
         "got": "OK",
-        "tx": "6ZYP8Y1k94ACM9XyEGXMKpuGpwSaD2ua5S2J7DiALVo",
-        "tx_short": "6ZYP8Y1k94"
+        "result": "accepted (control)",
+        "tx": "6ZYP8Y1k94ACM9XyEGXMKpuGpwSaD2ua5S2J7DiALVo"
       },
       {
         "name": "The crank backdates a post to period 0",
@@ -537,8 +544,8 @@
         "method": "post",
         "expected": "E_BACKDATE",
         "got": "E_BACKDATE",
-        "tx": "3XgJxHAorKCQR1r5zY5ju5FVXJoeDQ6DxRkz25uZj4CK",
-        "tx_short": "3XgJxHAorK"
+        "result": "refused, `E_BACKDATE`",
+        "tx": "3XgJxHAorKCQR1r5zY5ju5FVXJoeDQ6DxRkz25uZj4CK"
       },
       {
         "name": "The crank posts period 1 twice",
@@ -546,8 +553,8 @@
         "method": "post",
         "expected": "E_ALREADY_POSTED",
         "got": "E_ALREADY_POSTED",
-        "tx": "DY5PFunsspB1NhaHcmZcERBsWqTE4fWWq23RKXJZofNR",
-        "tx_short": "DY5PFunssp"
+        "result": "refused, `E_ALREADY_POSTED`",
+        "tx": "DY5PFunsspB1NhaHcmZcERBsWqTE4fWWq23RKXJZofNR"
       },
       {
         "name": "The crank posts past the window",
@@ -555,8 +562,8 @@
         "method": "post",
         "expected": "E_OUT_OF_WINDOW",
         "got": "E_OUT_OF_WINDOW",
-        "tx": "HM8tttT6fJx2vDBjeb4HHmMzEP4KWdtgaCrz6hYXRw9e",
-        "tx_short": "HM8tttT6fJ"
+        "result": "refused, `E_OUT_OF_WINDOW`",
+        "tx": "HM8tttT6fJx2vDBjeb4HHmMzEP4KWdtgaCrz6hYXRw9e"
       },
       {
         "name": "Anyone resolves after the window (control)",
@@ -564,8 +571,8 @@
         "method": "resolve",
         "expected": "OK",
         "got": "OK",
-        "tx": "AtUerHVSLAQL7JeaLFaBStW3iNFrnkrznvji9oi2nR9C",
-        "tx_short": "AtUerHVSLA"
+        "result": "accepted (control)",
+        "tx": "AtUerHVSLAQL7JeaLFaBStW3iNFrnkrznvji9oi2nR9C"
       },
       {
         "name": "The crank posts after resolution",
@@ -573,8 +580,8 @@
         "method": "post",
         "expected": "E_RESOLVED",
         "got": "E_RESOLVED",
-        "tx": "6EEAnyEBLceXmiHWjBeXZEGgLiDyXT5pVCD43ePpLNw8",
-        "tx_short": "6EEAnyEBLc"
+        "result": "refused, `E_RESOLVED`",
+        "tx": "6EEAnyEBLceXmiHWjBeXZEGgLiDyXT5pVCD43ePpLNw8"
       },
       {
         "name": "Anyone resolves a second time",
@@ -582,8 +589,8 @@
         "method": "resolve",
         "expected": "E_RESOLVED",
         "got": "E_RESOLVED",
-        "tx": "3QcSTd4k652BqNQACZaurxjqytpdH5UVX9Fc4Lg8zaAF",
-        "tx_short": "3QcSTd4k65"
+        "result": "refused, `E_RESOLVED`",
+        "tx": "3QcSTd4k652BqNQACZaurxjqytpdH5UVX9Fc4Lg8zaAF"
       },
       {
         "name": "The crank's post-only key calls resolve on the real ledger",
@@ -591,14 +598,15 @@
         "method": "resolve",
         "expected": "MethodNameMismatch",
         "got": "MethodNameMismatch (rejected by the protocol)",
-        "tx": null,
-        "tx_short": ""
+        "result": "refused, `MethodNameMismatch`",
+        "tx": null
       }
     ],
     "file": "data/break.json"
   },
   "sentences": {
     "verdict": "The claim did not hold: over 94 out-of-sample weeks of one-step forecasts of weekly USDC volume, adding function-call-signed activity to an AR(2) baseline added 5.1 percent to forecast error; daily active accounts added 3.6 percent to forecast error; price added 5.5 percent to forecast error. The pass rule needs function-call activity to do better than both.",
+    "rule_outcome": "It beat price but not daily active accounts, and neither difference was clear of noise (both bootstrap intervals straddle zero).",
     "vs_baselines": "Versus DAA the mean squared-error difference is 0.006578 (95 percent interval -0.055139 to 0.069399); versus price -0.001606 (-0.060525 to 0.05815). Negative favours function-call keys; the pass rule needs both intervals below zero.",
     "directions": "Function-call keys flagged 28 weeks: 13 hits and 15 false alarms, with 24 misses. DAA: 2 hits, 7 false alarms, 35 misses.",
     "latest": "In 2026-W45, 29.5 percent of sampled mainnet transactions were signed by a function-call key (95 percent interval 23.6 percent to 36.2 percent); 35.5 percent were meta transactions relayed for a user.",

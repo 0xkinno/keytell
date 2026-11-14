@@ -223,7 +223,7 @@ export function buildFacts() {
         layout: lay ? { base: lay.base, clean: lay.clean, total: lay.total, viewports: lay.viewports.length, routes: lay.routes.length, ran_at: lay.ran_at } : null,
       };
     })(),
-    break_campaign: brk ? { refusals: brk.results?.length ?? 0, all_refused_as_designed: brk.results?.every((r: any) => r.ok_as_designed) ?? false, twin: brk.twin, rows: brk.results.map((r: any) => ({ name: r.name, signer: r.signer, method: r.method, expected: r.expected, got: r.got, tx: r.hash, tx_short: String(r.hash ?? "").slice(0, 10) })), file: "data/break.json" } : null,
+    break_campaign: brk ? { refusals: brk.results?.length ?? 0, all_refused_as_designed: brk.results?.every((r: any) => r.ok_as_designed) ?? false, twin: brk.twin, rows: brk.results.map((r: any) => ({ name: r.name, signer: r.signer, method: r.method, expected: r.expected, got: r.got, result: r.ok_as_designed ? (r.expected === "OK" ? "accepted (control)" : `refused, \`${String(r.got).split(" ")[0]}\``) : `UNEXPECTED: ${r.got}`, tx: r.hash ?? null })), file: "data/break.json" } : null,
   };
 
   const s = (facts as any);
@@ -231,6 +231,13 @@ export function buildFacts() {
   if (s.backtest) {
     const b = s.backtest;
     sentences.verdict = `${b.headline}: over ${b.oos_weeks_scored} out-of-sample weeks of one-step forecasts of weekly USDC volume, adding function-call-signed activity to an AR(2) baseline ${effect(b.oos_gain.fc_signed_tx)}; daily active accounts ${effect(b.oos_gain.daa)}; price ${effect(b.oos_gain.price)}. The pass rule needs function-call activity to do better than both.`;
+    {
+      const g = b.oos_gain, beat = (k: string) => g.fc_signed_tx > g[k];
+      const names: Record<string, string> = { daa: "daily active accounts", price: "price" };
+      const won = ["daa", "price"].filter(beat).map((k) => names[k]), lost = ["daa", "price"].filter((k) => !beat(k)).map((k) => names[k]);
+      const clear = [b.vs_daa, b.vs_price].every((c: any) => c?.ci95?.[1] < 0);
+      sentences.rule_outcome = `${won.length === 2 ? "It beat both" : won.length ? `It beat ${won.join(" and ")} but not ${lost.join(" or ")}` : `It beat neither ${lost.join(" nor ")}`}, and ${clear ? "both differences were clear of noise" : "neither difference was clear of noise (both bootstrap intervals straddle zero)"}.`;
+    }
     sentences.vs_baselines = `Versus DAA the mean squared-error difference is ${b.vs_daa?.mean_sq_error_difference} (95 percent interval ${b.vs_daa?.ci95?.join(" to ")}); versus price ${b.vs_price?.mean_sq_error_difference} (${b.vs_price?.ci95?.join(" to ")}). Negative favours function-call keys; the pass rule needs both intervals below zero.`;
     sentences.directions = `Function-call keys flagged ${b.directions.fc_signed_tx.hits + b.directions.fc_signed_tx.false_alarms} weeks: ${b.directions.fc_signed_tx.hits} hits and ${b.directions.fc_signed_tx.false_alarms} false alarms, with ${b.directions.fc_signed_tx.misses} misses. DAA: ${b.directions.daa.hits} hits, ${b.directions.daa.false_alarms} false alarms, ${b.directions.daa.misses} misses.`;
   }

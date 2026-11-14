@@ -28,7 +28,7 @@
 
 > **{{backtest.headline}}.** {{backtest.plain}}
 >
-> Over {{backtest.oos_weeks_scored}} weeks the test had never seen, function-call activity changed forecast error by **{{backtest.oos_gain.fc_signed_tx|signed}}**, daily active accounts by **{{backtest.oos_gain.daa|signed}}** and price by **{{backtest.oos_gain.price|signed}}** (positive means smaller errors). The rule, written on chain first, needed function-call activity to beat both. A twelve-week forward test of the same claim is open on chain now and resolves without us.
+> Over {{backtest.oos_weeks_scored}} weeks the test had never seen, adding function-call activity to a baseline forecast of weekly USDC volume made it **{{backtest.oos_gain.fc_signed_tx|effect}}**. Daily active accounts made it {{backtest.oos_gain.daa|effect}}, price {{backtest.oos_gain.price|effect}}. The rule, written on chain first, needed function-call activity to beat both. {{sentences.rule_outcome}} A twelve-week forward test of the same claim is open on chain now and resolves without us.
 
 ## At a glance
 
@@ -183,10 +183,10 @@ sequenceDiagram
 
 Each attempt below is a real testnet transaction against a twin ledger running the same code hash as the real one; the contract's 21 unit tests, a 10,000-case property test and two sandbox tests pin the same rules.
 
-| Attempt | Signer | Expected | Got | Transaction |
-|---|---|---|---|---|
+| Attempt | Signer | Result, as designed | Transaction |
+|---|---|---|---|
 {{#each break_campaign.rows}}
-| {{.name}} | `{{.signer}}` | {{.expected}} | {{.got}} | [{{.tx_short}}...]({{.tx|explorer}}) |
+| {{.name}} | `{{.signer}}` | {{.result}} | {{.tx|txlink}} |
 {{/each}}
 
 ## Who holds which key
