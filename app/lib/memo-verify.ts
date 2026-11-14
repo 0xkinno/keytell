@@ -13,6 +13,12 @@ export type Verdict = { ok: true; accountId: string; publicKey: string } | { ok:
 export async function verifyAttestation(b: AttestationBody | null, provider: unknown): Promise<Verdict> {
   if (!b?.accountId || !b?.publicKey || !b?.signature || !b?.message || !b?.nonce) return { ok: false, status: 400, reason: "Missing fields." };
   if (!ATTESTATION.test(b.message)) return { ok: false, status: 400, reason: "The signed message is not a Keytell memo attestation." };
+  // Freshness: the message ends with the date it was signed; refuse one more than two days away, so an old
+  // signature cannot be replayed as a fresh reading (near-api-js leaves nonce freshness to the app).
+  const dated = b.message.match(/(\d{4}-\d{2}-\d{2})\s*$/);
+  if (!dated) return { ok: false, status: 400, reason: "The attestation must end with the date it was signed." };
+  const days = Math.abs(Date.now() - Date.parse(`${dated[1]}T12:00:00Z`)) / 86_400_000;
+  if (!(days <= 2)) return { ok: false, status: 400, reason: `The attestation is dated ${dated[1]}; sign a fresh one.` };
   const nonce = Uint8Array.from(Buffer.from(b.nonce, "base64"));
   if (nonce.length !== 32) return { ok: false, status: 400, reason: "The nonce must be 32 bytes." };
   try {

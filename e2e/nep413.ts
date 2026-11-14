@@ -12,7 +12,7 @@ const provider = new JsonRpcProvider({ url: "https://rpc.testnet.fastnear.com" }
 const cred = (f: string) => ({ account_id: f.replace(/(\.post-key)?\.json$/, ""), ...JSON.parse(readFileSync(`${homedir()}/.near-credentials/testnet/${f}`, "utf8")) });
 const b64 = (u: Uint8Array) => Buffer.from(u).toString("base64");
 const memoSha = JSON.parse(readFileSync("app/lib/generated/memo.json", "utf8")).sha256;
-const message = `Keytell analyst attestation. I have read the evidence against as well as the evidence for in memo sha256 ${memoSha}. The decision is mine. 2026-11-14`;
+const message = `Keytell analyst attestation. I have read the evidence against as well as the evidence for in memo sha256 ${memoSha}. The decision is mine. ${new Date().toISOString().slice(0, 10)}`;
 
 let pass = 0, total = 0;
 const sigFail = (v: any) => !v.ok && /^Signature check failed/.test(v.reason);
@@ -38,7 +38,7 @@ rec("a full-access key's attestation verifies", v1.ok, v1.ok ? `${v1.publicKey} 
 const otherAcct = await verifyAttestation({ ...good, accountId: "stranger.keytell.testnet" }, provider);
 rec("the same signature claimed for another account is refused", sigFail(otherAcct), (otherAcct as any).reason ?? "accepted");
 
-const tampered = await verifyAttestation({ ...good, message: good.message.replace("2026-11-14", "2026-11-15") }, provider);
+const tampered = await verifyAttestation({ ...good, message: good.message.replace("The decision is mine.", "The decision is ours.") }, provider);
 rec("an edited message is refused", sigFail(tampered), (tampered as any).reason ?? "accepted");
 
 const wrongRecipient = await verifyAttestation(await sign("keytell.testnet.json", "some-other-app.near"), provider);
@@ -49,6 +49,9 @@ rec("a function-call key cannot attest (full access required)", sigFail(fcKey), 
 
 const notMemo = await verifyAttestation(await sign("keytell.testnet.json", MEMO_RECIPIENT, "I approve everything."), provider);
 rec("a signed message that is not an attestation is refused", !notMemo.ok && /not a Keytell memo attestation/.test((notMemo as any).reason), (notMemo as any).reason ?? "accepted");
+
+const stale = await verifyAttestation(await sign("keytell.testnet.json", MEMO_RECIPIENT, message.replace(/\d{4}-\d{2}-\d{2}$/, "2026-01-01")), provider);
+rec("an old attestation cannot be replayed as fresh", !stale.ok && /sign a fresh one/.test((stale as any).reason), (stale as any).reason ?? "accepted");
 
 console.log(`\n${pass} of ${total} NEP-413 checks pass`);
 process.exit(pass === total ? 0 : 1);

@@ -70,6 +70,7 @@ export function KeysLookup() {
             <div className="plate p-6">
               <p className="eyebrow">Recent transactions signed by {res.account}</p>
               <p className="mt-2 text-[15px] text-[color:var(--ink-2)]">{Object.entries(res.counts).map(([k, v]) => `${v} ${BUCKET[k]?.sum ?? k}`).join(" · ") || "No signed transactions found in the recent window."}</p>
+              <p className="mt-1 text-[13px] text-[color:var(--ink-2)]">Transactions this account signed itself, newest first{res.recent?.[0]?.at ? `; the newest is from ${String(res.recent[0].at).slice(0, 10)}` : ""}. Accounts that others call, such as contracts, may sign rarely.</p>
               <ul className="mt-4 space-y-2">
                 {res.recent.map((t: any) => (
                   <li key={t.hash} className="flex flex-wrap items-center gap-3 border-b border-[color:var(--hair)] pb-2 text-[14px]">

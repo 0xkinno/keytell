@@ -18,7 +18,7 @@ export function MethodSteps() {
   const left = useSecondsUntil(f.claim?.window_end_ns ?? null);
   const steps = [
     {
-      n: "1", t: "Register", body: <>The claim, its metric and outcome, the comparator, a 50 percent threshold and the SHA-256 of the method and of every SQL and analysis file were written to <span className="mono">{f.claim?.ledger}</span> at <span className="mono">{f.claim?.registered_at}</span>, before any out-of-sample query ran. The ledger holds {f.deployment?.ledger_access_keys} access keys: nobody can edit it.</>,
+      n: "1", t: "Register", body: <>The claim, its metric and outcome, the comparator, a {f.claim ? `${Number(f.claim.threshold_e6) / 1e4} percent` : "registered"} threshold and the SHA-256 of the method and of every SQL and analysis file were written to <span className="mono">{f.claim?.ledger}</span> at <span className="mono">{f.claim?.registered_at}</span>, before any out-of-sample query ran. The ledger holds {f.deployment?.ledger_access_keys} access keys: nobody can edit it.</>,
       link: f.claim ? { href: EXPLORER.testnet(f.claim.registration_tx), label: "Registration transaction" } : null,
     },
     {

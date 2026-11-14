@@ -99,7 +99,7 @@ rec("/proof.json", pj.all_pass === true, `${pj.passed} of ${pj.total} proof chec
 
 // 7. memo-verify refuses what it must.
 const post = async (b) => { const r = await ctx.request.post(`${BASE}/api/memo-verify`, { data: b }); return [r.status(), await r.json()]; };
-const msg = `Keytell analyst attestation. I have read the evidence against as well as the evidence for in memo sha256 ${"a".repeat(64)}. The decision is mine.`;
+const msg = `Keytell analyst attestation. I have read the evidence against as well as the evidence for in memo sha256 ${"a".repeat(64)}. The decision is mine. ${new Date().toISOString().slice(0, 10)}`;
 let [s1, j1] = await post({});
 rec("memo-verify refuses missing fields", s1 === 400 && !j1.ok, `${s1} ${j1.reason}`);
 let [s2, j2] = await post({ accountId: "aurora", publicKey: "ed25519:11111111111111111111111111111111", signature: "AA==", message: "hello", nonce: "AA==" });
