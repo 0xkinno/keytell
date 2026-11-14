@@ -1,0 +1,7 @@
+{
+  "url": "https://keytell.vercel.app",
+  "repo": "https://github.com/0xkinno/keytell",
+  "vercel_project": "keytell",
+  "root_directory": "app",
+  "deployed_from": "main"
+}

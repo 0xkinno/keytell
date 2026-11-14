@@ -18,5 +18,5 @@ jobs:
         run: npx tsx scripts/verify.ts
       - name: The live app answers
         env:
-          APP_URL: ${{ vars.APP_URL }}
+          APP_URL: ${{ vars.APP_URL || 'https://keytell.vercel.app' }}
         run: npx tsx scripts/reachability.ts
